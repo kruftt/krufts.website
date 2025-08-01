@@ -1,3 +1,3 @@
-This is a placeholder project for `krufts.website`
+This is a project for `krufts.website`, hosting a blog and personal site.
 
-Created with Next.js, React, Tailwind, shadcn/ui
+Created with React, shadcn/ui, Tailwind, Nextjs

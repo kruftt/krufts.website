@@ -120,3 +120,31 @@
     @apply bg-background text-foreground;
   }
 }
+
+.transition-width {
+  transition-property: width;
+}
+
+ul.link_list {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  padding-inline-start: 0;
+}
+
+ul.link_list li:before {
+  content: "•";
+  padding: 0 0.4em;
+}
+
+ul.link_list li:first-child:before {
+  content: none;
+}
+
+.green-tag {
+  @apply bg-green-600;
+}
+
+a {
+  color: #0066ee;
+}
