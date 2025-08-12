@@ -50,7 +50,7 @@ function Component() {
                   We can think of the coordinates cos(α) and sin(α) as the shadows A casts on the x and y axes:
                 </p>
               </div>
-              <img src="img/dot1.jpg" className="m-auto" alt="Vector Components" />
+              <img src="/img/dot1.jpg" className="m-auto" alt="Vector Components" />
             </CarouselItem>
             <CarouselItem>
               <div className="max-w-7/8 m-auto">
@@ -58,7 +58,7 @@ function Component() {
                   Now consider a second unit vector B, with angle β, making angle θ with A.<br /> If A casts a shadow onto B, that is, if we "project" A onto B to form a right triangle, we know from trigonometry that the length of the projection will be cos(θ):
                 </p>
               </div>
-              <img src="img/dot2.jpg" className="m-auto" alt="Vector Projection" />
+              <img src="/img/dot2.jpg" className="m-auto" alt="Vector Projection" />
               <div className="max-w-7/8 m-auto">
                 <p>
                   The more parallel the vectors are, the greater cos(θ) will be, with a maximum of 1.<br />
@@ -76,7 +76,7 @@ function Component() {
                   The trick here will be to calculate the projection of each component separately and add them together.
                 </p>
               </div>
-              <img src="img/dot3.jpg" className="m-auto" alt="Vector Component Projection" />
+              <img src="/img/dot3.jpg" className="m-auto" alt="Vector Component Projection" />
               <div className="max-w-7/8 m-auto">
                 <p>
                   First consider the x component with length cos(α), on the x axis.<br />
@@ -119,7 +119,7 @@ function Component() {
                 </p>
               </div>
               <div className="max-w-7/8 m-auto">
-                <img src="img/wedge1.jpg" className="m-auto" alt="Sine as side of Triangle" />
+                <img src="/img/wedge1.jpg" className="m-auto" alt="Sine as side of Triangle" />
                 <p>
                   We would like to express this area in terms of the vector components, like we did with the dot product.
                 </p>
@@ -138,7 +138,7 @@ function Component() {
                   <br />
                 </p>
               </div>
-              <img src="img/wedge2.jpg" className="m-auto" alt="Sine as area" />
+              <img src="/img/wedge2.jpg" className="m-auto" alt="Sine as area" />
               <div className="max-w-7/8 m-auto">
                 <p>
                   Now we can start with the area of the whole and subtract out the parts we don't need.<br />
@@ -173,7 +173,7 @@ function Component() {
                   The zoomed in region shows an approximation of the corresponding changes in the sides of the triangle.
                 </p>
               </div>
-              <img src="img/trig1.jpg" className="m-auto" alt="Derivative for Sine" />
+              <img src="/img/trig1.jpg" className="m-auto" alt="Derivative for Sine" />
               <div className="max-w-7/8 m-auto">
                 <p>
                   Recall that the length of an arc on the unit circle is θ.<br />
@@ -192,7 +192,7 @@ function Component() {
                   in the x and y directions:
                 </p>
               </div>
-              <img src="img/eq1.jpg" className="m-auto" alt="Derivative for Cosine" />
+              <img src="/img/eq1.jpg" className="m-auto" alt="Derivative for Cosine" />
             </CarouselItem>
             <CarouselItem>
               <h2 className="text-2xl">
@@ -207,7 +207,7 @@ function Component() {
                   Let's also label the x and y coordinates of our triangle in terms of x instead of θ:
                 </p>
               </div>
-              <img src="img/trig2.jpg" className="m-auto" alt="Change Coordinates" />
+              <img src="/img/trig2.jpg" className="m-auto" alt="Change Coordinates" />
               <div className="max-w-7/8 m-auto">
                 <p>
                   In our zoomed in picture, we would like to know the new value for dθ as x changes.<br />
@@ -215,7 +215,7 @@ function Component() {
                   All we need to do is substitute θ = arccos(x) and rearrange.
                 </p>
               </div>
-              <img src="img/eq2.jpg" className="m-auto" alt="Find the unknown" />
+              <img src="/img/eq2.jpg" className="m-auto" alt="Find the unknown" />
               <div className="max-w-7/8 m-auto">
                 <p>
                   We're now left with -1/sin(arccos(x))
@@ -232,7 +232,7 @@ function Component() {
                   Refer back to the opposing side of our zoomed out triangle. Substituting in we're left with:
                 </p>
               </div>
-              <img src="img/eq3.jpg" className="m-auto" alt="Derivative for Inverse Cosine" />
+              <img src="/img/eq3.jpg" className="m-auto" alt="Derivative for Inverse Cosine" />
             </CarouselItem>
           </ArticleCarousel>
         </SectionTabsContent>
@@ -244,10 +244,10 @@ function Component() {
           <br />
           <ArticleCarousel>
             <CarouselItem>
-              <img src="img/matrix1.jpg" className="m-auto" alt="Inner and Outer products" />
+              <img src="/img/matrix1.jpg" className="m-auto" alt="Inner and Outer products" />
             </CarouselItem>
             <CarouselItem>
-              <img src="img/matrix2.jpg" className="m-auto" alt="Combinations of rows and columns" />
+              <img src="/img/matrix2.jpg" className="m-auto" alt="Combinations of rows and columns" />
             </CarouselItem>
           </ArticleCarousel>
         </SectionTabsContent>

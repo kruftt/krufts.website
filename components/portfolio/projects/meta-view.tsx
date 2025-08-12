@@ -21,13 +21,13 @@ function MetaView({state}: {state:PortfolioState}) {
       </section>
       <ArticleCarousel >
         <CarouselItem>
-          <img className="m-auto" src="img/metaview1.jpg" alt="Template configuration." />
+          <img className="m-auto" src="/img/metaview1.jpg" alt="Template configuration." />
         </CarouselItem>
         <CarouselItem>
-          <img className="m-auto" src="img/metaview2.jpg" alt="Note editing" />
+          <img className="m-auto" src="/img/metaview2.jpg" alt="Note editing" />
         </CarouselItem>
         <CarouselItem>
-          <img className="m-auto" src="img/metaview3.jpg" alt="Nested Object Support" />
+          <img className="m-auto" src="/img/metaview3.jpg" alt="Nested Object Support" />
         </CarouselItem>
       </ArticleCarousel>
     </article>

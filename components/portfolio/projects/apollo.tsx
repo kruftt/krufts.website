@@ -22,7 +22,7 @@ function Component() {
         </p>
         <div className="mt-8 text-center">
           Apollo
-          <img src="img/apollo.jpg" alt="The Apollo boon calculator." />
+          <img src="/img/apollo.jpg" alt="The Apollo boon calculator." />
         </div>
       </section>
     </article>

@@ -20,10 +20,10 @@ function Component() {
       </div>
       <ArticleCarousel>
         <CarouselItem>
-          <img className="m-auto" src="img/matrix_mult2.jpg" alt="Interactive Matrix Multiplication" />
+          <img className="m-auto" src="/img/matrix_mult2.jpg" alt="Interactive Matrix Multiplication" />
         </CarouselItem>
         <CarouselItem>
-          <img className="m-auto" src="img/matrix_mult.jpg" alt="Null space solutions" />
+          <img className="m-auto" src="/img/matrix_mult.jpg" alt="Null space solutions" />
         </CarouselItem>
       </ArticleCarousel>
     </article>

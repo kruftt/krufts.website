@@ -8,25 +8,44 @@ import { useEffect, useState } from "react"
 export default function Portfolio () {
   const [state, dispatch] = usePortfolio()
   const [tab, changeTab] = useState(state.articleList[0])
+  const [updating, changeUpdating] = useState(false)
   
   useEffect(() => {
-    const hash = window.location.hash.slice(1).replaceAll('-', ' ')
-    const index = state.articleList.indexOf(hash)
-    if (index !== -1) changeTab(hash)
+    // addEventListener("hashchange", updateSelection)
+    addEventListener("popstate", updateSelection)
+    updateSelection();
   }, [state.articleList])
 
+  function updateSelection() {
+    const articleName = window.location.hash.slice(1).replaceAll('-', ' ')
+    const index = state.articleList.indexOf(articleName)
+    if (index === -1) {
+      // changeTab(state.articleList[0])
+      // updateHash(state.articleList[0])
+    } else {
+      changeTab(articleName)
+      changeUpdating(true) // updateHash gives wrong value
+    }
+  }
+
   function updateHash(articleName: string) {
-    window.location.hash = articleName.replaceAll(' ', '-')
+    if (updating) {
+      changeUpdating(false)
+      return
+    }
+    
+    // window.history.pushState({}, '', '#' + articleName.replaceAll(' ', '-'))
+    window.location.hash = '#' + articleName.replaceAll(' ', '-')
     changeTab(articleName)
   }
   
   return (
     <PortfolioState value={state}>
       <PortfolioDispatch value={dispatch}>
-        <section>
-          <div className="text-center mt-12">
+        <section className="mt-8">
+          <div className="text-center">
             <h3 className="text-4xl">Marc Doucette</h3>
-            <h4 className="text-xl">Software Developer and Educator</h4>
+            <h4 className="text-xl">Educator and Software Developer</h4>
             {/* <h4 className="text-xl">Game and Web Developer</h4> */}
             <h4 className="text-base">
               <a href="mailto:marc.t.doucette@gmail.com">marc.t.doucette@gmail.com</a>

@@ -36,10 +36,10 @@ function Component() {
       </SectionTabs>
       <ArticleCarousel>
         <CarouselItem>
-          <img className="m-auto" src="img/reduction.jpg" alt="Mod Effect Graphs" />
+          <img className="m-auto" src="/img/reduction.jpg" alt="Mod Effect Graphs" />
         </CarouselItem>
         <CarouselItem>
-          <img className="m-auto" src="img/valheim_configs.jpg" alt="Configuration Settings for my mods." />
+          <img className="m-auto" src="/img/valheim_configs.jpg" alt="Configuration Settings for my mods." />
         </CarouselItem>
       </ArticleCarousel>
     </article>

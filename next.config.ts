@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
     unoptimized: true
   },
 
+  trailingSlash: true
+
   // turbopack: {
   //   rules: {
   //     '*.md': {

@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "move-file dist/.git dist.git && next build && move-file dist.git dist/.git",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.0",
     "@next/mdx": "^15.4.5",
+    "@radix-ui/react-navigation-menu": "^1.2.13",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tabs": "^1.1.12",
     "@types/mdx": "^2.0.13",

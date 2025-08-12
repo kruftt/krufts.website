@@ -29,7 +29,7 @@ function Component() {
       <ArticleCarousel>
         <CarouselItem>
           <div className="text-center">Snapshot of <i>The Ribbit Hole</i></div>
-          <img src="img/snapshot1.jpg" alt="The Ribbit Hole" />
+          <img src="/img/snapshot1.jpg" alt="The Ribbit Hole" />
         </CarouselItem>
         <CarouselItem>
           <div className="text-center">SVG Interface (inactive)</div>

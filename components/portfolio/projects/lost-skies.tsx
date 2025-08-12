@@ -14,7 +14,7 @@ function Component() {
     <article>
       <ArticleHeader article={data}>
         <a href="https://lostskiesgame.com">
-          <img src="img/lostskies.png" alt="Lost Skies" />
+          <img src="/img/lostskies.png" alt="Lost Skies" />
         </a>
       </ArticleHeader>
       <SectionTabs tabs={['Overview', 'Point to Interact', 'Infested Bunker']}>
@@ -28,7 +28,7 @@ function Component() {
             </p>
           </section>
           <div className="text-center mt-8">
-            <img src="img/il2cpp_light.jpg" alt="Unity IL2CPP" className="m-auto" />
+            <img src="/img/il2cpp_light.jpg" alt="Unity IL2CPP" className="m-auto" />
           </div>
         </SectionTabsContent>
         <SectionTabsContent value='Point to Interact'>
@@ -42,7 +42,7 @@ function Component() {
           </section>
           <div className="text-center mt-8">
             <a href="https://thunderstore.io/c/lost-skies/p/kruft/Point_To_Interact/">
-              <img className="m-auto" src="img/point_to_interact.jpg" alt="Point To Interact" />
+              <img className="m-auto" src="/img/point_to_interact.jpg" alt="Point To Interact" />
             </a>
           </div>
         </SectionTabsContent>
@@ -57,7 +57,7 @@ function Component() {
               Steam Workshop: Infested Bunker
             </a>
             <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3439823150">
-              <img src="img/infested_bunker.jpg" alt="Steam Workshop: Infested Bunker" />
+              <img src="/img/infested_bunker.jpg" alt="Steam Workshop: Infested Bunker" />
             </a>
           </div>
         </SectionTabsContent>

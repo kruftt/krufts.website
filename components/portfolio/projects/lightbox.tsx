@@ -21,7 +21,7 @@ function Component() {
           </p>
         </div>
         <div>
-          <img src="img/lights.jpg" alt="The Lightbox" />
+          <img src="/img/lights.jpg" alt="The Lightbox" />
         </div>
       </section>
     </article>
