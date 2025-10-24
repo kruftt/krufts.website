@@ -13,14 +13,14 @@ import Lightbox from './lightbox'
 
 const articleList = [
   LostSkies,
+  Valheim,
   MetaView,
   Apollo,
   Tutoring,
-  iQueue,
   IntMatMult,
-  Valheim,
   Riftbreaker,
   TethersEnd,
+  iQueue,
   RibbitHole,
   AIME,
   Lightbox

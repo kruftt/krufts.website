@@ -1,6 +1,7 @@
 import ArticleHeader from "@/components/portfolio/article-header"
 import { ArticleCarousel, CarouselItem } from "@/components/portfolio/article-carousel"
 import { SectionTabs, SectionTabsContent } from "@/components/portfolio/article-tabs"
+import YoutubeWrapper from "@/components/portfolio/youtube-wrapper";
 
 const data: ArticleData = {
   title: 'Valheim',
@@ -20,28 +21,51 @@ function Component() {
         Valheim
       </ArticleHeader>
       <p>
-        I wrote two small mods for <a href="https://www.valheimgame.com">Valheim</a> using <a href="https://github.com/BepInEx/HarmonyX">HarmonyX's</a> runtime patching of Valheim's C# Unity assemblies.
+        I wrote a few small mods for <a href="https://www.valheimgame.com">Valheim</a> using BepInEx's out-of-the-box Unity modding utilities.
       </p>
-      <SectionTabs tabs={['Resource Cost Scaling', 'Smooth Armor Scaling']}>
+      <SectionTabs tabs={['Explosive Bomb', 'Resource Cost Scaling', 'Smooth Armor Scaling']}>
+        <SectionTabsContent value='Explosive Bomb'>
+          <p>
+            I recently overheard a Valheim player complain about there not being a good way to speed up mining during certain key progression choke points. <a href="https://thunderstore.io/c/valheim/p/kruft/Explosive_Bomb/">Explosive Bomb</a> is meant to remedy this gap. Although it becomes available early in the second progression tier, mass production is blocked by the recipe requiring a scarce Surtling Core. I've balanced the item to be especially effective for mining, good for chopping trees, and to have decent utility in early combat, all making up for its moderately expensive price.
+          </p>
+          <p>
+            Creating this mod involved creating my own model, materials, and sounds, exporting them as an asset package made to be compatible with Valheim, and some amount of code to get it loaded and registered into the game.
+          </p>
+          <br/>
+          <div>
+            <YoutubeWrapper url="https://www.youtube.com/embed/zBb7N049dmk?si=ygsRyu8hkamc-UXP" />
+          </div>
+        </SectionTabsContent>
         <SectionTabsContent value='Resource Cost Scaling'>
           <p>
             <a href="https://thunderstore.io/c/valheim/p/kruft/ResourceCostScaling/">Resource Cost Scaling</a> helps cut down on the amount of grinding required in the game. I felt existing solutions, such as increased drop amounts, interacted poorly with other mechanics. E.g. increased drops put too much strain on inventory space and weight. Downscaling crafting costs across the board avoids theses issues. Special consideration was needed for the 5x Bronze Bars recipe in order to properly handle the rounding with respect to the cost of the single Bronze Bar recipe. I used a sentinel value in order to special case the logic.
           </p>
+          <br/>
+          <div>
+            <img className="m-auto" src="/img/reduction.jpg" alt="Mod Effect Graphs" />
+          </div>
         </SectionTabsContent>
         <SectionTabsContent value='Smooth Armor Scaling'>
           <p>
             <a href="https://thunderstore.io/c/valheim/p/kruft/SmoothArmorScaling/">Smooth Armor Scaling</a> addresses inbalanced damage reduction scaling that occurs, especially at higher difficulty levels. In the vanilla game, "starred" monsters could often inflict up to 3x the damage per hit compared to normal monsters, effectively making armor irrelevant against large hits. This is due to the piecewise damage reduction function that is used by default. I replaced this with a single, smooth function and added configurable armor values for all gear pieces, giving players more control over game balance.
           </p>
+          <br/>
+          <div>
+            <img className="m-auto" src="/img/valheim_configs.jpg" alt="Configuration Settings for my mods." />
+          </div>
         </SectionTabsContent>
       </SectionTabs>
-      <ArticleCarousel>
+      {/* <ArticleCarousel>
+        <CarouselItem>
+          
+        </CarouselItem>
         <CarouselItem>
           <img className="m-auto" src="/img/reduction.jpg" alt="Mod Effect Graphs" />
         </CarouselItem>
         <CarouselItem>
           <img className="m-auto" src="/img/valheim_configs.jpg" alt="Configuration Settings for my mods." />
         </CarouselItem>
-      </ArticleCarousel>
+      </ArticleCarousel> */}
     </article>
   )
 }
