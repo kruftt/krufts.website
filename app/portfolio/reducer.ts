@@ -1,5 +1,5 @@
 import { createContext, useReducer, ActionDispatch } from "react"
-import projects from "@/components/portfolio/projects"
+import projects from "@/app/portfolio/projects"
 
 
 function generate(): PortfolioState {

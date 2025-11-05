@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     unoptimized: true
   },
 
-  trailingSlash: true
+  trailingSlash: true,
 
   // turbopack: {
   //   rules: {

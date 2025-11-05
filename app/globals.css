@@ -148,3 +148,7 @@ ul.link_list li:first-child:before {
 a {
   color: #0066ee;
 }
+
+p {
+  margin: 0.6em
+}
