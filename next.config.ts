@@ -28,6 +28,12 @@ const nextConfig: NextConfig = {
   //   });
   //   return config
   // },
+  
+  // experimental: {
+  //   urlImports: [
+  //     'https://cdn.jsdelivr.net/'
+  //   ]
+  // }
 };
 
 const withMDX = createMDX({
