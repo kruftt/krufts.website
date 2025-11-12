@@ -22,7 +22,7 @@ export default function Page2({
       </div>
 
       <p>
-        This means that moving along the first dimension for a distance of {"\\(a\\)"} and the second dimension for a distance of {"\\(b\\)"} is the same as moving a distance of {"\\(\\sqrt{a^2 + b^2}\\)"} straight toward the final position. Now we can translate away from the origin at an angle θ and modulus r:
+        This means that moving along the first dimension for a distance of {"\\(a\\)"} and the second dimension for a distance of {"\\(b\\)"} results in the same position as moving a distance of {"\\(\\sqrt{a^2 + b^2}\\)"} straight toward the final position. The theorem tell us how to translate away from the origin at an angle θ and modulus r:
       </p>
       <div className="text-center">
         {"\\((r,\\theta)\\rightarrow (r\\cos{\\theta}, r\\sin(\\theta))\\)"}
@@ -34,7 +34,7 @@ export default function Page2({
         Now that we can go continuously between two directions, what have we lost? We've lost the ability to order all our points along a single line. We can still order points along a given direction, but not in general.
       </p>
       <p>
-        This raises another question, which is, "How do we think about the actual action of rotation?" We want to take a point from where we got by going along one direction, to where we would have gone had we originally started off in another direction. Similar to go backward in 1 dimension, but we want to be able to go in any (pythagorean) combination of 2 directions, instead of just the opposite?
+        This raises another question, which is, "How do we think about the actual action of rotation?" We want to take a point from where we got by going along one direction, to where we would have gone had we went in another direction. Similar to going backward in 1 dimension, but we want to be able to go in any combination of 2 directions, instead of just the opposite direction.
       </p>
 
       <h2 className="m-auto text-3xl mt-8 flex justify-center">

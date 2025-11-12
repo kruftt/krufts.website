@@ -15,7 +15,7 @@ export default function Page1({
       <img src="/img/math/ray.png" className="max-w-7/8 max-h-35 m-auto" alt="A ray from the origin." />
       
       <p>
-        Suppose now we have a dimension, a way to measure apart, and a ray of light shines from the origin. At some arbitrary point to our liking we can declare that the ray has <i>officially</i> reached 1 unit from the origin. This basis measurement enables us to measure distances to other points by comparison.
+        Suppose now we have a dimension, a way to measure apart, and a ray of light shines forth from the origin. At some arbitrary point we can declare that the ray has reached 1 unit from the origin. This basis measurement enables us to measure distances to other points by comparison.
       </p>
       <p>
         Moving a point from the origin is called performing a translation, meaning "to carry across". We carry the point, put it down, and say we have changed its "position", meaning "the spot where it has been put". Translation is represented by addition.
