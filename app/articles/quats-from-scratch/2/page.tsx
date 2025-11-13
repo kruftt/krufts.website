@@ -47,7 +47,7 @@ export default function Page2({
         In order to rotate there two basic behaviors we have to capture. The first is easy, staying in the same direction. We already know how to do that: multiply by 1, our affirming friend the identity element, as represented by + in the (+/-, r) notation for moving in one dimension. The other behavior is to rotate, that is, to shift our position from one dimension to the other, like reflecting between opposites along the same dimension, but shifting to other dimensions instead.
       </p>
       <p>
-        We can take the basic behavior of rotating to be going from pointing in one direction to another. We can start just by flipping or exchanging the two dimensions. That is to say we we can just take point (a,b) to the point (b,a), as on the left below, equivalent to reflecting across the line a=b. Imagine flipping a piece of paper in front of you along its diagonal axis.
+        We can understand the basic behavior of rotating to be going from pointing in one direction to another. We can start just by exchanging the two dimensions. In other words we can take point (a,b) to the point (b,a), as on the left below, equivalent to reflecting across the line a=b. Imagine flipping a piece of paper along its diagonal axis.
       </p>
 
       <div className="flex justify-center">
@@ -57,7 +57,7 @@ export default function Page2({
         This flips points along the two dimensions, but we're not there yet. Consider the point (1,1), where does that go? When we swap we end up back at (1,1), we haven't moved at all! Swapping distances doesn't have any effect along the diagonal where they're the same size. In addition to the swap, one component needs to be reflected to split them up. We need to flip the piece of paper a second time. We'll do it across the vertical axis: (b,a) -&gt; (-b,a). This gets all four directions going in a cycle together, rotating the first component toward the second.
       </p>
       <p>
-        Let's briefly compare these two reflections. The second looks more simple, involving just the first coordinate, with the second only coming along for the ride. How much this operation translates a given point depends only on the first coordinate. The important point is that one component is negated while the other is not.
+        Let's briefly compare these two reflections. The second looks more simple, involving just the first coordinate. How much this operation translates a given point depends only on what's in the first coordinate. The important point is that that component is negated while the other is not.
       </p>
       <p>
         The first reflection, however, involves swapping the components. It depends on the relationship between them, similar to taking the differences between the two parts of our walk. How much it translates a given point depends on the differences in distance between the two components on the journey to that point. If one part of the journey to p was longer than the other, which was longer gets swapped.
@@ -69,12 +69,16 @@ export default function Page2({
       </div>
 
       <p>
-        This is another two-step process leveraging different behaviors, this time to fold two dimensions together rather than two parts of a walk. What gets reflected in the first step depends on the difference between the two components, whereas what gets reflected in the second depends only on the first component. This difference puts the four directions into a cycle.
+        This means we can view rotation as another two-step process, this time using reflections, to leverage different behaviors. What gets reflected in the first step depends on the difference between the two components, whereas what gets reflected in the second depends only on the first component. This difference puts the four directions into a cycle.
       </p>
 
       <p>
-        Consider what happens when we reverse the order of the reflections. The first component gets negated before getting swapped, which causes the rotation to move in the opposite direction. This operation is called the conjugate, meaning "joined together", like a yoke joining oxen. Notice that applying a rotation and then applying its conjugate will simply do the reflections and therefore the rotations. They are inverse operations: {"\\(ABBA\\)"}.
+        Consider what happens when we reverse the order of the reflections. The first component gets negated before getting swapped, which causes the rotation to move in the opposite direction. This operation is called the conjugate, meaning "joined together", like a yoke joining oxen. Notice that applying a rotation and then applying its conjugate will do and then undo all the reflections in the reverse order. They are inverse operations.
       </p>
+
+      <div className="flex flex-wrap justify-center">
+        {"\\(ABBA = 1\\)"}
+      </div>
 
 
       <h2 className="m-auto text-3xl mt-8 flex justify-center">
@@ -94,8 +98,7 @@ export default function Page2({
       </div>
 
       <p>
-        Each component in the resulting rotation is itself composed of two components, a part that stayed in place and a part that cycled in from the other component.
-        For simplicity we've disregarded r, the modulus, but it just goes along for the ride.
+        Each component in the resulting rotation is itself composed of two components, one part that stayed in place and one part that cycled in from the other component.
       </p>
       <p>
         We have the same two basic actions as in one dimension: a change of direction and a movement. The domain of changing direction has expanded from facing forward or backward: {"\\(\\{1,-1\\}\\)"} to being able to turn around: {"\\([-\\pi:\\pi]\\)"}. From this we can see that we could have defined the action in one dimension in a more extensible way by using the same argument θ, but with the domain restricted to {"\\(\\{0,\\pi\\}\\)"} and taking the cosine to get 1 and -1. Personally, I find it easier to think of in terms of forward and backward, but I will use θ here to make it clear that the one is a subset of the other.
@@ -119,10 +122,10 @@ export default function Page2({
       </div>
 
       <p>
-        The word "complex" means "folded together", and the complex numbers encode this "mixed up" 4-way cyclic relationship into an algebra. The word "algebra" is associated with creating systems that help us balance out equations. We would like to be able to combine and manipulate these rotations in single equations, without breaking them up into components. In order for an algebra to keep the two actions of staying and rotating, it needs a variable for each one.
+        The word "complex" means "folded together", and the complex numbers encode this "mixed up" 4-way cyclic relationship into an algebra. The word "algebra" is associated with creating systems that help us balance out equations. We would like to be able to combine and manipulate these rotations in single equations, without breaking them up into components. In order for an algebra to keep track of the two actions of staying and rotating, it needs a variable for each one.
       </p>
       <p>
-        Consider that a point in 2-D has two interpretations. First, as position coordinates, and secondly, as an action, provided that we use it to transform another point as outlined above. When interpreted as an action, we said that the first component represents the "stay" behavior, while the second component represents the "cycle" behavior, and we have to keep them length 1 according to the pythagorean theorem. We already have a symbol for the "stay" behavior, our old friend the identity element, 1. Now we need an element to capture the "cycle" behavior. The standard notation is to use the letter <i>i</i>, which will act a marker representing the second component:
+        Consider that a point in 2-D has two interpretations. First, as position coordinates, and secondly, as a rotation and scaling action, provided that we use it to transform another point as outlined above. When interpreted as a rotation action without any scaling, we said that the first component represents the "stay" behavior, while the second component represents the "cycle" behavior, and we have to keep them length 1 according to the pythagorean theorem. We already have a symbol for the "stay" behavior, our old friend the identity element, 1. Now we need an element to capture the "cycle" behavior. The standard notation is to use the letter <i>i</i>, which will act a marker representing the second component:
       </p>
 
       <div className="flex flex-wrap justify-evenly gap-4">
@@ -147,12 +150,32 @@ export default function Page2({
       </div>
 
       <p>
-        Each component resulting from the rotation is itself composed of two components, a part that stayed in place, and a part that cycled in from the other component.
+        Previously we noted that reversing the order of reflections causes rotations to reverse, which is called conjugation. Since {"\\(i\\)"} captures the cycling behavior in our algebra, negating the {"\\(i\\)"} component causes the rotation to move in the opposite direction. When multiplied by its conjugate, the rotations represented by complex numbers cancel out and result in a point on the real axis, meaning the result is an action that doesn't rotate (it may still have scaling).
       </p>
 
+      <div className="flex flex-col flex-wrap items-center">
+        {"\\(z = a + bi\\)"}
+        {"\\(z^* = a - bi\\)"}
+        {"\\(zz^* = a^2 + b^2\\)"}
+      </div>
+
       <p>
-        Previously we noted that reversing the order of reflections causes rotations to reverse, which is called the conjugate. Since the i captures the cycling behavior in our algebra, negating the i component causes the rotation to move in the opposite direction. Since complex numbers are a form of multiplication, this inverse operation (which is also itself a multiplication) is a division on rotations.
+        Since complex numbers are a form of multiplication, conjugation is a division on rotations, since it undoes the rotation of its conjugate:
       </p>
+
+      <div className="flex flex-col items-center">
+        {"\\(z = \\cos{\\theta} + i\\sin{\\theta}\\)"}
+        {"\\(zz^* = \\cos^2{\\theta} + \\sin^2{\\theta} = 1\\)"}
+      </div>
+
+      (TODO: CONJUGATE DRAWING)
+
+      <p>
+        Actions that take a position from a multi-dimensional space to the real line in a way that preserves information about the order of distance are called norms. Here if we take the square root of the result, just like in the pythagorean theorem, we will get the modulus. This is called the euclidean norm, because it gives the euclidean distance from the origin to a given point.
+      </p>
+      <div className="flex justify-center">
+        {"\\(\\sqrt{zz^*} = \\sqrt{a^2 + b^2} = r\\)"}
+      </div>
     </article>
   );
 }

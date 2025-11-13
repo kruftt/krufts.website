@@ -15,10 +15,10 @@ export default function Page1({
       <img src="/img/math/ray.png" className="max-w-7/8 max-h-35 m-auto" alt="A ray from the origin." />
       
       <p>
-        Suppose now we have a dimension, a way to measure apart, and a ray of light shines forth from the origin. At some arbitrary point we can declare that the ray has reached 1 unit from the origin. This basis measurement enables us to measure distances to other points by comparison.
+        Suppose now we have a dimension, a way to measure apart, and a ray of light shines forth from the origin. At some arbitrary point we can declare that the ray has reached 1 unit of distance. This basis measurement enables us to measure distances to other points by comparison.
       </p>
       <p>
-        Moving a point from the origin is called performing a translation, meaning "to carry across". We carry the point, put it down, and say we have changed its "position", meaning "the spot where it has been put". Translation is represented by addition.
+        Moving a point from the origin is called performing a translation, meaning "to carry across". If we carry the point and put it down, we say we have changed its "position", meaning "the spot where it has been put". Translation can be represented by addition:
       </p>
       <div className="w-full flex flex-col text-center">
         <span>{"\\(0+1=1\\)"}</span>
@@ -50,7 +50,7 @@ export default function Page1({
         <span>{"\\(0\\cdot p=0\\)"}</span>
       </div>
       <p>
-        Okay, so but what if we slide down a snake? What action takes us back toward the origin? This is the "inverse" translation, meaning "turned inward". But where do we get if we keep going? The respective positions reached by going forward vs backward are called "opposites", meaning "placed across". They are called additive inverses, since adding them together gets 0.
+        Okay, but what if we slide down a snake? What action takes us back toward the origin? This is the "inverse" translation, meaning "turned inward". But where do we get if we keep going? The respective positions reached by going forward vs backward are called "opposites", meaning "placed across". They are called additive inverses, since adding them together gets 0.
       </p>
       <br />
       <img src="/img/math/opposites.png" className="max-w-7/8 max-h-16 m-auto" alt="A ray from the origin." />
@@ -81,8 +81,14 @@ export default function Page1({
       <h3 className="m-auto text-l mb-4 flex justify-center">
         <i>It's all about the journey</i>
       </h3>
+
+      <img src="/img/math/path.png" className="max-w-7/8 max-h-20 m-auto mb-4" alt="A ray from the origin." />
+
       <p>
-        Let's say we go on a walk and return to where we started. From the perspective of our final position, its just the same as if we never left! If we want any record of our journey we have to look at the distances of each of our series of actions. Then we could add up all the "how fars" while ignoring the direction. Taking just the distance without regard to direction is called the "modulus", meaning "little measure".
+        Let's say we go on a walk and return to where we started. From the perspective of our final position, its just the same as if we never left! If we want any record of our journey we have to look at the distances of each of our series of actions. Then we could add up all the "how fars" while ignoring the direction.
+      </p>
+      <p>
+        Taking just the distance without regard to direction is called the "modulus", meaning "little measure". 
       </p>
 
       <div className="w-full flex justify-center gap-8 flex-wrap">
@@ -100,7 +106,7 @@ export default function Page1({
         </div>
       </div>
       <p>
-        If we want to take a walk of distance {"\\(d\\)"} and get back to where we started, we need to walk a distance of {"\\(\\frac{d}{2}\\)"} there and back again. The distance function doesn't care what direction we go and sums up the same either way. This behavior is called being "even". Meanwhile, going in the opposite direction changes the sign of the resulting position. This is called being "odd". The difference is that the position takes orientation into account while distance doesn't.
+         If we want to take a walk of distance {"\\(d\\)"} and get back to where we started, we need to walk a distance of {"\\(\\frac{d}{2}\\)"} there and back again. The distance function doesn't care what direction we go and sums up the same either way. This behavior is called being "even". Meanwhile, going in the opposite direction changes the sign of the resulting position. This is called being "odd". The difference is that the position takes orientation into account while distance doesn't.
       </p>
 
       <p>
@@ -123,7 +129,7 @@ export default function Page1({
       </div>
 
       <p>
-        Here we have isolated the even and odd behaviors by using a two-step operation that does or does not negate/reflect the second step.
+        Here we have isolated the even and odd behaviors by negating the second step of the journey or not.
       </p>
 
     </article>

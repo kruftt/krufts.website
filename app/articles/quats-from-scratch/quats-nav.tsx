@@ -9,7 +9,7 @@ export default function QuatsNav({
       <a href="/articles/quats-from-scratch/1">1</a>
       <a href="/articles/quats-from-scratch/2">2</a>
       <a href="/articles/quats-from-scratch/3">3</a>
-      <a href="/articles/quats-from-scratch/visualizer">visualizer</a>
+      <a href="/articles/quats-from-scratch/visualizer">visualization </a>
     </div>
   )
 }
