@@ -34,7 +34,7 @@ export default function Page1({
         <i>A hop, skip, and a jump</i>
       </h3>
       <p>
-        Imagine that going along a dimension is like scaling a ladder with rungs spaced one unit apart. The number of rungs on the ladder is proportional to its length. Accordingly, these lengths are called "scalars", as they tell us how many rungs it would take to scale to a given position. We can add and multiply these scalars produce different translations. When we multiply two scalars together, it is as if we are using one whole ladder as the rungs of the other.
+        Imagine that going along a dimension is like scaling a ladder, with rungs one unit apart. The number of rungs on the ladder is proportional to its length. Accordingly, these lengths are called "scalars", as they tell us how many rungs it would take to scale to a given position. We can add and multiply these scalars produce different translations. When we multiply two scalars together, it is as if we are using one whole ladder as the rungs of the other.
       </p>
       <img src="/img/math/scalar_multiples.png" className="max-w-7/8 max-h-80 m-auto" alt="A ray from the origin." />
 
@@ -59,7 +59,7 @@ export default function Page1({
       </div>
 
       <p>
-        The movement of going from a position to its opposite, or vice versa, is called a "reflection" meaning "something that is bent back". There are two ways we can bend back, we can either do two inverse translations, or scale by -1, focusing on either translation or scaling respectively.
+        The movement of going from a position to its opposite, or vice versa, is called a "reflection" meaning "something that is bent back". There are two ways we can bend back, we can either do two inverse translations or scale by -1, focusing on either translation or scaling respectively.
       </p>
       <div className="w-full flex flex-col text-center">
         <span>{"\\(p+(-p)+(-p)=-p\\)"}</span>

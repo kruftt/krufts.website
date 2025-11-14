@@ -1,3 +1,5 @@
+import '@/app/articles/quats-from-scratch/3/3d.css'
+
 export default function Page3({
   children,
 }: Readonly<{
@@ -27,9 +29,8 @@ export default function Page3({
         The basic picture is similar to 2 dimensions in that it clearly involves an exchange of direction from one direction to another. The main difference is that in 3 dimensions there is an <i>axis</i> of rotation that goes along for the ride without exchanging with the other two. We can picture a top spinning on its axis:
       </p>
 
-      (TODO: Change to merry-go-round with handles. Add knob to axis)
       <div className="flex flex-col items-center">
-        <img src="/img/math/top.png" className="max-w-7/8 max-h-80" alt="A ray from the origin." />
+        <img src="/img/math/top.png" className="max-w-7/8 max-h-70" alt="A ray from the origin." />
       </div>
       <p>
         Just as in 1 and 2 dimensions, we have a modulus and an argument, but now we need something more. We need to know the axis of rotation.
@@ -76,7 +77,7 @@ export default function Page3({
       </div>
 
       <p>
-        There are some strange things afoot, the first of which is that {"\\(ij \\neq ji \\)"}. The order of actions can no longer be switched, they no longer commute ("commute" means "change together"). This is reflecting the fact that we have to be clear which axis is doing the rotating and which is being rotated. Doing rotations in reverse order does not usually result in the same translation. This is contrary to two dimensions in which we could exchange the order freely, and only the total amount of rotation mattered in the end. Losing commutativity is certainly a complication but appears unavoidable given the issue of axes rotating each other. 
+        There are some strange things afoot, the first of which is that {"\\(ij \\neq ji \\)"}. The order of actions can no longer be switched, they no longer commute ("commute" means "change together"). This is reflecting the fact that we have to be clear which axis is doing the rotating and which is being rotated. Doing rotations in reverse order does not usually result in the same translation. This is contrary to two dimensions in which we could exchange the order freely, and only the total amount of rotation mattered in the end. Losing commutativity is certainly a complication but appears unavoidable, given the issue of axes rotating each other. 
       </p>
 
       <p>
@@ -94,7 +95,7 @@ export default function Page3({
       <img src="/img/math/bubble.png" className="max-w-7/8 max-h-60 m-auto mt-8 mb-6" alt="A ray from the origin." />
 
       <p>
-        Its all collapsed! What happened!? The problem is we are trying to get these elements to perform double duty. The first statements, like {"\\(i^2=-1\\)"}, tell them to act as rotations, while the second statements, {"\\(ij=j\\)"}, tell them to act as the identity. But when we combine these behaviors into a single statement it collapses back into the singularity, which is the only place where both of these behaviors can be part of the same action!
+        Its all collapsed! What happened!? The problem is we are trying to get these elements to perform double duty. The first statements, like {"\\(i^2=-1\\)"}, tell them to act as rotations, while the second statements, {"\\(ij=j\\)"}, tell them to act as the identity. But when we combine these behaviors into a single statement it collapses back into the singularity, which is the only place where both of these behaviors can be part of the same action! Similarly, if {"\\(i\\)"} and {"\\(j\\)"} dont affect each other, how will we rotate between them? We cannot expect {"\\(1\\)"} to step in and perform double duty either.
       </p>
 
       <h2 className="m-auto text-3xl mt-8 flex justify-center">
@@ -105,7 +106,7 @@ export default function Page3({
       </h3>
 
       <p>
-        In 2 dimensions, we only had one possible plane of rotation, so we were able to use only one algebraic variable to represent turning in that plane. Conveniently, this allows us to think of both points and rotations in 2-Dimensions. But now we have three possible planes of rotation and we need a variable for each one. Plus we need extra room for information about how much to rotate at all. Therefore, looking ahead we expect terms in our algebra to have the general form:
+        In 2 dimensions, we only had one possible plane of rotation, so we were able to use only one algebraic variable to represent turning in that plane. Conveniently, this allows us to think of both points and rotations in 2-Dimensions. But now that we have three possible planes of rotation, we need a variable for each one. Plus, we need extra room for information about how much to rotate at all. Therefore, looking ahead we expect terms in our algebra to have the general form:
       </p>
 
       <div className="text-center">
@@ -115,13 +116,13 @@ export default function Page3({
       <img src="/img/math/planar_actions.png" className="max-w-7/8 max-h-100 m-auto mt-8 mb-4" alt="A ray from the origin." />
 
       <p>
-        Each complex variable represents a rotation action in one of the planes of rotation / around one of the axes and the real component represents staying in place. Furthermore, we know this real component cannot be on an axis or else the algebra collapses. So now we have three algebraic variables, taking up all three dimensions. Where has the real component gone? How do we interpret what these actions do e.g. to the number 1? E.g. we know that:
+        Each complex variable represents a rotation action in one of the planes of rotation / around one of the axes, while the real component represents staying in place. Furthermore, we know this real component cannot be on an axis or else the algebra collapses. So now we have three algebraic variables, taking up all three dimensions. Where has the real component gone? Can we just forget it entirely? How do we interpret what these actions do e.g. to the number 1? We know that:
       </p>
       <div className="text-center">
         {"\\(i\\cdot1=i\\)"}
       </div>
       <p>
-        But 1 is no longer on an axis!
+        But 1 is no longer in our picture! 
       </p>
 
       <p>
@@ -155,17 +156,17 @@ export default function Page3({
       </div>
 
       <p>
-        It doesn't collapse, but things are getting a bit carried away! We have an algebra that can rotate on all three axes, but it does something else. Part of the component parallel to the axis of rotation, the part that is twisting in place, is getting cycled toward -1. We were only considering the real component to be part of the action, meaning "stay-in-place", but now its part of the resulting position. The component along the axis is therefore liable to collapse to 0 or to end up going the opposite way entirely! We only know where the real part is "supposed" to go because of the context of the rotation that generated it.
+        The algebra doesn't collapse, but things are getting a bit carried away! We have an algebra that can rotate on all three axes, but it does something else. Part of the component parallel to the axis of rotation, the part that is twisting in place, is getting cycled toward -1. We were only considering the real component to be part of the action, meaning "stay-in-place", but now its part of the resulting position. The component along the axis is therefore liable to collapse to 0 or to end up going the opposite way entirely! We only know where its "supposed" to go because of the context of the action that generated it.
       </p>
 
       <img src="/img/math/axis_actions.png" className="max-w-7/8 max-h-80 m-auto" alt="A ray from the origin." />
 
       <p>
-        Its important to look here at what the algebra is telling us. It is saying that the "stay-in-place" and "rotate-in-place" behaviors are two aspects of the same behavior. They both have the same effect on the final position, of not moving, but from the perspective of the action they are separate. Therefore the "position" that it gives back to us splits the axis component in two, the part that stayed and the part that twisted. When we want to view a quaternion as representing a point in 3d space, we have to transform it in such a way that the scalar twist/stay-in-place component doesn't change from 0, but if there is any part of it that is parallel to the axis of rotation then it does just that.
+        Its important to look here at what the algebra is telling us. It is saying that the "stay-in-place" and "rotate-in-place" behaviors are two aspects of the same behavior. They both have the same effect on the final position, of not moving, but how they get there is different. Therefore the "position" that it gives back to us splits the axis component in two, the part that stayed and the part that twisted. If we want to view a quaternion as representing a point in 3d space, we have to transform it in such a way that the scalar component remains 0, but if there is any part parallel to the axis of rotation then the twisting accumulates in the scalar component!
       </p>
 
       <p>
-        After doing a "rotation", we <i>could</i> step out of the algebra and use the pythagorean theorem to sum up the lengths of the axis and twisted components, but this completely defeats the purpose of having an algebra! We need to be able to undo the twist without undoing the rotation. We have to go on a walk "there and back again" and sum the differences in position while canceling out the distances traveled, or in this case, twisted.
+        After doing a multiplication, we <i>could</i> step out of the algebra and use the pythagorean theorem to sum up the lengths of the axis and twisted components, but this completely defeats the purpose of having an algebra! We need to be able to undo the twist without undoing the rotation. We have to go on a walk "there and back again", to turn left then right, or in this case, to twist and untwist.
       </p>
 
       <h2 className="m-auto text-3xl mt-8 flex justify-center">
@@ -178,11 +179,11 @@ export default function Page3({
       <img src="/img/math/cats_cradle.png" className="max-w-7/8 max-h-80 m-auto" alt="A ray from the origin." />
 
       <p>
-        Is there anything fundamentally different between the two cycles that will allow them to be separated? Recall that the order in which axes multiply matters because it keeps track of which axis is rotating the other. We need to connect this antisymmetric behavior between two dimensions, where order matters, with the symmetric behavior of an axis twisting on itself, where the order is irrelevant.
+        Is there anything fundamentally different between the two cycles that will allow them to be separated? Recall that the order in which axes multiply matters because it keeps track of which axis is rotating the other. We need to connect this antisymmetric behavior on the plane of rotation, where order matters, with the symmetric behavior of an axis twisting on itself, where the order is irrelevant.
       </p>
 
       <p>
-        Let's look at the resulting actions from swapping the order of {"\\(ii\\)"} and {"\\(ij\\)"} respectively. The green arrows represent left multiplication by {"\\(i\\)"}, while the gold arrows represent right multiplication. When acting on itself, the order doesn't matter, but when acting within the plane of rotation, reversing the order makes it as if we rotated from the opposite axis, along the red arrow! We are getting the effect of a reversed rotation, but with the same twist.
+        Let's look at the resulting actions from swapping the order of {"\\(ii\\)"} and {"\\(ij\\)"}. The green and gold arrows represent left and right multiplication by {"\\(i\\)"} respectively. When acting on itself, the order doesn't matter, but when acting within the plane of rotation, reversing the order makes it as if we rotated from the opposite axis, along the red arrow! Switching the order gives a reversed rotation, but with the same twist along the axis.
       </p>
 
       <div className="flex justify-evenly">
@@ -191,36 +192,72 @@ export default function Page3({
 
 
       <p>
-        Now suppose we have taken the first green action, i. j has moved to k, while i, along the axis of rotation, has done a (counter-clockwise) twist into -1. We take advantage of the anti-commutativity in the plane of rotation to undo this twist but double up on the rotation. Lets look at the next step, with the complex conjugate {"\\(i^*\\)"} to undo the twist.
+        Now suppose we have taken the first green action, i. j has moved to k, while i, along the axis of rotation, has done a twist into -1. We take advantage of the anti-commutativity in the plane of rotation to undo this twist while doubling up on the rotation. Lets look at the next step, with the complex conjugate {"\\(i^*\\)"}, to undo the twist.
       </p>
 
       <img src="/img/math/i_inverse.png" className="max-w-7/8 max-h-100 m-auto" alt="A ray from the origin." />
 
       <p>
-        Now, if instead of following the counter-clockwise green path representing left multiplication by {"\\(i^*\\)"}, we multiply on the right and we follow the gold/red paths, the rotation doubles up while the twist cancels out, leaving us only with the movements in the plane of rotation!
+        Now, instead of following the counter-clockwise green path representing left multiplication by {"\\(i^*\\)"}, we multiply on the right and we follow the gold/red paths. The rotation doubles and the twist cancels out, leaving us only with movement in the plane of rotation!
       </p>
 
-      <img src="/img/math/rotation_result.png" className="max-w-7/8 max-h-100 m-auto" alt="A ray from the origin." />
+      <div className='flex justify-center'>
+        <div className="relative">
+          <img src="/img/math/ij_vs_ji.png" id="c1" className="m-auto cycle max-w-7/8 max-h-100" alt="A ray from the origin." />
+          <img src="/img/math/i_inverse.png" id="c2" className="cycle max-w-7/8 max-h-100" alt="A ray from the origin." />
+          <img src="/img/math/rotation_result.png" id="c3" className="cycle max-w-7/8 max-h-100" alt="A ray from the origin." />
+        </div>
+      </div>
+
+
+      <div className="flex flex-col items-center">
+        <span>{"\\(i(i+j)i^*\\)"}</span>
+        <span>{"\\((-1+k)i^*\\)"}</span>
+        <span>{"\\(i - j\\)"}</span>
+      </div>
 
       <p>
-        We have performed a rotation action around {"\\(i\\)"}, but this time (as opposed to 2d) going a full half circle by performing the action twice in order to do and undo the twist. This is why quaternions use half the angle of the rotation they are meant to represent. Therefore, to perform a rotation of angle {"\\(\\theta\\)"} around axis {"\\(i\\)"}, we can use a quaternion that looks strikingly similar to the 2d case, but the angle has been divided in 2 for its use in this two-step operation:
+        We have performed a rotation action around {"\\(i\\)"}, but this time going a full half circle (as opposed to a quarter turn in 2d) by performing the action twice in order to do and undo the twist. This is why quaternions use half the angle of the rotation they are meant to represent. Therefore, to perform a rotation of angle {"\\(\\theta\\)"} around axis {"\\(i\\)"}, we can use a quaternion that looks strikingly similar to the 2d case, but the angle has been divided in 2 for its use in this two-step operation:
       </p>
 
       <div className="flex flex-col items-center">
         <span>{"\\(q = \\cos{\\frac{\\theta}{2}}+i\\sin{\\frac{\\theta}{2}}\\)"}</span>
-        <span>{"\\(q^* = \\cos{\\frac{\\theta}{2}}-i\\sin{\\frac{\\theta}{2}}\\)"}</span>
-        <span>{"\\(p' = qpq^*\\)"}</span>
+        <span>{"\\(q^{-1} = \\cos{\\frac{\\theta}{2}}-i\\sin{\\frac{\\theta}{2}}\\)"}</span>
+        <span>{"\\(p' = qpq^{-1}\\)"}</span>
       </div>
 
       <p>
-        So this rotates a vector {"\\(p\\)"} around {"\\(i\\)"} for an angle {"\\(\\theta\\)"}. But, seeing as we've defined everything symmetrically, {"\\(i\\)"} could have been any unit vector involving {"\\((i,j,k)\\)"} around which to rotate! Any quaternion with a length of 1, called a versor, could be substituted in for {"\\(q\\)"}. Using versors in this operation is analogous to multiplying by complex conjugates on either side. Here we are using the versor and its conjugate in a process called conjugation, meaning "placing on either side". We can say we have conjugated {"\\(p\\)"} by {"\\(q\\)"} in order to rotate it, so {"\\(p\\)"} and {"\\(p'\\)"} are related through {"\\(q\\)"}.
+        So we've rotated a vector {"\\(p\\)"} around {"\\(i\\)"} for an angle {"\\(\\theta\\)"}. But, seeing as we've defined everything symmetrically, {"\\(i\\)"} could have been any unit vector involving {"\\((i,j,k)\\)"} around which to rotate! Any quaternion with a length of 1, called a versor, could be substituted in for {"\\(q\\)"} in order to rotate around its axis.
+      </p>
+
+      <h2 className="m-auto text-3xl mt-8 flex justify-center">
+        The Middle Way
+      </h2>
+      <h3 className="m-auto text-l mb-4 flex justify-center">
+        <i>Its a push and pull</i>
+      </h3>
+
+      <p>
+        This process of placing a versor and its conjugate on either side is called conjugation. The word <i>conjugate</i> apparently shares a root with the word <i>yoke</i>, as in a beam that binds working oxen. We can say we have conjugated {"\\(p\\)"} by {"\\(q\\)"} in order to rotate it, so {"\\(p\\)"} and {"\\(p'\\)"} are related through {"\\(q\\)"}. I suppose the quaternions are like oxen, working hard to rotate {"\\(p\\)"} around the axis via the yoke of conjugation!
       </p>
 
       <p>
-        Tracing through all the components of the operation, we can see how the intermediate real component, the twist, gets cancelled out through conjugation:
+        Tracing through all the components of the operation, we can see how the real component in the second step, the twist, gets cancelled out, while the rotation doubles up:
       </p>
 
-      (TODO: final drawing of all the terms going through the 2-step process with qpq^-1 at the end of description.)
+      <div className='flex justify-center'>
+        <div className="relative">
+          <img src="/img/math/yoke_terms.png" id="y1" className="m-auto yoke max-w-9/10 max-h-150" alt="A ray from the origin." />
+          <img src="/img/math/yoke_actions.png" id="y2" className="yoke max-w-9/10 max-h-150" alt="A ray from the origin." />
+        </div>
+      </div>
+
+      <div className='flex flex-col items-center'>
+        <span>{"\\(p = ai + bj + ck\\)"}</span>
+        <span>{"\\(q = \\cos{\\frac{\\theta}{2}} + \\sin{\\frac{\\theta}{2}}\\hat{u}\\)"}</span>
+        <span>{"\\(q^{-1} = \\cos{\\frac{\\theta}{2}} - \\sin{\\frac{\\theta}{2}}\\hat{u}\\)"}</span>
+        <span>{"\\(p' = qpq^{-1}\\)"}</span>
+      </div>
 
     </article>
   );

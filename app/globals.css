@@ -144,11 +144,3 @@ ul.link_list li:first-child:before {
 .green-tag {
   @apply bg-green-600;
 }
-
-a {
-  color: #0066ee;
-}
-
-p {
-  margin: 0.6em
-}

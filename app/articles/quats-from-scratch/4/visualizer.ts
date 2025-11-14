@@ -11,7 +11,7 @@ const ONE_OVER_ROOT_TWO = 0.70710678
 const ORIGIN = new THREE.Vector3(0, 0, 0);
 
 const WIDTH_RATIO = 0.95
-const HEIGHT_RATIO = 0.9
+const HEIGHT_RATIO = 0.95
 const FONT_SIZE = 42
 const TEXT_SCALE = 0.002
 const SHADOW_WIDTH = 2
@@ -121,11 +121,14 @@ export class Visualizer {
   constructor() {
     const scene = this.scene = new THREE.Scene();
     const renderer = this.renderer = new THREE.WebGLRenderer();
-    const camera = this.camera = new THREE.PerspectiveCamera(67, 1.7, 0.01, 4);
+    const camera = this.camera = new THREE.PerspectiveCamera(67, 1.25, 0.01, 4);
+    // const camera = this.camera = new THREE.PerspectiveCamera(67, 1.7, 0.01, 4);
     const controls = this.controls = new OrbitControls(camera, renderer.domElement);
     
-    const _size = Math.max(Math.min(window.innerWidth * WIDTH_RATIO, window.innerHeight * HEIGHT_RATIO), 512)
-    renderer.setSize(_size, _size * .5625);
+    const _size = Math.max(
+      Math.min(768, window.innerWidth * WIDTH_RATIO, window.innerHeight * HEIGHT_RATIO), 512)
+    // renderer.setSize(_size, _size * .5625);
+    renderer.setSize(_size, _size * .75);
     renderer.setClearAlpha(0);
     camera.position.set(1.0, 0.9, 1.2)
     
@@ -151,7 +154,7 @@ export class Visualizer {
     this.p_2 = new THREE.Vector3(0, 0, 0)
     this.vec_0 = new VisualizerVector(scene, m_vector, this.q_0, this.p_0, ONE_OVER_ROOT_TWO, "p")
     this.vec_1 = new VisualizerVector(scene, m_vector, this.q_1, this.p_1, ONE_OVER_ROOT_TWO, "qp")
-    this.vec_2 = new VisualizerVector(scene, m_vector, this.q_2, this.p_2, ONE_OVER_ROOT_TWO, "qpq*")
+    this.vec_2 = new VisualizerVector(scene, m_vector, this.q_2, this.p_2, ONE_OVER_ROOT_TWO, "qpq⁻¹")
     this.arc_1 = new VisualizerArc(scene, this.q_0, this.q_1, m_arc_one, m_region_one)
     this.arc_2 = new VisualizerArc(scene, this.q_1, this.q_2, m_arc_two, m_region_two)
 

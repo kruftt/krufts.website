@@ -47,7 +47,7 @@ export default function Page2({
         In order to rotate there two basic behaviors we have to capture. The first is easy, staying in the same direction. We already know how to do that: multiply by 1, our affirming friend the identity element, as represented by + in the (+/-, r) notation for moving in one dimension. The other behavior is to rotate, that is, to shift our position from one dimension to the other, like reflecting between opposites along the same dimension, but shifting to other dimensions instead.
       </p>
       <p>
-        We can understand the basic behavior of rotating to be going from pointing in one direction to another. We can start just by exchanging the two dimensions. In other words we can take point (a,b) to the point (b,a), as on the left below, equivalent to reflecting across the line a=b. Imagine flipping a piece of paper along its diagonal axis.
+        We can understand the basic behavior of rotating to be going from pointing in one direction to pointing in another. We can start by simply exchanging the two dimensions. In other words we can take point (a,b) to the point (b,a), as on the left below, equivalent to reflecting across the line a=b. Imagine flipping a piece of paper along its diagonal axis.
       </p>
 
       <div className="flex justify-center">
@@ -57,10 +57,10 @@ export default function Page2({
         This flips points along the two dimensions, but we're not there yet. Consider the point (1,1), where does that go? When we swap we end up back at (1,1), we haven't moved at all! Swapping distances doesn't have any effect along the diagonal where they're the same size. In addition to the swap, one component needs to be reflected to split them up. We need to flip the piece of paper a second time. We'll do it across the vertical axis: (b,a) -&gt; (-b,a). This gets all four directions going in a cycle together, rotating the first component toward the second.
       </p>
       <p>
-        Let's briefly compare these two reflections. The second looks more simple, involving just the first coordinate. How much this operation translates a given point depends only on what's in the first coordinate. The important point is that that component is negated while the other is not.
+        Let's briefly compare these two reflections. The second looks more simple, involving just the first coordinate. How much this operation translates a given point depends only on what's in the first coordinate when it gets flipped. The other component remains unchanged.
       </p>
       <p>
-        The first reflection, however, involves swapping the components. It depends on the relationship between them, similar to taking the differences between the two parts of our walk. How much it translates a given point depends on the differences in distance between the two components on the journey to that point. If one part of the journey to p was longer than the other, which was longer gets swapped.
+        The first reflection, however, involves swapping the components. Its effect depends on the relationship between them, similar to taking the differences between the two parts of our walk. How much it translates a given point depends on the differences in distance between the two components on the journey to that point. If one part of the journey to p was longer than the other, which was longer gets swapped.
       </p>
 
       <div className="flex flex-wrap justify-center">
@@ -73,7 +73,7 @@ export default function Page2({
       </p>
 
       <p>
-        Consider what happens when we reverse the order of the reflections. The first component gets negated before getting swapped, which causes the rotation to move in the opposite direction. This operation is called the conjugate, meaning "joined together", like a yoke joining oxen. Notice that applying a rotation and then applying its conjugate will do and then undo all the reflections in the reverse order. They are inverse operations.
+        Consider what happens when we reverse the order of the reflections. The first component gets negated before getting swapped, which causes the rotation to move in the opposite direction. This operation is called the conjugate, meaning "joined together". Notice that applying a rotation and then applying its conjugate will do and then undo all the reflections in the reverse order. They are inverse operations.
       </p>
 
       <div className="flex flex-wrap justify-center">
@@ -149,8 +149,18 @@ export default function Page2({
         <span>Each component is made of a part that stayed and a part that cycled in.</span>
       </div>
 
+      <h2 className="m-auto text-3xl mt-8 flex justify-center">
+        Mere Reflection
+        {/* The Spitting Image */}
+        {/* Two Peas in a Pod */}
+      </h2>
+      <h3 className="m-auto text-l mb-4 flex justify-center">
+        <i>As Above, So Below</i>
+        {/* <i>Practically a Mirror Reflection</i> */}
+      </h3>
+
       <p>
-        Previously we noted that reversing the order of reflections causes rotations to reverse, which is called conjugation. Since {"\\(i\\)"} captures the cycling behavior in our algebra, negating the {"\\(i\\)"} component causes the rotation to move in the opposite direction. When multiplied by its conjugate, the rotations represented by complex numbers cancel out and result in a point on the real axis, meaning the result is an action that doesn't rotate (it may still have scaling).
+        Previously we noted that reversing the order of reflections causes rotations to reverse, which is called the conjugate. Since {"\\(i\\)"} captures the cycling behavior in our algebra, negating the {"\\(i\\)"} component causes the rotation to move in the opposite direction. When multiplied by its conjugate, the rotations represented by complex numbers cancel out, resulting in a point on the real axis.
       </p>
 
       <div className="flex flex-col flex-wrap items-center">
@@ -168,14 +178,17 @@ export default function Page2({
         {"\\(zz^* = \\cos^2{\\theta} + \\sin^2{\\theta} = 1\\)"}
       </div>
 
-      (TODO: CONJUGATE DRAWING)
-
       <p>
-        Actions that take a position from a multi-dimensional space to the real line in a way that preserves information about the order of distance are called norms. Here if we take the square root of the result, just like in the pythagorean theorem, we will get the modulus. This is called the euclidean norm, because it gives the euclidean distance from the origin to a given point.
+        Actions that take a position to a scalar such that information about distance is preserved are called norms. Here, if we take the square root of multiplication by the conjugate, just like in the pythagorean theorem, we will get the modulus. This is called the euclidean norm, because it gives the euclidean distance from the origin to a given point. I.e. it gives {"\\(r\\)"}, the scalar part of the action.
       </p>
       <div className="flex justify-center">
         {"\\(\\sqrt{zz^*} = \\sqrt{a^2 + b^2} = r\\)"}
       </div>
+
+      <div className="flex justify-center mt-10 mb-6">
+        <img src="/img/math/conjugate.png" className="max-w-7/8 max-h-70" alt="A ray from the origin." />
+      </div>
+
     </article>
   );
 }
