@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { cn } from "@/lib/utils"
 
-export default function BmacButton() {
+export default function BmcButton() {
   return (
     <Button
       onClick={() => window.open('https://buymeacoffee.com/kruft')}

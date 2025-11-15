@@ -1,6 +1,8 @@
 'use client'
+
 import { ChangeEvent, ChangeEventHandler, useEffect, useRef, useState } from 'react';
 import { Visualizer } from './visualizer';
+import { QuatsHeader } from '../components';
 
 const TAU = 2.0 * Math.PI
 
@@ -20,12 +22,10 @@ export default () => {
 
   return (
     <div>
-      <h2 className="m-auto text-3xl mt-8 flex justify-center">
-        Picture This
-      </h2>
-      <h3 className="m-auto text-l mb-4 flex justify-center">
-        <i>Let's do the twist!</i>
-      </h3>
+      <QuatsHeader>
+        {"Picture This"}
+        {"Let's do the twist!"}
+      </QuatsHeader>
 
       <p>
         Now that we have an interpretation of quaternions, at least in the context of 3d rotations, both as actions and as positions, we can visualize the rotation of p by q by considering a twisting action around the axis. As the components are twisted, they maintain their overall length:
@@ -37,7 +37,7 @@ export default () => {
         <span className='font-bold text-2xl'>-2π</span>
         {/* <span>{"\\(-2\\pi\\)"}</span> */}
         <input
-          type="range" min={-TAU} step={TAU/180} max={TAU+0.001} defaultValue={Math.PI/2} onChange={updateTheta}
+          type="range" min={-TAU} step={TAU/120} max={TAU+0.001} defaultValue={Math.PI/2} onChange={updateTheta}
           className='grow max-w-150'  
         />
         <span className='font-bold text-2xl'>2π</span>
@@ -47,12 +47,10 @@ export default () => {
         The twisting and untwisting occurs with respect to the axis of rotation. Conjugating p by q guarantees it will twist and untwist along the same axis. In this way, we can picture quaternions rotating points in 3d, enriched by our understanding of the algebra!*
       </p>
 
-      <h2 className="m-auto text-3xl mt-8 flex justify-center">
-        The End
-      </h2>
-      <h3 className="m-auto text-l mb-4 flex justify-center">
-        <i>... for now</i>
-      </h3>
+      <QuatsHeader>
+        {"The End"}
+        {"... for now"}
+      </QuatsHeader>
       
       <p>
         I hope you enjoyed exploring these wonderful mathematical objects with me. In the future I would like to extend this article to include sections on composition and interpolation, with comparisons to matrix operations. Check back later for more!

@@ -1,12 +1,8 @@
+'use client'
 
 export default function QuatsFromScratch() {
   return (
     <article>
-      <div className="text-center">
-        <h1 className="m-auto max-w-2/5 text-3xl mt-4 mb-12 flex justify-center">
-          Quaternions from Scratch
-        </h1>
-      </div>
       <div>
         <p>
           Quaternions are an algebra that come up in subjects dealing with 3d rotations, such as computer vision and graphics, robotics, and physics. Even though quaternions were the original source of the 3d vector operations that most people are familiar with, the dot product and the cross product, they unfortunately remain an enigma to many people who use them. There is a common misconception that understanding these <i>complex</i> algebraic devices requires a special capacity to imagine a non-intuitive 4-dimensional space, but I am here to tell you that this is not the case!

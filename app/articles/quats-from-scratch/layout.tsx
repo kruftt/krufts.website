@@ -1,23 +1,39 @@
-import { MathJax, MathJaxContext } from "better-react-mathjax";
-import QuatsNav from "./quats-nav";
-import BmacButton from "@/components/general/bmac-button";
+'use client'
+
+import { useEffect, useState } from "react";
+import { MathJaxContext } from "better-react-mathjax";
+import BmcButton from "@/components/general/bmc-button";
+import { QuatsNav } from "./components";
+import './quats.css'
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // const [isClient, setIsClient] = useState(false)
+  // useEffect(()=>{
+  //   setIsClient(true)
+  // })
+
+  const path_regex = /\/articles\/quats-from-scratch\/([^\/]*)\/?/g
+  const [name, setName] = useState<string>('loading')
+  
+  useEffect(() => {
+    const match = path_regex.exec(window.location.pathname)
+    const _name = match && match[1]
+    if (_name !== null) setName(_name)
+  })
+
   return (
-    <div>
-      <QuatsNav></QuatsNav>
+    <div className="mb-16">
+      <QuatsNav selected={name} header={true}></QuatsNav>
       <MathJaxContext>
-        <MathJax>
-          {children}
-        </MathJax>
+        {children}
       </MathJaxContext>
-      <QuatsNav></QuatsNav>
+      <QuatsNav selected={name}></QuatsNav>
       <div className="flex justify-center">
-        <BmacButton></BmacButton>
+        <BmcButton></BmcButton>
       </div>
     </div>
   );

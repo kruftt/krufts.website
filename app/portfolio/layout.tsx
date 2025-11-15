@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import "./globals.css";
+// import LinkBar from '@/components/general/link-bar'
+import "./portfolio.css";
 
 export const metadata: Metadata = {
   title: "Marc Doucette - Portfolio",
@@ -13,6 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <div className="max-w-4xl min-h-200 m-auto">
+      {/* <LinkBar></LinkBar> */}
       {children}
     </div>
   );

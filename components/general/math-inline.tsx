@@ -1,10 +1,14 @@
-const escapes = /(\\|\(|\))/g 
+import dynamic from 'next/dynamic'
+
+const MathJax = dynamic(() => import('better-react-mathjax').then((mod) => mod.MathJax), { ssr: false })
 
 export default function MathInline(
   { children }:
     { children: string }
 ) {
   return (
-    <span>{ "\\(" + children + "\\)" }</span>
+    <MathJax inline={true}>
+      { "\\(" + children + "\\)" }
+    </MathJax>
   )
 }
