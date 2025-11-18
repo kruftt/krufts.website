@@ -2,6 +2,8 @@
 import MathInline from '@/components/general/math-inline';
 import MathBlock from '@/components/general/math-block';
 import { QuatsHeader } from '../components';
+import TwoDee from '@/components/quats/two-dee';
+import Swapper from '@/components/quats/swapper';
 
 export default function Page2({
   children,
@@ -45,31 +47,28 @@ export default function Page2({
         This raises another question, which is, "How do we think about the actual action of rotation?" We want to take a point from where we got by going along one direction, to where we would have gone had we went in another direction. Similar to going backward in 1 dimension, but we want to be able to go in any combination of 2 directions, instead of just the opposite direction.
       </p>
 
+      <TwoDee></TwoDee>
+
       <QuatsHeader>
         {"What Goes Around Comes Around"}
         {"Something worth reflecting on"}
       </QuatsHeader>
 
       <p>
-        In order to rotate there two basic behaviors we have to capture. The first is easy, staying in the same direction. We already know how to do that: multiply by <MathInline>1</MathInline>, our affirming friend the identity element, as represented by <MathInline>+</MathInline> in the <MathInline>{"(\\pm , r)"}</MathInline> notation for moving in one dimension. The other behavior is to rotate, that is, to shift our position from one dimension to the other, like reflecting between opposites along the same dimension, but shifting to other dimensions instead.
+        In order to rotate there two basic behaviors we have to capture. The first is easy, staying in the same direction. We already know how to do that: multiply by <MathInline>1</MathInline>, our affirming friend the identity element, as represented by <MathInline>+</MathInline> in the <MathInline>{"(\\pm , r)"}</MathInline> notation for moving in one dimension. The other behavior is to rotate, that is, to shift our position from one dimension to the other, like reflecting between opposites along the same dimension, but shifting to another dimension instead.
       </p>
 
       <p>
-        We can understand the basic behavior of rotating to be going from pointing in one direction to pointing in another. We can start by simply exchanging the two dimensions. In other words we can take point <MathInline>(a,b)</MathInline> to the point <MathInline>(b,a)</MathInline>, as on the left below, equivalent to reflecting across the line <MathInline>a=b</MathInline>. Imagine flipping a piece of paper along its diagonal axis.
+        We can understand the basic behavior of rotating to be going from pointing in one direction to pointing in another. We can start by simply exchanging the two dimensions. In other words we can take point <MathInline>(a,b)</MathInline> to the point <MathInline>(b,a)</MathInline>, as on the left below, equivalent to reflecting across the line <MathInline>a=b</MathInline>, or like flipping a piece of paper along its diagonal axis. This takes <MathInline>{"a \\rightarrow b"}</MathInline>, but <MathInline>b</MathInline> has come the wrong direction. We need a second swap to flip it around and get them going in a cycle.
       </p>
 
-      <img src="/img/math/reflect_to_rotate.png" className="max-w-7/8 max-h-60 m-auto" alt="A ray from the origin." />
+      <img src="/img/math/reflect_to_rotate.png" className="max-w-7/8 max-h-85 m-auto" alt="A ray from the origin." />
 
       <p>
-        This flips points along the two dimensions, but we're not there yet. Consider the point <MathInline>(1,1)</MathInline>, where does that go? When we swap we end up back at <MathInline>(1,1)</MathInline>, we haven't moved at all! Swapping distances doesn't have any effect along the diagonal where they're the same size. In addition to the swap, one component needs to be reflected to split them up. We need to flip the piece of paper a second time. We'll do it across the vertical axis: <MathInline>{"(b,a) > (-b,a)"}</MathInline>. This gets all four directions going in a cycle together, rotating the first component toward the second.
+        Let's briefly compare these two reflections. The first reflection involves swapping the components. Its effect on a given position depends on the relationship between its components, similar to taking the differences between the two parts of our walk. How much it translates a given point depends on the differences in distance between the two components on the journey to that point. If one part of the journey to p was longer than the other, which was longer gets swapped.
       </p>
-
       <p>
-        Let's briefly compare these two reflections. The second looks more simple, involving just the first coordinate. How much this operation translates a given point depends only on what's in the first coordinate when it gets flipped. The other component remains unchanged.
-      </p>
-
-      <p>
-        The first reflection, however, involves swapping the components. Its effect depends on the relationship between them, similar to taking the differences between the two parts of our walk. How much it translates a given point depends on the differences in distance between the two components on the journey to that point. If one part of the journey to p was longer than the other, which was longer gets swapped.
+        This gets combined with the second reflection, which only negates the first coordinate. Notice that this completely changes whether or not the first reflection has an effect the next time, e.g. if they were in the same direction, now they are in opposite directions.
       </p>
 
       <div className="flex flex-wrap justify-center">
@@ -78,15 +77,16 @@ export default function Page2({
       </div>
 
       <p>
-        This means we can view rotation as another two-step process, this time using reflections, to leverage different behaviors. What gets reflected in the first step depends on the difference between the two components, whereas what gets reflected in the second depends only on the first component. This difference puts the four directions into a cycle.
+        Normally, when we repeatedly negate a number it goes in a cycle of 2: plus, minus, plus, minus, etc. But here the number is getting swapped out each time and we are cycling between negating one of the two numbers, so the full cycle takes 4 rather than 2. The second reflection, i.e. the negation, is a 1-dimensional operation with a cycle of length 2, and the first reflection, i.e. the swap, is a 2-dimensional operation with a cycle length of 2. Together these two alternating behaviors make a cycle of length 4.
       </p>
 
       <p>
-        Consider what happens when we reverse the order of the reflections. The first component gets negated before getting swapped, which causes the rotation to move in the opposite direction. This operation is called the conjugate, meaning "joined together". Notice that applying a rotation and then applying its conjugate will do and then undo all the reflections in the reverse order. They are inverse operations.
+        One further note about what happens when we reverse the order of the reflections. The first component gets negated before getting swapped, which causes the rotation to move in the opposite direction. This operation is called the conjugate, meaning "joined together". Notice that applying a rotation and then applying its conjugate will do and then undo the reflections in the reverse order. They are inverse operations.
       </p>
 
       <MathBlock>ABBA = 1</MathBlock>
 
+      <Swapper></Swapper>
 
       <QuatsHeader>
         {"Complexification"}
@@ -95,7 +95,7 @@ export default function Page2({
 
 
       <p>
-        Now that we know both how to stay in place <MathInline>{"(a,b)\\rightarrow(a,b)"}</MathInline> and go in a cycle <MathInline>{"((a,b)\\rightarrow(-b,a)"}</MathInline>, we can transition between them according to the pythagorean theorem. Note that our triangle here is in the space of actions, not in the space of positions. We're using it to derive a formula for rotating position coordinates according to argument θ.
+        Now that we know both how to stay in place <MathInline>{"(a,b)\\rightarrow(a,b)"}</MathInline> and go in a cycle <MathInline>{"(a,b)\\rightarrow(-b,a)"}</MathInline>, we can transition between them according to the pythagorean theorem. Note that our triangle here is in the space of actions, not in the space of positions. We're using it to derive a formula for rotating position coordinates according to the argument <MathInline>θ</MathInline>.
       </p>
 
       <div className="flex justify-center">
@@ -103,19 +103,19 @@ export default function Page2({
       </div>
 
       <p>
-        Each component in the resulting rotation is itself composed of two components, one part that stayed in place and one part that cycled in from the other component.
+        Each component in the resulting rotation is itself composed of two components, one part that stayed in place and one part that cycled in from the other component. This combination captures the rotational behavior.
       </p>
 
       <p>
-        We have the same two basic actions as in one dimension: a change of direction and a movement. The domain of changing direction has expanded from facing forward or backward: <MathInline>{"\\{1,-1\\}"}</MathInline> to being able to turn around: <MathInline>[-\\pi:\\pi]</MathInline>. From this we can see that we could have defined the action in one dimension in a more extensible way by using the same argument θ, but with the domain restricted to <MathInline>{"\\{0,\\pi\\}"}</MathInline> and taking the cosine to get 1 and -1. Personally, I find it easier to think of in terms of forward and backward, but I will use <MathInline>θ</MathInline> here to make it clear that the one is a subset of the other.
+        Therefore, similar to the 1 dimensional case, we can divide our action into two parts: "which direction?" and "how far?" The domain of direction has expanded from facing forward or backward, <MathInline>{"\\{-1,1\\}"}</MathInline>, to being able to turn around (here in either direction), <MathInline>{"[-2\\pi:2\\pi]"}</MathInline>. Notice that turning around to face backward can no longer be considered a simple reflection across the first dimension, but rather all points must invert through the origin so that "left" and "right" dont get mirrored. Accordingly, rotating all the way around is called an inversion rather than a reflection.
       </p>
 
       <div className="flex justify-center items-center gap-4 mt-6">
         <span className="font-bold">1-D</span>
-        <MathInline>{"(r,\\theta)"}</MathInline>
+        <MathInline>{"(r,\\pm)"}</MathInline>
         <div className="flex flex-col">
-          <MathInline>{"r : [0:\\infty)"}</MathInline>
-          <MathInline>{"\\theta : \\{0,\\pi\\}"}</MathInline>
+          <MathInline>{"\\ r : [0:\\infty)"}</MathInline>
+          <MathInline>{"\\pm : \\{-1, 1\\}"}</MathInline>
         </div>
       </div>
 
@@ -124,7 +124,7 @@ export default function Page2({
         <MathInline>{"(r,\\theta)"}</MathInline>
         <div className="flex flex-col">
           <MathInline>{"r : [0:\\infty)"}</MathInline>
-          <MathInline>{"\\theta : [-\\pi,\\pi]"}</MathInline>
+          <MathInline>{"\\theta : [-2\\pi,2\\pi]"}</MathInline>
         </div>
       </div>
 
@@ -167,7 +167,7 @@ export default function Page2({
       </QuatsHeader>
 
       <p>
-        Previously we noted that reversing the order of reflections causes rotations to reverse, which is called the conjugate. Since <MathInline>{"i"}</MathInline> captures the cycling behavior in our algebra, negating the <MathInline>{"i"}</MathInline> component causes the rotation to move in the opposite direction. When multiplied by its conjugate, the rotations represented by complex numbers cancel out, resulting in a point on the real axis.
+        Previously we noted that reversing the order of reflections causes rotations to reverse, which is called the conjugate. Since <MathInline>{"i"}</MathInline> captures the cycling behavior in our algebra, negating the <MathInline>{"i"}</MathInline> component causes the rotation to move in the opposite direction. When multiplied by its conjugate, the rotations represented by complex numbers cancel out, resulting in a point on the real number line.
       </p>
 
       <MathBlock>
@@ -177,11 +177,12 @@ export default function Page2({
       </MathBlock>
 
       <p>
-        Since complex numbers are a form of multiplication, conjugation is a division on rotations, since it undoes the rotation of its conjugate:
+        Since complex numbers are a form of multiplication and division is the inverse of multiplication, conjugation, which undoes the rotation, is a division on rotations. It undoes the action of its conjugate:
       </p>
 
       <MathBlock>
         {"z = \\cos{\\theta} + i\\sin{\\theta}"}
+        {"z^* = \\cos{\\theta} - i\\sin{\\theta}"}
         {"zz^* = \\cos^2{\\theta} + \\sin^2{\\theta} = 1"}
       </MathBlock>
 

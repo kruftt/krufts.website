@@ -1,19 +1,26 @@
+'use client'
+
 // import { createContext, useReducer, ActionDispatch } from "react"
 import * as THREE from "three"
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { Line2 } from 'three/addons/lines/Line2.js'
 import { LineGeometry } from 'three/addons/lines/LineGeometry.js';
 import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
+import { ChangeEvent, useEffect, useRef } from "react";
+import MathInline from "../general/math-inline";
+import MathBlock from "../general/math-block";
 
 const TAU = 6.2831853
 // const ONE_OVER_EIGHT_ROOT_2 = 0.088388834
 const ONE_OVER_ROOT_TWO = 0.70710678
 const ORIGIN = new THREE.Vector3(0, 0, 0);
 
-const WIDTH_RATIO = 0.95
-const HEIGHT_RATIO = 0.95
 const FONT_SIZE = 42
 const TEXT_SCALE = 0.002
+// const ZOOM_MIN = 0.5
+// const ZOOM_MAX = 2
+const ZOOM = 1.75
+
 const SHADOW_WIDTH = 2
 const Q_WIDTH = 3
 const ARC_WIDTH = 4
@@ -21,6 +28,7 @@ const VECTOR_WIDTH = 5
 const SPIRAL_SAMPLES = 120;
 const ARC_SAMPLES = 120
 const D_TAU = TAU / (SPIRAL_SAMPLES - 1);
+const TARGET_Y = 0.17
 
 const REGION_OPACITY = 0.42
 const ARC_OPACITY = 0.75
@@ -93,10 +101,10 @@ const m_axis = new LineMaterial({
 });
 
 
-export class Visualizer {
+class Visualizer {
   scene: THREE.Scene
   renderer: THREE.WebGLRenderer
-  camera: THREE.Camera
+  camera: THREE.PerspectiveCamera
   controls: OrbitControls
   // axes: VisualizerAxes
   theta: number
@@ -118,24 +126,25 @@ export class Visualizer {
   arc_1: VisualizerArc
   arc_2: VisualizerArc
   
-  constructor() {
+  constructor(canvas: HTMLCanvasElement) {
     const scene = this.scene = new THREE.Scene();
-    const renderer = this.renderer = new THREE.WebGLRenderer();
-    const camera = this.camera = new THREE.PerspectiveCamera(67, 1.25, 0.01, 4);
+    const renderer = this.renderer = new THREE.WebGLRenderer({ canvas });
+    const camera = this.camera = new THREE.PerspectiveCamera(67, 1.33, 0.01, 4);
     // const camera = this.camera = new THREE.PerspectiveCamera(67, 1.7, 0.01, 4);
     const controls = this.controls = new OrbitControls(camera, renderer.domElement);
     
-    const _size = Math.max(
-      Math.min(768, window.innerWidth * WIDTH_RATIO, window.innerHeight * HEIGHT_RATIO), 512)
-    // renderer.setSize(_size, _size * .5625);
-    renderer.setSize(_size, _size * .75);
     renderer.setClearAlpha(0);
-    camera.position.set(1.0, 0.9, 1.2)
+    // renderer.domElement.classList.add('')
+    camera.position.set(0.9, 0.9, 1.2)
     
     controls.enablePan = false
-    controls.maxDistance = 3
-    controls.minDistance = 0.5
-    controls.target.y = 0.19
+    controls.maxDistance = ZOOM
+    controls.minDistance = ZOOM
+    controls.target.y = TARGET_Y
+    controls.enableZoom = false
+    
+
+    this.resize(renderer)
     controls.update()
 
     // this.axes = new VisualizerAxes(scene)
@@ -158,15 +167,35 @@ export class Visualizer {
     this.arc_1 = new VisualizerArc(scene, this.q_0, this.q_1, m_arc_one, m_region_one)
     this.arc_2 = new VisualizerArc(scene, this.q_1, this.q_2, m_arc_two, m_region_two)
 
-    this.setTheta(Math.PI * 0.75)
+    this.setTheta(Math.PI)
     renderer.setAnimationLoop(() => {
-      this.a_1.render(this.camera)
-      this.a_2.render(this.camera)
-      this.vec_0.render(this.camera)
-      this.vec_1.render(this.camera)
-      this.vec_2.render(this.camera)
+      this.a_1.render(camera)
+      this.a_2.render(camera)
+      this.vec_0.render(camera)
+      this.vec_1.render(camera)
+      this.vec_2.render(camera)
+      this.resize(renderer)
       renderer.render(scene, camera)
     })
+  }
+
+  resize(renderer: THREE.WebGLRenderer) {
+    const canvas = renderer.domElement
+    const _width = Math.min(canvas.parentElement?.clientWidth || 640, 640)
+    const _height = _width * .75
+    // console.log(_width, _height)
+    if (canvas.height != _height) {
+      renderer.setSize(_width, _height, true)
+      this.controls.target.set(0, TARGET_Y, 0)
+    }
+
+    // const _size = Math.max(
+    //   Math.min(768, window.innerWidth * WIDTH_RATIO, window.innerHeight * HEIGHT_RATIO), 512)
+    // renderer.setSize(_size, _size * .75);
+      // const _size = Math.max(
+    //   Math.min(768, window.innerWidth * WIDTH_RATIO, window.innerHeight * HEIGHT_RATIO), 512)
+    // renderer.setSize(_size, _size * .5625);
+    // renderer.setSize(_size, _size * .75);
   }
 
   setTheta(theta: number) {
@@ -415,19 +444,32 @@ function makeLabelCanvas(size: number, name: string) {
   return ctx.canvas;
 }
 
-// update Spiral
-// const spiral_points = this.spiral.axis
-// const spiral_shadow = this.spiral.plane
-// let i, spiral_cos, spiral_sin, _p, _p2, _a, _b, _z
-// for (i = 0; i < SPIRAL_SAMPLES; i++) {
-//   _p = spiral_points[i]
-//   _p2 = spiral_shadow[i]
-//   spiral_cos = Math.cos(i * D_TAU)
-//   spiral_sin = Math.sin(i * D_TAU)
-//   _z = half_sin * ONE_OVER_EIGHT_ROOT_2 * (1 - spiral_cos)
-//   _a = _z * spiral_cos + ONE_OVER_ROOT_TWO
-//   _b = _z * spiral_sin
-//   _p2.z = _p.z = _a*half_cos - _b*half_sin
-//   _p2.x = _p.x = _a*half_sin + _b*half_cos
-//   _p.y = half_cos * D_HEIGHT * i
-// }
+
+export default function QuaternionVisualizer() {
+  const canvas = useRef<HTMLCanvasElement>(null);
+  let visualizer: Visualizer
+
+  useEffect(() => {
+    visualizer = new Visualizer(canvas.current!);
+  })
+
+  function updateTheta(e: ChangeEvent<HTMLInputElement>) {
+    const v = parseFloat(e.target.value);
+    visualizer.setTheta(v)
+  }
+
+  return (
+    <div className="">
+      <canvas className="m-auto" ref={canvas}></canvas>
+      <MathBlock>{"q = \\cos{\\theta} + \\hat{q}\\sin{\\theta}"}</MathBlock>
+      <div className='flex justify-center gap-4'>
+        <span className='font-bold text-2xl'>-2π</span>
+        <input
+          type="range" min={-TAU} step={TAU/120} max={TAU+0.001} defaultValue={Math.PI} onChange={updateTheta}
+          className='grow max-w-150'  
+        />
+        <span className='font-bold text-2xl'>2π</span>
+      </div>
+    </div>
+  )
+}

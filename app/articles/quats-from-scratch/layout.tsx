@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { MathJaxContext } from "better-react-mathjax";
-import BmcButton from "@/components/general/bmc-button";
 import { QuatsNav } from "./components";
 import './quats.css'
 
@@ -32,9 +31,6 @@ export default function RootLayout({
         {children}
       </MathJaxContext>
       <QuatsNav selected={name}></QuatsNav>
-      <div className="flex justify-center">
-        <BmcButton></BmcButton>
-      </div>
     </div>
   );
 }

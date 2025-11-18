@@ -2,6 +2,7 @@
 import MathInline from '@/components/general/math-inline';
 import MathBlock from '@/components/general/math-block';
 import { QuatsHeader } from '../components';
+import OneDee from '@/components/quats/one-dee';
 
 export default function Page1() {
   return (
@@ -70,9 +71,12 @@ export default function Page1() {
       </MathBlock>
  
       <p>
-        Notice that we've gotten two directions, forward and backward, out of a single dimension. In this way, even though we can represent both a point and the action of getting to that point with the same number, we can think about the action as specifying two distinct aspects of behavior, namely "which direction" and "how far".
+        Notice that we've gotten two directions, forward and backward, out of a single dimension. In this way, even though we can represent both a point and the action of getting to that point with the same number, we can think about the action as specifying two distinct aspects of behavior, namely "which direction?" and "how far?".
       </p>
-      <img src="/img/math/scalar_action.png" className="max-w-7/8 max-h-11 m-auto" alt="A ray from the origin." />
+
+      <OneDee className={'mt-12 mb-8'}></OneDee>
+
+      {/* <img src="/img/math/scalar_action.png" className="max-w-7/8 max-h-11 m-auto mt-5!" alt="A ray from the origin." /> */}
 
       <p>
         We can put these two separate pieces of information next to each other as component coordinates, where the phrase "component coordinates" means roughly "parts placed together in order".
@@ -137,7 +141,7 @@ export default function Page1() {
       </div>
 
       <p>
-        Here we have isolated the even and odd behaviors by negating the second step of the journey or not.
+        Here we have isolated the even and odd behaviors by either summing up or taking the difference of the two legs of the journey.
       </p>
 
     </article>

@@ -3,11 +3,11 @@ import dynamic from 'next/dynamic'
 const MathJax = dynamic(() => import('better-react-mathjax').then((mod) => mod.MathJax), { ssr: false })
 
 export default function MathInline(
-  { children }:
-    { children: string }
+  { children, dynamic }:
+    { children: string, dynamic?: boolean }
 ) {
   return (
-    <MathJax inline={true}>
+    <MathJax inline={true} dynamic={dynamic}>
       { "\\(" + children + "\\)" }
     </MathJax>
   )
