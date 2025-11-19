@@ -46,7 +46,7 @@ export default function Page2() {
 
       <QuatsHeader>
         {"What Goes Around Comes Around"}
-        {"Something worth reflecting on"}
+        {"Something Worth Reflecting On"}
       </QuatsHeader>
 
       <p>
@@ -85,7 +85,7 @@ export default function Page2() {
 
       <QuatsHeader>
         {"Complexification"}
-        {"Getting it all mixed up"}
+        {"Getting All Mixed Up"}
       </QuatsHeader>
 
 

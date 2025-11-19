@@ -11,7 +11,7 @@ export default function Page4() {
     <div>
       <QuatsHeader>
         {"Picture This!"}
-        {"Let's do the twist"}
+        {"Let's Do The Twist"}
       </QuatsHeader>
 
       <p>
@@ -30,7 +30,7 @@ export default function Page4() {
 
       <QuatsHeader>
         {"Vector Operations"}
-        {"Cross your p's and dot your q's"}
+        {"Cross Your p's and Dot Your q's"}
       </QuatsHeader>
 
       <p>
@@ -44,7 +44,7 @@ export default function Page4() {
 
       <QuatsHeader>
         {"Paired Composition"}
-        {"Algebraic joint authorship"}
+        {"The Algebraic Tag Team"}
         {/* {"Pressure Under Composure"} */}
         {/* {"Its Standpoint Technology"} */}
       </QuatsHeader>

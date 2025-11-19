@@ -35,7 +35,7 @@ export default function Page1() {
       
       <QuatsHeader>
         {"Snakes and Ladders"}
-        {"A hop, skip, and a jump"}
+        {"A Hop, Skip, and a Jump"}
       </QuatsHeader>
 
       <p>
@@ -86,7 +86,7 @@ export default function Page1() {
 
       <QuatsHeader>
         {"There and Back Again"}
-        {"It's all about the journey"}
+        {"It's All About the Journey"}
       </QuatsHeader>
 
       <JsdImage src="quats/path.png" className="max-w-7/8 max-h-20 m-auto mb-4" alt="To p and back again." />

@@ -16,7 +16,7 @@ export default function Page3() {
 
       <QuatsHeader>
         {"Dimension 3"}
-        {"It all revolves around this"}
+        {"It All Revolves Around This"}
       </QuatsHeader>
 
 
@@ -108,7 +108,7 @@ export default function Page3() {
       
       <QuatsHeader>
         {"The Third Wheel"}
-        {"Two is Company, Three's a crowd"}
+        {"Two is Company, Three's a Crowd"}
       </QuatsHeader>
       
       
@@ -143,7 +143,7 @@ export default function Page3() {
 
         <QuatsHeader>
           {"The Eye of the Storm"}
-          {"It's a real twister"}
+          {"It's a Real Twister"}
         </QuatsHeader>
 
 
@@ -186,7 +186,7 @@ export default function Page3() {
 
       <QuatsHeader>
         {"Controlled Opposition"}
-        {"How to pull the strings"}
+        {"How to Pull the Strings"}
       </QuatsHeader>
 
 
@@ -243,8 +243,8 @@ export default function Page3() {
 
       <QuatsHeader>
         {"Getting Yoked"}
-        {"Push and Pull"}
-        {/* {"The Middle Way"} */}
+        {"Its a Push and Pull"}
+        {/* {"Its the Middle Way"} */}
       </QuatsHeader>
 
       <p>
