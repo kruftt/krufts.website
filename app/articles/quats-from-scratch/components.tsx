@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils"
 import BmcButton from "@/components/general/bmc-button"
-import { useState, useRef } from "react"
+import { useRef } from "react"
 
 function LinkButton({ children, href, selected }  
 : {
@@ -16,23 +16,25 @@ function LinkButton({ children, href, selected }
 }
 
 export function QuatsNav({
+  className,
   header = false,
-  selected = 'none'
+  selected = 'none',
 }: {
+  className?: string
   header?: boolean
   selected?: string
 }) {
   return (
-    <div className="flex flex-col items-center mt-12 mb-8">
-      { header && <h1 className={'pl-3 pr-3 rounded-md text-3xl mb-6'}>Quaternions From Scratch</h1> }
-      <div className="flex gap-6 justify-center mb-8">
+    <div className={cn("flex flex-col items-center", className)}>
+      { header && <h1 className={'pl-3 pr-3 rounded-md text-3xl mb-8'}>Quaternions From Scratch</h1> }
+      <div className="flex gap-6 justify-center">
         <LinkButton href="/articles/quats-from-scratch/" selected={selected == ''}>Intro</LinkButton>
         <LinkButton href="/articles/quats-from-scratch/0" selected={selected == '0'}>0</LinkButton>
         <LinkButton href="/articles/quats-from-scratch/1" selected={selected == '1'}>1</LinkButton>
         <LinkButton href="/articles/quats-from-scratch/2" selected={selected == '2'}>2</LinkButton>
         <LinkButton href="/articles/quats-from-scratch/3" selected={selected == '3'}>3</LinkButton>
         <LinkButton href="/articles/quats-from-scratch/4" selected={selected == '4'}>4</LinkButton>
-        <LinkButton href="/articles/quats-from-scratch/outro" selected={selected == 'outro'}>Outro</LinkButton>
+        {/* <LinkButton href="/articles/quats-from-scratch/outro" selected={selected == 'outro'}>Outro</LinkButton> */}
       </div>
       { (!header) && <BmcButton></BmcButton> }
     </div>

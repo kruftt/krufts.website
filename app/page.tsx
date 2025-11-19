@@ -7,8 +7,17 @@ export default function Home() {
           <p>
             Welcome to Kruft's personal Website.
           </p>
+
           <p>
-            The site is still under construction, please check back later!
+            This site is under construction and currently contains the following pages:
+          </p>
+
+          <ul className="mt-8 mb-8 text-sky-700">
+            <li><a href="/articles/quats-from-scratch/">Quaternions From Scratch</a></li>
+          </ul>
+
+          <p>
+            Check back later for more!
           </p>
         </div>
       </main>

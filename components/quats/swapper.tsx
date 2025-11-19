@@ -1,7 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import { cn } from "@/lib/utils";
+import { useRef, useState } from "react"
 import MathInline from "../general/math-inline";
 
 
@@ -23,10 +22,10 @@ export default function Swapper({ className }: { className?: string }) {
     indices.current = [indices.current[2], indices.current[1], indices.current[0], indices.current[3]]
     updateTranslations()
   }
-  function negB() {
-    indices.current = [indices.current[0], indices.current[3], indices.current[2], indices.current[1]]
-    updateTranslations()
-  }
+  // function negB() {
+  //   indices.current = [indices.current[0], indices.current[3], indices.current[2], indices.current[1]]
+  //   updateTranslations()
+  // }
   function swap() {
     indices.current = [indices.current[1], indices.current[0], indices.current[3], indices.current[2]]
     updateTranslations()
@@ -44,8 +43,7 @@ export default function Swapper({ className }: { className?: string }) {
   }
 
   return (
-    <div className="">
-      
+    <div className={className}>
         <svg ref={svg} className="m-auto w-full max-w-90 aspect-13/10" viewBox="-55 -55 110 143">
           <defs>
             <marker

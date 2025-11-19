@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import MathInline from "../general/math-inline";
 import { cn } from "@/lib/utils";
 
@@ -50,14 +50,14 @@ export default function TwoDee({ className }: { className?: string }) {
 
           <path
             d={`M -50 0 L 50 0`}
-            stroke='black'
+            stroke='#000000d0'
             strokeWidth="1"
             // markerStart="url(#triangle)"
             // markerEnd="url(#triangle)"
           ></path>
           <path
             d={`M 0 -50 L 0 50`}
-            stroke='black'
+            stroke='#000000d0'
             strokeWidth="1"
             // markerStart="url(#triangle)"
             // markerEnd="url(#triangle)"

@@ -15,7 +15,7 @@ export default function BmcButton() {
         'border hover:border-gray-300 active:border-gray-400',
         'hover:bg-white active:bg-white',
         'bg-[url(/img/bmc-button.svg)] bg-cover',
-        'w-42 h-12'
+        'w-42 h-12 mt-12'
       )}
       variant={'default'}
     >

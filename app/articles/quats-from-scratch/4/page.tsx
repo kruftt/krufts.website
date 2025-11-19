@@ -1,31 +1,27 @@
 'use client'
 
-import { ChangeEvent, ChangeEventHandler, useEffect, useRef, useState } from 'react';
 import QuaternionVisualizer from '@/components/quats/visualizer';
 import { QuatsHeader } from '../components';
 import MathInline from '@/components/general/math-inline';
 import MathBlock from '@/components/general/math-block';
+import JsdImage from '@/components/general/jsdelivr-image';
 
-const TAU = 2.0 * Math.PI
-
-export default () => {
-  
-
+export default function Page4() {
   return (
     <div>
       <QuatsHeader>
-        {"Picture This"}
-        {"Let's do the twist!"}
+        {"Picture This!"}
+        {"Let's do the twist"}
       </QuatsHeader>
 
       <p>
-        We can visualize the rotation of <MathInline>p</MathInline> by <MathInline>q</MathInline> by picturing a twisting action along the axis of rotation. As the parallel components of <MathInline>p</MathInline> are twisted, they maintain their overall length. In this way, we can picture quaternions rotating points in 3d, enriched by our understanding of the algebra:
+        We can visualize the rotation of <MathInline>p</MathInline> by <MathInline>q</MathInline> by picturing a twisting action along the axis of rotation. As the parallel components of <MathInline>p</MathInline> are twisted, they maintain their overall length. In this way, we can picture quaternions rotating points in 3d, enriched by our understanding of the algebra and conjugation:
       </p>
       
       <QuaternionVisualizer></QuaternionVisualizer>
 
       <p>
-        Notice how <MathInline>p</MathInline> first appears as a point, i.e. as a "pure" quaternion with no real component, and then is multiplied by <MathInline>q</MathInline> on the left. The intermediate product <MathInline>qp</MathInline> breaks up the component parallel to the axis such that it can no longer be directly interpreted as a point in 3d space, at least without an additional twist. Then, after finishing the conjugation, the twist cancels out and we are free to interpret <MathInline>p'</MathInline> as a normal point again. The ability to move back and forth between interpretations depends on conjugation cancelling out the twist.
+        Notice how the point <MathInline>p</MathInline> first appears as a "pure" quaternion with no real component before being multiplied by <MathInline>q</MathInline> on the left. The intermediate product <MathInline>qp</MathInline> breaks up the parallel component such that it can no longer be directly interpreted as a simple component in 3d space, but rather has an additional twist. Then, after completing the conjugation, the twist cancels out and we are free to interpret <MathInline>p'</MathInline> as a normal point again. The ability to move back and forth between interpretations depends on conjugation cancelling out the twist.
       </p>
 
       {/* <p>
@@ -38,23 +34,23 @@ export default () => {
       </QuatsHeader>
 
       <p>
-        Notice what happens to the intermediate term, <MathInline>qp</MathInline>, when the angle is <MathInline>{"\\pi"}</MathInline>. (Reloading the page will set <MathInline>{"\\theta"}</MathInline> to <MathInline>{"\\pi"}</MathInline>) The component parallel to the axis collapses entirely into a twist. Just like in the case of 2-D, a quarter turn captures the purely rotational behavior, the shift of one dimension entirely into another in a 4-step cyclical fashion. This is quite useful because it tells us the length of the component of <MathInline>p</MathInline> parallel to <MathInline>q</MathInline>. Similarly, the vector part of <MathInline>qp</MathInline> the component of <MathInline>p</MathInline> orthogonal to <MathInline>q</MathInline>, rotated exactly a quarter turn such that it ends up orthogonal to both.
+        Notice what happens to the intermediate term, <MathInline>qp</MathInline>, when the angle is <MathInline>{"\\pi"}</MathInline>. (Reloading the page sets <MathInline>{"\\theta"}</MathInline> to <MathInline>{"\\pi"}</MathInline>) The component parallel to the axis collapses entirely into a twist. Just like in the case of 2-D, a quarter turn captures the purely rotational behavior, i.e. a shift of one direction entirely into another. This is quite useful because it tells us the length of the component of <MathInline>p</MathInline> that was parallel to <MathInline>q</MathInline> without it being mixed up with the orthogonal component. ("orthogonal" means "right angle", coming from  "rectus" meaning roughly "standing up straight") Similarly, the vector part of <MathInline>qp</MathInline> is nothing more than the component of <MathInline>p</MathInline> that was orthogonal to <MathInline>q</MathInline> to begin with, but rotated exactly a quarter turn such that it ends up orthogonal to both.
       </p>
 
       <p>
-        The twisted/real part is (the negative of what is) called the dot product, <MathInline>{"- p \\cdot q"}</MathInline>, while the vector part is the cross product, <MathInline>{"p \\times q"}</MathInline>. These terms are so useful in and of themselves that they were separated out from the quaternion algebra and put to work as independent operations in vector and matrix calculus, partially to avoid the necessity of conjugation. Their utility comes from the fact that they can be used independently to compute and manipulate these components as needed, but this utility is a bit of a double-edged sword, as it has the potential to obscure relationships that are more apparent within the quaternion algebra.
+        The twisted/real part is called (the negative of) the dot product, <MathInline>{"- p \\cdot q"}</MathInline>, while the vector part is the cross product, <MathInline>{"p \\times q"}</MathInline>. These terms are so useful in and of themselves that they were separated out from the quaternion algebra and put to work as independent operations in vector and matrix calculus, partially to avoid the necessity of conjugation. Their utility comes from the fact that they can be used independently to compute and manipulate these components as desired, but this utility comes at the cost of having the potential to obscure relationships that are more apparent within the quaternion algebra presented as a whole.
       </p>
 
 
       <QuatsHeader>
         {"Paired Composition"}
-        {"Its a joint authorship"}
+        {"Algebraic joint authorship"}
         {/* {"Pressure Under Composure"} */}
         {/* {"Its Standpoint Technology"} */}
       </QuatsHeader>
 
       <p>
-        We've demonstrated how points, temporarily represented as quaternions, can be rotated by conjugation, but how do we rotate rotations themselves? It turns out this is basically the same picture! Consider what happens if we were to apply a second composition to the first:
+        We've demonstrated how points, temporarily represented as quaternions, can be rotated by conjugation, but how do we rotate rotations themselves? It turns out this is already in our picture! Consider what happens if we were to apply a second rotation, i.e. to conjugate the first versor with a second:
       </p>
 
       <MathBlock inline={true}>
@@ -63,19 +59,30 @@ export default () => {
       </MathBlock>
 
       <p>
-        By re-associating the multiplications, we see that the composed rotation is nothing more than the product of two quaternions, but this is exactly what is represented, twice, in the visualization. Its just that the points <MathInline>p</MathInline> and <MathInline>p'</MathInline> have been guaranteed to be pure quaternions, which would thereby represent quater-turn rotations.
+        By re-associating the multiplications, we see that the composed rotation is nothing more than the product of two quaternions. Yet this is exactly what is represented, twice, in the visualization above! Its just that the quaternions <MathInline>p</MathInline> and <MathInline>p'</MathInline>, which started as regular 3D points, are guaranteed to be pure (and thereby represent quarter-turn rotations by default), but we can still see all the components of action involved in multiplying one quaternion by another by looking at the intermediate term <MathInline>qp</MathInline>.
       </p>
 
       <p>
-        A bit of a sleight of hand has occurred here, and its not unreasonable e.g. to worry we are somehow overloading the meaning of the real component. On the one hand, we are saying that as a position it signifies a twist, and on the other, that as an action it means "stay". How we are interpreting it depends on whether or not the component is appearing as part of the rotation of a point or as part of the composition of two rotations. It is up to us to keep both the picture and the use of these operations clear.
+        A bit of a sleight of hand has occurred in this whole overarching approach, and its not unreasonable e.g. to worry that we are somehow overloading the meaning of the real component. On the one hand, we are saying that as a position it signifies a <i>twist</i>, and on the other hand, as an action it signifies <i>stay</i>. How we interpret it depends on whether or not the component is appearing as part of the rotation of a point or as part of the composition of two rotations. Furthermore, our imaginary vectors themselves seem to be performing double duty, both as axes and planes of rotation! It is up to us to keep the picture and the meaning of these operations clear.
       </p>
 
       <p>
-        On the other hand, in the geometric algebra, there is a difference between the "stay-in-place" and "twist" behaviors that is not present in the quaternion algebra alone. In fact, they are different types of objects entirely. When composing rotations, the only terms involved are those of the even sub-algebra, scalars and bivectors, meaning <b>stay-in-place/reflect</b> and <b>rotate</b> respectively. However, when rotating a point, the odd sub-algebra is involved, and the intermediate term in the calculation coming from the "twisting" is an oriented volume rather than a scalar. Once this oriented volume is "wound into being" it can be "unwound" along any axis, its not necessarily aligned to any particular plane of rotation. This detail, however, is irrelevant in the context of rotating 3d points, which are always part of a conjugation.
+        Toward that end, lets briefly look at what's called the "geometric algebra". In geometric algebra, there is indeed a difference between the <i>stay-in-place</i> and <i>twist</i> behaviors that is not explicit in the quaternion algebra alone. In fact, they are different types of objects. When composing rotations, the only terms involved are those of the even subalgebra, in 0 or 2 dimensions. These are the scalars and bivectors, meaning <i>stay-in-place/reflect</i> and <i>rotate</i> respectively. However, when rotating a point, the odd sub-algebra, with 1 and 3 dimensions, is involved, and the intermediate term in the conjugation that results from <i>rotating in place</i> is an oriented volume rather than a scalar. Once this oriented volume is "wound into being" it can be "unwound" along any axis. I.e. its not necessarily aligned to any particular direction or plane of rotation. This detail, however, is irrelevant in the context of rotating 3d points, in which multiplication always occurs in the context of a conjugation.
       </p>
 
+      <JsdImage src="quats/subalgebras.png" className="max-h-120 m-auto" alt="Geometric subalgebras." />
 
-      {/* comment about planes and axes being duals? */}
+      <p>
+        When switching our interpretation of quaternions betweem rotations and positions, what we are doing in terms of the geometric algebra is switching between <i>dual</i> subspaces. That is to say, the axis of rotation is in a dual subspace to the plane of rotation, where together they fill the entirety of 3D. Similarly, the "twisted" oriented volume component forms a dual subspace with the scalar component, together "filling" 3D space. The quaternion variables are able to carry these complementary meanings, provided that we rotate positions using conjugation (such that the twist cancels out) and generally take care that we are skillfully applying our interpretations.
+      </p>
+
+      <QuatsHeader>
+        {"The End"}
+      </QuatsHeader>
+
+      <p>
+        I hope you enjoyed exploring these wonderful mathematical objects with me. If you have comments, critiques, or suggestions please feel free to <a className='text-teal-700 font-bold' href="mailto:kruft.webmaster@gmail.com">send me an email</a>!
+      </p>
 
     </div>
   )
@@ -85,7 +92,7 @@ export default () => {
 
 
       <p>
-        A minor sleight of hand has occurred, somewhere along the line, allowing us to interpret quaternions as both actions and positions, and the dot product both as a twist and a dimensionless length. It is the special properties of 3-D space that make these possible. The key point is that in 3 dimensions, a plane of rotation and its axis are "dual spaces", together filling all three dimensions. Therefore if you know one, so you know the other, they form a pair.
+        A minor sleight of hand has occurred, somewhere along the line, allowing us to interpret quaternions as both actions and positions, and the dot product both as a twist and a dimensionless length. It is the special properties of 3D space that make these possible. The key point is that in 3 dimensions, a plane of rotation and its axis are "dual spaces", together filling all three dimensions. Therefore if you know one, so you know the other, they form a pair.
       </p>
 
       <p>

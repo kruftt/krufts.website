@@ -7,7 +7,6 @@ import { Line2 } from 'three/addons/lines/Line2.js'
 import { LineGeometry } from 'three/addons/lines/LineGeometry.js';
 import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
 import { ChangeEvent, useEffect, useRef } from "react";
-import MathInline from "../general/math-inline";
 import MathBlock from "../general/math-block";
 
 const TAU = 6.2831853
@@ -237,19 +236,19 @@ class Visualizer {
 }
 
 
-class VisualizerAxes {
-  lines: Line2[]
-  constructor(scene: THREE.Scene) {
-    this.lines = []
-    this.lines.push(new Line2(new LineGeometry()
-      .setFromPoints([new THREE.Vector3(-1, 0, 0), new THREE.Vector3(1, 0, 0)]), m_axis))
-    this.lines.push(new Line2(new LineGeometry()
-      .setFromPoints([new THREE.Vector3(0, -1, 0), new THREE.Vector3(0, 1, 0)]), m_axis))
-    this.lines.push(new Line2(new LineGeometry()
-      .setFromPoints([new THREE.Vector3(0, 0, -1), new THREE.Vector3(0, 0, 1)]), m_axis))
-    scene.add(...this.lines)
-  }
-}
+// class VisualizerAxes {
+//   lines: Line2[]
+//   constructor(scene: THREE.Scene) {
+//     this.lines = []
+//     this.lines.push(new Line2(new LineGeometry()
+//       .setFromPoints([new THREE.Vector3(-1, 0, 0), new THREE.Vector3(1, 0, 0)]), m_axis))
+//     this.lines.push(new Line2(new LineGeometry()
+//       .setFromPoints([new THREE.Vector3(0, -1, 0), new THREE.Vector3(0, 1, 0)]), m_axis))
+//     this.lines.push(new Line2(new LineGeometry()
+//       .setFromPoints([new THREE.Vector3(0, 0, -1), new THREE.Vector3(0, 0, 1)]), m_axis))
+//     scene.add(...this.lines)
+//   }
+// }
 
 
 class VisualizerVector {
@@ -387,8 +386,8 @@ class VisualizerArc {
 
   update(theta: number) {
     const d_theta = 0.5 * theta / (ARC_SAMPLES - 1)
-    let r = new THREE.Quaternion(this.q1.x, this.q1.y, this.q1.z, this.q1.w)
-    let rotor = new THREE.Quaternion(0, Math.sin(d_theta), 0, Math.cos(d_theta))
+    const r = new THREE.Quaternion(this.q1.x, this.q1.y, this.q1.z, this.q1.w)
+    const rotor = new THREE.Quaternion(0, Math.sin(d_theta), 0, Math.cos(d_theta))
     let reverse = false
     if (r.w != 0) {
       rotor.y = -rotor.y
@@ -446,16 +445,16 @@ function makeLabelCanvas(size: number, name: string) {
 
 
 export default function QuaternionVisualizer() {
-  const canvas = useRef<HTMLCanvasElement>(null);
-  let visualizer: Visualizer
+  const canvas = useRef<HTMLCanvasElement>(null)
+  const visualizer = useRef<Visualizer>(null)
 
   useEffect(() => {
-    visualizer = new Visualizer(canvas.current!);
+    visualizer.current = new Visualizer(canvas.current!);
   })
 
   function updateTheta(e: ChangeEvent<HTMLInputElement>) {
     const v = parseFloat(e.target.value);
-    visualizer.setTheta(v)
+    visualizer.current!.setTheta(v)
   }
 
   return (

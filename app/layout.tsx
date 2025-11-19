@@ -26,6 +26,14 @@ export default function RootLayout({
     <html lang="en" >
       <head>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        {/* <script type="importmap">
+          {`{
+            "imports": {
+              "three": "https://cdn.jsdelivr.net/npm/three@0.181.1/build/three.module.js",
+              "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.181.1/examples/jsm/"
+            }
+          }`}
+        </script> */}
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Switch } from '@/components/quats/switch';
-import { cn } from "@/lib/utils";
+import JsdImage from "../general/jsdelivr-image";
 
 
 export default function OneDee({ className }: { className?: string }) {
@@ -53,7 +53,7 @@ export default function OneDee({ className }: { className?: string }) {
         <path d={`M 0 0.5 H ${p}`} stroke='black' strokeWidth={6} markerEnd="url(#triangle)"></path>
         <circle cx="0" cy="0" r="8" stroke="black"></circle>
       </svg>
-      <img src="/img/math/scalar_action.png" className="max-w-7/8 max-h-11 m-auto mt-6! mb-6!" alt="A ray from the origin." />
+      <JsdImage src="quats/scalar_action.png" className="max-w-7/8 max-h-11 m-auto mt-6! mb-6!" alt="A ray from the origin." />
       <div className="flex justify-center gap-3">
         <Switch defaultChecked={true} onCheckedChange={check}></Switch>
         <input

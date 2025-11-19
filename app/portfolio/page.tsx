@@ -14,7 +14,7 @@ export default function Portfolio () {
     // addEventListener("hashchange", updateSelection)
     addEventListener("popstate", updateSelection)
     updateSelection();
-  }, [state.articleList])
+  }, [])
 
   function updateSelection() {
     const articleName = window.location.hash.slice(1).replaceAll('-', ' ')
@@ -47,9 +47,9 @@ export default function Portfolio () {
             <h3 className="text-4xl">Marc Doucette</h3>
             <h4 className="text-xl">Educator and Software Developer</h4>
             {/* <h4 className="text-xl">Game and Web Developer</h4> */}
-            {/* <h4 className="text-base">
+            <h4 className="text-base">
               <a href="mailto:marc.t.doucette@gmail.com">marc.t.doucette@gmail.com</a>
-            </h4> */}
+            </h4>
           </div>
           <div className="text-center flex gap-1 justify-center mt-10 mb-8">
             {
