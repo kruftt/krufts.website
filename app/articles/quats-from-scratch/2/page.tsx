@@ -1,7 +1,7 @@
 'use client'
 import MathInline from '@/components/general/math-inline';
 import MathBlock from '@/components/general/math-block';
-import { QuatsHeader } from '../components';
+import { QuatsHeader } from '@/components/quats/quats-header';
 import TwoDee from '@/components/quats/two-dee';
 import Swapper from '@/components/quats/swapper';
 import JsdImage from "@/components/general/jsdelivr-image"
@@ -16,7 +16,7 @@ export default function Page2() {
       </QuatsHeader>
 
       <p>
-        Suppose now we have a second dimension, just like the first, and we're free to move in either dimension independently. This raises the question, "What happens when we move in both directions at the same time?" The answer depends on what kind of space we're in and here we're assuming we're in good old-fashioned Euclidean space, where the pythagorean theorem holds:
+        Suppose now we have a second dimension, just like the first, and we're free to move in either dimension independently. What happens when we move in both directions at the same time? The answer depends on what kind of space we're in, and here we're assuming we're in good old-fashioned Euclidean space, where the pythagorean theorem holds:
       </p>
 
       <div className="flex flex-wrap justify-evenly">
@@ -33,15 +33,15 @@ export default function Page2() {
       </MathBlock>
 
       <p>
-        The angle <MathInline>θ</MathInline> is sometimes referred to as the "argument", apparently coming from its uses in astronomy for measuring celestial positions. The root of the word "argue" has to do with "shining", as if an argument shines light on an issue and the argument helps track the orbital motion of shiny celestial objects. In this sense I think of the argument <MathInline>θ</MathInline> as specifying the direction of a shining ray of light.
+        The angle <MathInline>θ</MathInline> is sometimes referred to as the "argument", apparently coming from its uses in astronomy for measuring celestial positions. The root of "argue" means "to shine", as if a verbal argument shines light on an issue and an angle argument tracks the motion of shiny celestial objects. In this sense I think of the argument <MathInline>θ</MathInline> as specifying the direction of a shining beam of light, like a laser guide star.
       </p>
 
       <p>
-        Now that we can point in any combination of two directions, what have we lost? We've lost the ability to order all our points along a single line. We can still order points along any particular direction, but not in general.
+        Now that we can point in any combination of two directions, what have we lost? We've lost the ability to order all the points along a single line. We can still order the points along a given direction, but not in general.
       </p>
 
       <p>
-        This raises another question, which is, "How do we think about the actual action of rotation?" How do we take a point from where we got by going along one direction, to where we would have gotten had we went in another direction? Similar to going backward in 1 dimension, but to be able to go in any combination of 2 directions.
+        So then, how do we think about the actual action of rotation? How do we take a point from where we got by going along one direction, to where we would have gotten had we gone in another direction? Similar to taking the inverse in 1 dimension, but we want to be able to go in any combination of 2 directions.
       </p>
 
       <QuatsHeader>
@@ -54,7 +54,7 @@ export default function Page2() {
       </p>
 
       <p>
-        We can understand the essence of rotation to be going from pointing in one direction to pointing in another. To model this movement we can start by exchanging the two dimensions. In other words we can take point <MathInline>(a,b)</MathInline> to the point <MathInline>(b,a)</MathInline>, equivalent to reflecting across the line <MathInline>a=b</MathInline>, or flipping a piece of paper along its diagonal axis. This takes <MathInline>{"a \\rightarrow b"}</MathInline>, but moves <MathInline>b</MathInline> in the wrong direction. We need a second movement to flip <MathInline>b</MathInline> around and get the directions going in a cycle.
+        We can understand the essence of rotation to be going from pointing in one direction to pointing in another. To model this movement we can start by exchanging the two dimensions. In other words we can take point <MathInline>(a,b)</MathInline> to the point <MathInline>(b,a)</MathInline>, equivalent to reflecting across the line <MathInline>a=b</MathInline>. This takes <MathInline>{"a \\rightarrow b"}</MathInline>, which we want, but also takes <MathInline>{"b \\rightarrow a"}</MathInline>, which is in the wrong direction! We need a second movement to flip <MathInline>b</MathInline> around and get all four going in a cycle. I recommend trying this two-step operation with a piece of paper, flipping it across its diagonal and then horizontal, just to get a tangible feeling for how it rotates a quarter turn.
       </p>
 
       <JsdImage src="quats/reflect_to_rotate.png" className="max-w-7/8 max-h-85 m-auto" alt="2 reflections make a rotation." />
@@ -63,7 +63,7 @@ export default function Page2() {
         Let's briefly compare these two reflections. The first reflection involves swapping the components. Its effect on a given position depends on the relationship between its components, similar to taking the differences between the two parts of our walk. How much it translates a given point depends on the differences in distance between the two components on the journey to that point. If one part of the journey to <MathInline>p</MathInline> was longer than the other, which was longer gets swapped.
       </p>
       <p>
-        This gets combined with the second reflection, which only negates the first coordinate. Notice that this completely changes the effect of the first reflection the next time around, e.g. if the components were in the same direction, now they are in opposite directions.
+        This gets combined with the second reflection, which negates only the first coordinate. Notice that this completely changes the effect of the first reflection the next time around, e.g. if the components were in the same direction, now they are in opposite directions.
       </p>
 
       <div className="flex flex-wrap justify-center">
@@ -72,13 +72,13 @@ export default function Page2() {
       </div>
 
       <p>
-        Normally, when we repeatedly negate a number it goes in a cycle of 2: plus, minus, plus, minus, etc. But here the number is getting swapped out each time, and we are cycling between negating one of the two numbers. Therefore the full cycle takes 4 rather than 2. Notice that the second reflection, i.e. the negation, is a 1-dimensional operation with a cycle of length 2, and similarly the first reflection, i.e. the swap, is a 2-dimensional operation, but also with a cycle length of 2. When properly mixed together these two alternating behaviors make a cycle of length 4.
+        Normally, when we repeatedly negate a number it goes in a cycle of 2: plus, minus, plus, minus, etc. But now the number is getting swapped out each time and we are cycling between negating two separate numbers. Therefore the full cycle takes 4 rather than 2. Notice that the second reflection, the negation, is a 1-dimensional operation with a cycle of length 2. Meanwhile the first reflection, the swap, is a 2-dimensional operation, but also has a cycle length of 2. When properly mixed together these two alternating behaviors make a cycle of length 4.
       </p>
 
       <Swapper></Swapper>
 
       <p>
-        One further note about what happens when we reverse the order of the reflections. In this case the first component would be negated before getting swapped, which causes the rotation to move in the opposite direction. This operation is called the conjugate, meaning "joined together". Notice that applying a rotation and then applying its conjugate will do and then undo the reflections in the reverse order. They are inverse operations.
+        If we reverse the order of the reflections, the first component gets negated before getting swapped, causing the rotation to move in the opposite direction. This operation is called the conjugate, meaning "joined together". Notice that applying a rotation and then applying its conjugate will do and then undo the reflections in the reverse order. They are inverse operations.
       </p>
 
       <MathBlock>ABBA = 1</MathBlock>
@@ -126,11 +126,11 @@ export default function Page2() {
       <TwoDee></TwoDee>
 
       <p>
-        The word "complex" means "folded together", and the complex numbers encode this "mixed up" 4-way cyclic relationship into an algebra. The word "algebra" is associated with creating systems that help us balance out equations. We would like to be able to combine and manipulate these rotations in singular equations, without having to break them up into individually defined components. In order for an algebra to keep track of the two actions of staying and rotating, it needs a variable for each one.
+        The word "complex" means "folded together". The complex numbers enfold these two reflections, and therefore the resulting 4-way cyclic relationship into a piece of mathematical origami called an algebra. The word "algebra" is associated with creating systems that help us balance out equations, and we would like to be able to combine and manipulate these rotations in singular equations, without having to break them up into individually defined components. In order for an algebra to keep track of the two actions of staying and rotating, it needs a variable for each one.
       </p>
 
       <p>
-        Consider that a point in 2-D has two interpretations. First, as position coordinates, and secondly, as an action, provided that we use it to transform another point as outlined above. When interpreted as a rotation action without any scaling, we said that the first component represents the <i>stay</i> (or reverse) behavior, while the second component represents the <i>cycle</i> behavior. Together they must make a triangle with hypotenuse length <MathInline>1</MathInline>, according to the pythagorean theorem, so as not to cause any scaling.
+        Consider that a point in 2D has two interpretations. First, as position coordinates, and secondly, as an action. When its solely a rotation action, without any scaling, we said that the first component represents the <i>stay</i> (or reverse) behavior, while the second component represents the <i>cycle</i> behavior. Together they must make a triangle with hypotenuse length <MathInline>1</MathInline>, according to the pythagorean theorem, so as not to cause any scaling.
       </p>
       <p>
         We already have a symbol for the <i>stay</i> behavior, our old friend the identity element, <MathInline>1</MathInline>. Now we need an element to capture the <i>cycle</i> behavior. The standard notation is to use the letter <MathInline>i</MathInline>, which will act a marker representing the second component:

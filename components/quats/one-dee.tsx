@@ -55,7 +55,7 @@ export default function OneDee({ className }: { className?: string }) {
       </svg>
       <JsdImage src="quats/scalar_action.png" className="max-w-7/8 max-h-11 m-auto mt-6! mb-6!" alt="A ray from the origin." />
       <div className="flex justify-center gap-3">
-        <Switch defaultChecked={true} onCheckedChange={check}></Switch>
+        <Switch className="cursor-pointer" defaultChecked={true} onCheckedChange={check}></Switch>
         <input
           ref={modulus}
           type="range"
@@ -64,7 +64,7 @@ export default function OneDee({ className }: { className?: string }) {
           step={0.01}
           onChange={update}
           defaultValue={0.5}
-          className="accent-black"
+          className="accent-black cursor-pointer"
         ></input>
       </div>
     </div>

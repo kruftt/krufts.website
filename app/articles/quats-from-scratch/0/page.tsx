@@ -1,6 +1,6 @@
 'use client'
 import MathInline from '@/components/general/math-inline';
-import { QuatsHeader } from '../components';
+import { QuatsHeader } from '@/components/quats/quats-header';
 import { Button } from '@/components/ui/button'
 import JsdImage from '@/components/general/jsdelivr-image';
 import { cn } from "@/lib/utils"
@@ -26,7 +26,7 @@ export default function Page0() {
             className={cn(
               'pl-4 pr-4 rounded-2xl text-sm border-1 border-gray-500 ',
               'drop-shadow-sm hover:drop-shadow-lg',
-              'active:text-white',
+              'active:text-white cursor-pointer',
               'bg-gray-100 hover:bg-white active:bg-black',
             )}
             variant={'default'}

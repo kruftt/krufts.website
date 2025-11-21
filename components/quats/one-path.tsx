@@ -87,7 +87,7 @@ export default function OnePath({ className }: { className?: string }) {
         <div className="flex justify-center items-center gap-6">
           <span className="font-semibold">Part 1</span>
           <button
-            className="border border-gray-400 rounded-full bg-gray-100 hover:bg-white active:bg-gray-200 pb-1 pl-2 pr-2 w-10 h-10"
+            className="border border-gray-500 hover:border-black rounded-full bg-gray-100 pb-1 pl-2 pr-2 w-10 h-10 cursor-pointer"
             onClick={() => update(true)}
           >
             <b className="text-2xl">{state.plus ? '+' : '-'}</b>

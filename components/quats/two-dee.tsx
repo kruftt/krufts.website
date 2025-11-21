@@ -83,7 +83,7 @@ export default function TwoDee({ className }: { className?: string }) {
             step={Math.PI * 0.005}
             onChange={update}
             defaultValue={0}
-            className="accent-black w-full max-w-80"
+          className="accent-black w-full max-w-80 cursor-pointer"
           ></input>
         <MathInline dynamic={false}>{"2\\pi"}</MathInline>
         </div>

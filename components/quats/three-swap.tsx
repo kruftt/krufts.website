@@ -160,18 +160,14 @@ export default function ThreeSwapper({ className }: { className?: string }) {
         
         <button
           className={cn(
-            "border border-gray-400 pt-1 pb-1 pl-3 pr-3 rounded-lg bg-gray-100 hover:bg-white active:bg-gray-200",
-            ""
-          )}
+            "border border-gray-400 pt-1 pb-1 pl-3 pr-3 rounded-lg bg-gray-100 hover:bg-white active:bg-gray-200 cursor-pointer")}
           onClick={() => cycle(MULT_TYPE.L_i)}
         >
           <MathInline>i</MathInline>
         </button>
         <button
           className={cn(
-            "border border-gray-400 pt-1 pb-1 pl-3 pr-3 rounded-lg bg-gray-100 hover:bg-white active:bg-gray-200",
-            ""
-          )}
+            "border border-gray-400 pt-1 pb-1 pl-3 pr-3 rounded-lg bg-gray-100 hover:bg-white active:bg-gray-200 cursor-pointer")}
           onClick={() => cycle(MULT_TYPE.L_i_i)}
         >
           <MathInline>{"i^{*}"}</MathInline>
@@ -182,18 +178,14 @@ export default function ThreeSwapper({ className }: { className?: string }) {
         
         <button
           className={cn(
-            "border border-gray-400 pt-1 pb-1 pl-3 pr-3 rounded-lg bg-gray-100 hover:bg-white active:bg-gray-200",
-            ""
-          )}
+            "border border-gray-400 pt-1 pb-1 pl-3 pr-3 rounded-lg bg-gray-100 hover:bg-white active:bg-gray-200 cursor-pointer")}
           onClick={() => cycle(MULT_TYPE.R_i)}
         >
           <MathInline>i</MathInline>
         </button>
         <button
           className={cn(
-            "border border-gray-400 pt-1 pb-1 pl-3 pr-3 rounded-lg bg-gray-100 hover:bg-white active:bg-gray-200",
-            ""
-          )}
+            "border border-gray-400 pt-1 pb-1 pl-3 pr-3 rounded-lg bg-gray-100 hover:bg-white active:bg-gray-200 cursor-pointer")}
         onClick={() => cycle(MULT_TYPE.R_i_i)}
         >
           <MathInline>{"i^{*}"}</MathInline>

@@ -462,12 +462,12 @@ export default function QuaternionVisualizer() {
       <canvas className="m-auto" ref={canvas}></canvas>
       <MathBlock>{"q = \\cos{\\theta} + \\hat{q}\\sin{\\theta}"}</MathBlock>
       <div className='flex justify-center gap-4'>
-        <span className='font-bold text-2xl'>-2π</span>
+        <span className='font-bold text-xl'>-2π</span>
         <input
           type="range" min={-TAU} step={TAU/120} max={TAU+0.001} defaultValue={Math.PI} onChange={updateTheta}
-          className='grow max-w-150'  
+          className='grow max-w-150 cursor-pointer'  
         />
-        <span className='font-bold text-2xl'>2π</span>
+        <span className='font-bold text-xl'>2π</span>
       </div>
     </div>
   )

@@ -82,14 +82,14 @@ export default function Swapper({ className }: { className?: string }) {
 
       <div className="flex justify-center gap-3 mt-8">
         <button
-          className="border border-gray-400 pt-1 pb-1 pl-2 pr-2 rounded-lg bg-gray-100 hover:bg-white active:bg-gray-200"
+          className="border border-gray-400 pt-1 pb-1 pl-2 pr-2 rounded-lg bg-gray-100 hover:bg-white active:bg-gray-200 cursor-pointer"
           onClick={swap}
         >
           <MathInline>(b, a)</MathInline>
         </button>
 
         <button
-          className="border border-gray-400 pt-1 pb-1 pl-2 pr-2 rounded-lg bg-gray-100 hover:bg-white active:bg-gray-200"
+          className="border border-gray-400 pt-1 pb-1 pl-2 pr-2 rounded-lg bg-gray-100 hover:bg-white active:bg-gray-200 cursor-pointer"
           onClick={negA}
         >
           <MathInline>(-a, b)</MathInline>

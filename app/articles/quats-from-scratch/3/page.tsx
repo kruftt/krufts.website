@@ -2,7 +2,8 @@
 import '@/app/articles/quats-from-scratch/3/3d.css'
 import MathBlock from '@/components/general/math-block';
 import MathInline from '@/components/general/math-inline';
-import { QuatsHeader, QuatsCycle } from '../components';
+import { QuatsHeader } from '@/components/quats/quats-header';
+import { QuatsCycle } from '@/components/quats/quats-cycle';
 import ThreeSwapper from '@/components/quats/three-swap';
 import JsdImage from "@/components/general/jsdelivr-image"
 
@@ -29,7 +30,7 @@ export default function Page3() {
       </MathBlock>
 
       <p>
-        We would like to extend our rotation capabilities into three dimensions and to write down a corresponding algebra. We have previously noted that each component of action needs its own element in an algebra. Lets look at what the pieces of a 3d rotation are.
+        We would like to extend our rotation capabilities into three dimensions and to write down a corresponding algebra. We have previously noted that each component of action needs its own element. Lets look at what the pieces of a 3d rotation are.
       </p>
 
       <p>
@@ -46,7 +47,7 @@ export default function Page3() {
       </p>
 
       <p>
-        First we need to know how much to <i>stay</i> vs how much to <i>rotate</i>. We can then use the pythagorean theorem to transition between the <i>stay</i> and <i>rotate</i> behaviors, just like with 2 dimensions. In the 2-D case the rotation behavior was relatively straightforward. We did a swap and a flip to get the four directions going in a cycle. In the 3D case, there is an additional "rotating in place" behavior along the axis, alongside the cycling components. That is to say, when doing a quarter rotation along the first axis we expect our translated point to be:
+        First we need to know how to <i>stay</i> vs how much to <i>rotate</i>. We can then use the pythagorean theorem to transition between the <i>stay</i> and <i>rotate</i> behaviors, just like with 2 dimensions. In the 2D case the rotation behavior was relatively straightforward. We did a swap and a flip to get the four directions going in a cycle. In the 3D case, there is an additional "rotating in place" behavior along the axis, alongside the cycling components. That is to say, when doing a quarter rotation along the first axis we expect our translated point to be:
       </p>
 
       <div className="text-center">
@@ -84,17 +85,17 @@ export default function Page3() {
       </div>
 
       <p>
-        This does indeed allow us to rotate in these two planes, but there are some strange things afoot. The first is that <MathInline>{"ij \\neq ji"}</MathInline>. The order of actions can no longer be switched, they no longer commute ("commute" means "change together"). This is reflecting the fact that we have to be clear which axis is doing the rotating and which is being rotated. Doing rotations in reverse order does not usually result in the same translation. This is contrary to two dimensions in which we could exchange the order freely, and only the total amount of rotation mattered in the end. Given this issue of axes rotating each other, losing commutativity appears to be an unavoidable complication.
+        This does indeed allow us to rotate in these two planes, but there are some strange things afoot. The first is that <MathInline>{"ij \\neq ji"}</MathInline>. The order of actions can no longer be switched, they no longer commute ("commute" means "change together"). This is reflecting the fact that we have to be clear which axis is doing the rotating and which is being rotated. Doing rotations in reverse order does not usually result in the same translation. This is contrary to two dimensions in which we could exchange the order freely, and only the total amount of rotation mattered. Given this issue of axes rotating each other, losing commutativity appears to be an unavoidable complication.
       </p>
 
       <p>
-        Moving on to the second issue and, unfortunately, it is catastrophic. We can see it by substituting <MathInline>ij=j</MathInline> into itself:
+        Moving on to the second issue and, unfortunately, it is catastrophic. We can see it by substituting <MathInline>j=ij</MathInline> into itself:
       </p>
 
       <MathBlock>
-        {"ij=j"}
-        {"iij=j"}
-        {"-j=j"}
+        {"j=ij"}
+        {"j=iij"}
+        {"j=-j"}
         {"2j=0"}
         {"i=j=0"}
       </MathBlock>
@@ -102,7 +103,7 @@ export default function Page3() {
       <JsdImage src="quats/bubble.png" className="max-w-7/8 max-h-60 m-auto mt-8 mb-6" alt="The bubble bursts." />
 
       <p>
-        Its all collapsed! What happened!? The issue is we are trying to get these elements to perform double duty. The first statements, like <MathInline>i^2=-1</MathInline>, tell them to act as rotations, while the second statements, <MathInline>ij=j</MathInline>, tell them to act as the identity. But when we combine these behaviors into a single statement, the algebra collapses back into the singularity, which is the only place where both of these behaviors can be part of the same action! Similarly, if <MathInline>i</MathInline> and <MathInline>j</MathInline> dont affect each other, how could we rotate between them? We cannot expect <MathInline>1</MathInline> to step in and cause a rotation or else we will overload it's behavior as well, ending in another catastrophe.
+        Its all collapsed! What happened!? The issue is we are trying to get these elements to perform double duty. The first statements, like <MathInline>i^2=-1</MathInline>, tell them to act as rotations, while the second statements, <MathInline>ij=j</MathInline>, tell them to act as the identity. But when we combine these behaviors into a single statement, the algebra collapses back into the singularity, the only place where both of these behaviors can be part of the same action! Similarly, if <MathInline>i</MathInline> and <MathInline>j</MathInline> dont affect each other, how could we rotate between them? We cannot expect <MathInline>1</MathInline> to step in and cause a rotation or else we will overload it's behavior as well, ending in another catastrophe.
       </p>
       
       
@@ -113,7 +114,7 @@ export default function Page3() {
       
       
       <p>
-        In 2 dimensions we only had one possible plane of rotation and were able to use a single algebraic variable to represent turning in that plane. Conveniently, this allowed us to think both of points and rotations in 2-Dimensions, and freely switch between these interpretations. But now that we have three possible planes of rotation, we need a variable for each one and still need extra room for information about how much to rotate at all. Therefore, looking ahead we expect terms in our algebra to have the general form:
+        In 2 dimensions we only had one possible plane of rotation and were able to use a single algebraic variable to represent turning in that plane. Conveniently, this allowed us to think of points both as positions and rotations, freely switching between perspectives. But now that we have three possible planes of rotation, not only do we need a variable for each one, but we still need extra room for information about how much to rotate at all. Therefore, looking ahead we expect terms in our algebra to have the general form:
       </p>
 
       <MathBlock>
@@ -135,7 +136,7 @@ export default function Page3() {
       </p>
 
       <p>
-        Consider that turning all the way around on an axis is, at least positionally, equivalent to staying in place. Algebraically we can say <MathInline>i^4=1</MathInline>. But we also know that <MathInline>{"i\\neq \\pm1"}</MathInline>. This means <MathInline>i</MathInline> must cycle with <MathInline>1</MathInline> in exactly the same 4-step procedure as in the 2-D case.
+        Consider that turning all the way around on an axis is, at least positionally, equivalent to staying in place. Algebraically we can say <MathInline>i^4=1</MathInline>. But we also know that <MathInline>{"i\\neq \\pm1"}</MathInline>. This means <MathInline>i</MathInline> must cycle with <MathInline>1</MathInline> in exactly the same 4-step procedure as in the 2D case.
       </p>
 
       <div className={`${twister_url} bg-cover bg-center w-1/1 pb-10 z-10`}>
@@ -170,13 +171,13 @@ export default function Page3() {
       </div>
 
       <p>
-        The algebra doesn't collapse, but things are getting a bit carried away! We have an algebra that can rotate on all three axes, but it does something else. Part of the component parallel to the axis of rotation, the part that is twisting in place, is getting cycled toward <MathInline>-1</MathInline>. We were only considering the real component to be part of the action, meaning roughly <i>stay-in-place</i>, but now its part of the resulting position. The component along the axis is therefore liable to collapse to <MathInline>0</MathInline> or to end up going the opposite way entirely! We only know where its "supposed" to go because of the context of the action that generated it.
+        The algebra doesn't collapse when we combine the behaviors, but things are getting a bit carried away! We have an algebra that can rotate on all three axes, but it does something else. Part of the component parallel to the axis of rotation, the part that is twisting in place, is getting cycled toward <MathInline>-1</MathInline>. We were only considering the real component to be part of the action, meaning roughly <i>stay-in-place</i>, but now its part of the resulting position! Meanwhile, the component along the axis is liable to collapse to <MathInline>0</MathInline> or to end up going the opposite way entirely! We only know where its "supposed" to go because of the context of the action that generated it.
       </p>
 
       <JsdImage src="quats/axis_actions.png" className="max-w-7/8 max-h-80 m-auto" alt="Two cycles of action." />
 
       <p>
-        Its important to look here at what the algebra is telling us. It is saying that the <i>stay-in-place</i> and <i>rotate-in-place</i> behaviors are two aspects of the same overarching behavior. They both have the same effect on the final position, of not moving, but how they get there is different. Therefore the "position" that multiplication gives back to us splits the axis component in two, the part that stayed and the part that twisted.
+        Its important to look here at what the algebra is telling us. It is saying that the <i>stay-in-place</i> and <i>rotate-in-place</i> behaviors are two aspects of the same overarching behavior of not moving. They both have the same effect on the final position, but how they get there is different. Therefore the "position" that multiplication gives back to us has its axis split in two, the part that stayed and the part that twisted.
       </p>
 
       <p>
@@ -197,13 +198,13 @@ export default function Page3() {
       </p>
 
       <p>
-        Let's look at the resulting actions from swapping the order of <MathInline>ii</MathInline> and <MathInline>ij</MathInline>. The green and gold arrows represent left and right multiplication by <MathInline>i</MathInline> respectively. When acting on itself, the order doesn't matter, but when acting within the plane of rotation, reversing the order makes it as if we rotated from the opposite axis, along the red arrow! This is expressed by the statement <MathInline>{'ji=-ij'}</MathInline>. Switching the order gives a reversed rotation, but with the same twist along the axis.
+        Let's look at the resulting of swapping the order of <MathInline>ii</MathInline> and <MathInline>ij</MathInline>. The green and gold arrows represent left and right multiplication by <MathInline>i</MathInline> respectively. When acting on itself, the order doesn't matter, but when acting within the plane of rotation, reversing the order makes it as if we rotated from the opposite axis, along the red arrow! This is expressed by the statement <MathInline>{'ji=-ij'}</MathInline>. Switching the order gives a reversed rotation, but with the same twist along the axis.
       </p>
 
       <JsdImage src="quats/ij_vs_ji.png" className="max-w-7/8 max-h-100 m-auto" alt="ij vs ji." />
 
       <p>
-        Now suppose we have taken the action <MathInline>i</MathInline>, represented by the green arrow. <MathInline>j</MathInline> has moved to <MathInline>k</MathInline>, while <MathInline>i</MathInline>, along the axis of rotation, has done a twist into <MathInline>-1</MathInline>. We take advantage of the anti-commutativity in the plane of rotation to undo this twist while doubling up on the rotation. Lets look at the next step, multiplying by the complex conjugate <MathInline>i^*</MathInline> <i>on the right</i>, to undo the twist.
+        Now suppose we have multiplied on the left by <MathInline>i</MathInline>, represented by the green arrow. <MathInline>j</MathInline> has moved to <MathInline>k</MathInline>, while <MathInline>i</MathInline>, along the axis of rotation, has done a twist into <MathInline>-1</MathInline>. We take advantage of the anti-commutativity in the plane of rotation to undo this twist while doubling up on the rotation. Lets look at the next step, multiplying by the complex conjugate <MathInline>i^*</MathInline> <i>on the right</i>, to undo the twist.
       </p>
 
       <JsdImage src="quats/i_inverse.png" className="max-w-7/8 max-h-100 m-auto" alt="i*j vs ji*." />
