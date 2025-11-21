@@ -92,58 +92,62 @@ export default function Page1() {
       <JsdImage src="quats/path.png" className="max-w-7/8 max-h-20 m-auto mb-4" alt="To p and back again." />
 
       <p>
-        Let's say we go on a walk and return to where we started. From the perspective of our final position its as if we never left! If we want a record of our journey, we have to consider the distances of each step separately. Then we could add up all the "how fars" while ignoring the differences in direction.
+        Suppose we go on a walk and return to where we started. From the perspective of our final position its as if we never left! If we want a record of our journey, we have to consider the distances travelled in each step separately. Then we could add up all the "how fars" while ignoring the differences in direction.
       </p>
       <p>
-        Taking just the distance without regard to direction is called the "modulus", meaning "little measure". 
+        Taking just the distance without regard to direction is called the "modulus", meaning "little measure". Here in one dimension we can just take the absolute value. Consider what happens when we sum the positions reached by each half of our walk vs how far we've travelled:
       </p>
 
       <div className="w-full flex justify-center gap-8 flex-wrap">
         <div className="flex flex-col text-center">
-          <JsdImage src="quats/0_p.png" className="max-w-7/8 max-h-14 m-auto mb-4" alt="No total change of position." />
-          <MathBlock>
-            {"pos(+,r)+pos(-,r)"}
-            {"=p+(-p)"}
+          <JsdImage src="quats/0_p.png" className="max-w-7/8 max-h-20 m-auto mb-0" alt="No total change of position." />
+          <MathBlock className='mt-[-20]'>
+            {/* {"\\mathrm{pos}(+,r)+\\mathrm{pos}(-,r)"} */}
+            {"r+(-r)"}
+            {"=r-r"}
             {"=0"}
           </MathBlock>
         </div>
         <div className="flex flex-col text-center">
-          <JsdImage src="quats/2_d.png" className="max-w-7/8 max-h-14 m-auto mb-4" alt="2d distance traveled." />
-          <MathBlock>
-            {"mod(+,r)+mod(-,r)"}
-            {"=d+d"}
-            {"=2d"}
-          </MathBlock>
-        </div>
-      </div>
-      <p>
-        Notice that if we want to take a walk of distance <MathInline>d</MathInline> and get back to where we started, we have to go a distance of <MathInline>{"\\frac{d}{2}"}</MathInline> out and back again. The modulus doesn't care what direction we go and sums up the same either way. This behavior is called being "even". Meanwhile, going in the opposite direction changes the sign of the resulting position. This is called being "odd". The difference is that the position is taking the orientation into account while the distance travelled is not.
-      </p>
-      <p>
-        If, instead of adding up the two parts of our journey, we take the difference between them, we bring out the odd, positional behavior instead of the even, distance behavior:
-      </p>
-
-      <div className="w-full flex justify-center gap-8 flex-wrap">
-        <div className="flex flex-col text-center max-w-[185]">
-          <JsdImage src="quats/2_p.png" className="max-h-14 m-auto mb-4" alt="2p difference of positions." />
-          <MathBlock>
-            {"pos(+,r)-pos(-,r)"}
-            {"=p-(-p)"}
+          <JsdImage src="quats/2_d.png" className="max-w-7/8 max-h-20 m-auto mb-0" alt="2d distance traveled." />
+          <MathBlock className='mt-[-20]'>
+            {/* {"\\mathrm{mod}(+,r)+\\mathrm{mod}(-,r)"} */}
+            {"|r|+|-r|"}
+            {"=r+r"}
             {"=2p"}
           </MathBlock>
         </div>
-        <div className="flex flex-col text-center max-w-[170]">
-          <JsdImage src="quats/0_d.png" className="max-w-7/8 max-h-14 m-auto mb-4" alt="0 difference in distances traveled." />
-          <MathBlock>
-            {"mod(+,r)-mod(-,r)"}
-            {"=d-d"}
+      </div>
+      <p>
+        Notice that if we want to take a walk of distance <MathInline>d</MathInline> and get back to where we started, we'd have to go a distance of <MathInline>{"\\frac{d}{2}"}</MathInline> there and back again. The modulus doesn't care what direction we go and sums up the same either way. This behavior is called being "even". Meanwhile, going in the opposite direction changes the sign of the resulting position. This is called being "odd". The difference is that the position is taking the orientation into account while the distance travelled is not.
+      </p>
+      <p>
+        Now suppose that, instead of a walk, we're preparing for a pistol duel with a mortal enemy. We've agreed to stand back-to-back and both take <MathInline>r</MathInline> paces before turning to shoot. By taking the difference between our two journeys, we can see the total distance between us, as well as the fact that we're walking the same distance:
+      </p>
+
+      <div className="w-full flex justify-center gap-8 flex-wrap">
+        <div className="flex flex-col text-center">
+          <JsdImage src="quats/2_p.png" className="max-w-7/8 max-h-19 m-auto mb-4" alt="2p difference of positions." />
+          <MathBlock className='mt-[-20]'>
+            {/* {"\\mathrm{pos}(+,r)-\\mathrm{pos}(-,r)"} */}
+            {"=r-(-r)"}
+            {"=r+r"}
+            {"=2p"}
+          </MathBlock>
+        </div>
+        <div className="flex flex-col text-center">
+          <JsdImage src="quats/0_d.png" className="max-w-7/8 max-h-19 m-auto mb-4" alt="0 difference in distances traveled." />
+          <MathBlock className='mt-[-20]'>
+            {/* {"\\mathrm{mod}(+,r)-\\mathrm{mod}(-,r)"} */}
+            {"=|r|-|-r|"}
+            {"=r-r"}
             {"=0"}
           </MathBlock>
         </div>
       </div>
 
       <p>
-        Here we have isolated the even and odd behaviors by either summing up or taking the difference of the two legs of the journey.
+        Here we have isolated the even and odd behaviors by either summing up or taking the difference between two translations, and given an example of why we might want to consider one or the other.
       </p>
 
       <OnePath className='max-w-7/8 m-auto mt-8'></OnePath>

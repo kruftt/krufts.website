@@ -50,7 +50,7 @@ export default function Page2() {
       </QuatsHeader>
 
       <p>
-        In order to rotate, there two basic behaviors we have to capture. The first is easy, staying in the same direction. We already know how to do that: multiply by <MathInline>1</MathInline>, our affirming friend the identity element, represented by <MathInline>+</MathInline> in the <MathInline>{"(\\pm , r)"}</MathInline> notation. The other is to rotate, that is, to shift our position from one dimension to the other. This is similar to reflecting between opposites along the same dimension, but shifting to another dimension instead.
+        In order to rotate, there two basic behaviors we have to capture. The first is easy, staying in the same direction. We already know how to do that: multiply by <MathInline>1</MathInline>, our affirming friend the identity element. The other is to rotate, that is, to shift our position from one dimension to the other. This is similar to reflecting between opposites along the same dimension, but shifting to another dimension instead.
       </p>
 
       <p>
@@ -60,10 +60,10 @@ export default function Page2() {
       <JsdImage src="quats/reflect_to_rotate.png" className="max-w-7/8 max-h-85 m-auto" alt="2 reflections make a rotation." />
 
       <p>
-        Let's briefly compare these two reflections. The first reflection involves swapping the components. Its effect on a given position depends on the relationship between its components, similar to taking the differences between the two parts of our walk. How much it translates a given point depends on the differences in distance between the two components on the journey to that point. If one part of the journey to <MathInline>p</MathInline> was longer than the other, which was longer gets swapped.
+        Let's briefly compare these two reflections. The first reflection involves swapping the components. The effect it has on a given position depends on the distance between its components. If one part of the journey to <MathInline>p</MathInline> was longer than the other, which was longer gets swapped.
       </p>
       <p>
-        This gets combined with the second reflection, which negates only the first coordinate. Notice that this completely changes the effect of the first reflection the next time around, e.g. if the components were in the same direction, now they are in opposite directions.
+        This gets combined with the second reflection, which negates only the first coordinate. Notice that this changes the effect of the first reflection the next time around, e.g. if the components were in the same direction, now they are in opposite directions.
       </p>
 
       <div className="flex flex-wrap justify-center">
@@ -72,7 +72,7 @@ export default function Page2() {
       </div>
 
       <p>
-        Normally, when we repeatedly negate a number it goes in a cycle of 2: plus, minus, plus, minus, etc. But now the number is getting swapped out each time and we are cycling between negating two separate numbers. Therefore the full cycle takes 4 rather than 2. Notice that the second reflection, the negation, is a 1-dimensional operation with a cycle of length 2. Meanwhile the first reflection, the swap, is a 2-dimensional operation, but also has a cycle length of 2. When properly mixed together these two alternating behaviors make a cycle of length 4.
+        Normally, when we repeatedly negate a number it goes in a cycle of 2: plus, minus, plus, minus, ... but now the number is getting swapped out each time and we are cycling between negating two separate numbers. Therefore the full cycle takes 4 rather than 2. Notice that the second reflection, the negation, is a 1-dimensional operation with a cycle of length 2. Meanwhile the first reflection, the swap, is a 2-dimensional operation, but also has a cycle length of 2. When properly mixed together these two alternating behaviors make a cycle of length 4.
       </p>
 
       <Swapper></Swapper>
@@ -90,7 +90,7 @@ export default function Page2() {
 
 
       <p>
-        Now that we know both how to stay in place <MathInline>{"(a,b)\\rightarrow(a,b)"}</MathInline> and go in a cycle <MathInline>{"(a,b)\\rightarrow(-b,a)"}</MathInline>, we can transition between them according to the pythagorean theorem. Note that our triangle here is in the space of actions, not in the space of positions. We're using it to derive a formula for rotating positions according to an argument <MathInline>θ</MathInline>.
+        Now that we know both how to stay in place <MathInline>{"(a,b)\\rightarrow(a,b)"}</MathInline> and go in a cycle <MathInline>{"(a,b)\\rightarrow(-b,a)"}</MathInline>, we can transition between them according to the pythagorean theorem:
       </p>
 
       <div className="flex justify-center">
@@ -98,11 +98,11 @@ export default function Page2() {
       </div>
 
       <p>
-        Each component in the resulting rotation is itself composed of two terms, one that stayed in place and one that cycled in from the other component. This combination captures the rotational behavior.
+        Each component in the resulting position is itself composed of two terms, one that stayed in place and one that cycled in from the other component. This combination captures the rotational behavior.
       </p>
 
       <p>
-        Therefore, similar to the 1 dimensional case, we can divide an action in 2 dimensions into two parts, "which direction?" and "how far?" The domain of direction has expanded from facing forward or backward, <MathInline>{"\\{-1,1\\}"}</MathInline>, to being able to turn around (here in either direction), <MathInline>{"[-2\\pi:2\\pi]"}</MathInline>. Notice that turning around to face backward can no longer be considered a simple reflection across the first dimension, but rather all points in the plane of rotation must invert through the origin so that "left" and "right" dont get mirrored.
+        Therefore, similar to the 1 dimensional case, we have two aspects of translations in 2 dimensions, namely "which direction?" and "how far?" The domain of direction has expanded from facing forward or backward, <MathInline>{"\\{-1,1\\}"}</MathInline>, to being able to turn around (here in either direction), <MathInline>{"[-2\\pi:2\\pi]"}</MathInline>. Notice that turning around to face backward can no longer be considered a simple reflection across the first dimension, but rather all points in the plane of rotation must invert through the origin so that "left" and "right" dont get mirrored.
       </p>
 
       <div className="flex justify-center items-center gap-4 mt-6">
@@ -126,11 +126,11 @@ export default function Page2() {
       <TwoDee></TwoDee>
 
       <p>
-        The word "complex" means "folded together". The complex numbers enfold these two reflections, and therefore the resulting 4-way cyclic relationship into a piece of mathematical origami called an algebra. The word "algebra" is associated with creating systems that help us balance out equations, and we would like to be able to combine and manipulate these rotations in singular equations, without having to break them up into individually defined components. In order for an algebra to keep track of the two actions of staying and rotating, it needs a variable for each one.
+        The word "complex" means "folded together". The complex numbers enfold these two reflections, and therefore the resulting 4-way cyclic relationship, into a piece of mathematical origami called an algebra. The word "algebra" is associated with creating systems that help us balance out equations, and we would like to be able to combine and manipulate these rotations in singular equations, without having to break them up into individually defined components. In order for an algebra to keep track of the two actions of staying and rotating, it needs a variable for each one.
       </p>
 
       <p>
-        Consider that a point in 2D has two interpretations. First, as position coordinates, and secondly, as an action. When its solely a rotation action, without any scaling, we said that the first component represents the <i>stay</i> (or reverse) behavior, while the second component represents the <i>cycle</i> behavior. Together they must make a triangle with hypotenuse length <MathInline>1</MathInline>, according to the pythagorean theorem, so as not to cause any scaling.
+        Consider that a point in 2D has two interpretations. First, as position coordinates, and secondly, as a translation action. When we consider a plain rotation action, without any scaling, we said that the first component represents the <i>stay</i> (or reverse) behavior, while the second component represents the <i>cycle</i> behavior. Together they must make a triangle with hypotenuse length <MathInline>1</MathInline>, according to the pythagorean theorem, so as not to cause any scaling.
       </p>
       <p>
         We already have a symbol for the <i>stay</i> behavior, our old friend the identity element, <MathInline>1</MathInline>. Now we need an element to capture the <i>cycle</i> behavior. The standard notation is to use the letter <MathInline>i</MathInline>, which will act a marker representing the second component:
@@ -190,7 +190,7 @@ export default function Page2() {
       </MathBlock>
 
       <p>
-        Actions that take a position to a scalar such that information about distance is preserved are called norms. Here, if we take the square root of multiplication by the conjugate, just like in the pythagorean theorem, we will get the modulus. This is called the euclidean norm, because it gives the euclidean distance from the origin to a given point. I.e. it gives <MathInline>r</MathInline>, the scalar part of the action that could take a point from <MathInline>0</MathInline> to <MathInline>p</MathInline>.
+        Notice that multiplying by the conjugate is giving us back the pythagorean theorem, which we started with when we first moved from one dimension to two. By undoing any sort of rotation we've ended up back in 1 dimension. All we have to do to get the original value of <MathInline>r</MathInline> back is to take the square root. This distance from the origin is sometimes called the "Euclidean norm", where "norm" is a generalized term for distances in different types of spaces, and here we're working in Euclidean space in particular.
       </p>
 
       <MathBlock>

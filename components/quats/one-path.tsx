@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState, useCallback } from "react"
+import MathInline from "../general/math-inline"
 
 
 export default function OnePath({ className }: { className?: string }) {
@@ -81,8 +82,12 @@ export default function OnePath({ className }: { className?: string }) {
       </svg>
       <div className="flex flex-col items-center">
         <div className="w-full flex justify-center">
-          <div className="grow text-center">Position</div>
-          <div className="grow text-center">Distance</div>
+          <div className="grow text-center">
+            <MathInline dynamic={true}>{"r" + (state.plus ? "+" : "-") + "(-r)"}</MathInline>
+          </div>
+          <div className="grow text-center">
+            <MathInline dynamic={true}>{"|r|" + (state.plus ? "+" : "-") + "|-r|"}</MathInline>
+          </div>
         </div>
         <div className="flex justify-center items-center gap-6">
           <span className="font-semibold">Part 1</span>

@@ -12,9 +12,9 @@ export default function QuatsNav({
   header?: boolean
 }) {
   const [name, setName] = useState<string>('server')
-  const path_regex = /\/articles\/quats-from-scratch\/([^\/]*)\/?/g
-
+  
   useEffect(() => {
+    const path_regex = /\/articles\/quats-from-scratch\/([^\/]*)\/?/g
     const match = path_regex.exec(window.location.pathname)
     const _name = match && match[1]
     if (_name !== null) {

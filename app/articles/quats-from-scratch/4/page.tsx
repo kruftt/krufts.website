@@ -59,7 +59,7 @@ export default function Page4() {
       </MathBlock>
 
       <p>
-        By re-associating the multiplications, we see that the composed rotation is nothing more than the product of two quaternions. Yet this is exactly what is represented, twice, in the visualization above! Its just that the quaternions <MathInline>p</MathInline> and <MathInline>p'</MathInline>, which double as regular 3D points, are guaranteed (and required) to be pure, but we can still see all the components of action involved in multiplying one quaternion by another by looking at the intermediate term <MathInline>qp</MathInline>. 
+        By re-associating the multiplications, we see that the composed rotation is nothing more than the product of two quaternions. Yet this is exactly what is represented, twice, in the visualization above! Its just that the quaternions <MathInline>p</MathInline> and <MathInline>p'</MathInline>, which double as regular 3D points, are guaranteed (and required) to be pure, but we can still see all the behaviors involved in multiplying one quaternion by another by looking at the intermediate term <MathInline>qp</MathInline>. 
       </p>
 
       <p>
@@ -67,7 +67,7 @@ export default function Page4() {
       </p>
 
       <p>
-        Toward that end, lets finish with a brief consideration of what's called "geometric algebra". In geometric algebra, there is indeed a difference between the <i>stay-in-place</i> and <i>twist</i> behaviors that is not explicit in the quaternion algebra alone. In fact, they are different types of objects! When composing rotations, the only terms involved are those of the even subalgebra, in 0 or 2 dimensions. These are the scalars and bivectors, meaning <i>stay</i> and <i>rotate</i> respectively. However, when rotating a point, the odd sub-algebra, containing 1 and 3 dimensions, is involved. When rotating a point, the intermediate term in the conjugation that results from <i>rotating in place</i> is an oriented volume, not a scalar. Once this oriented volume is "wound into being" it can be "unwound" along any axis. I.e. its not necessarily aligned to any particular direction or plane of rotation. This detail, however, is irrelevant in the context of rotating 3d points, in which multiplication always occurs in the context of a conjugation.
+        Toward that end, lets finish with a brief consideration of what's called a "geometric" or "Clifford algebra". In these there is indeed a difference between the <i>stay-in-place</i> and <i>twist</i> behaviors that is not explicit in the quaternion algebra alone. In fact, they are different types of objects! When composing rotations, the only terms involved are those of the even subalgebra, in 0 or 2 dimensions. These are the scalars and bivectors, meaning <i>stay</i> and <i>rotate</i> respectively. However, when rotating a point, the odd sub-algebra, containing 1 and 3 dimensions, is involved. In this case the intermediate term in the conjugation that results from <i>rotating in place</i> is an oriented volume, not a scalar. Once this oriented volume is "wound into being" it can be "unwound" along any axis. I.e. its not necessarily aligned to any particular direction or plane of rotation. This detail, however, is irrelevant in the context of rotating 3d points, in which multiplication always occurs in the context of a conjugation.
       </p>
 
       <JsdImage src="quats/subalgebras.png" className="max-h-120 m-auto" alt="Geometric subalgebras." />

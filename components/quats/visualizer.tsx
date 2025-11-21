@@ -94,10 +94,10 @@ const m_region_two = new THREE.MeshBasicMaterial({
   transparent: true
 })
 
-const m_axis = new LineMaterial({
-  color: 0x000000,
-  linewidth: 1,
-});
+// const m_axis = new LineMaterial({
+//   color: 0x000000,
+//   linewidth: 1,
+// });
 
 
 class Visualizer {

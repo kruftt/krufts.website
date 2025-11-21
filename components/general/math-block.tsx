@@ -1,10 +1,11 @@
 import dynamic from "next/dynamic"
+import { cn } from "@/lib/utils"
 
 const MathJax = dynamic(() => import('better-react-mathjax').then((mod) => mod.MathJax), { ssr: false })
 
 export default function MathBlock(
-  { children, inline = true }:
-  { children: string | string[], inline?: boolean }
+  { children, inline = true, className = '' }:
+    { children: string | string[], inline?: boolean, className?: string }
 ) {
 
   if (!(children instanceof Array)) {
@@ -18,7 +19,7 @@ export default function MathBlock(
   )
 
   return (
-    <MathJax className="mt-4 mb-6" inline={false}>
+    <MathJax className={cn("mt-4 mb-6", className)} inline={false}>
       <div className={'flex flex-col items-center'}>
         {lines}
       </div>

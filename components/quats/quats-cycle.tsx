@@ -13,29 +13,18 @@ export function QuatsCycle({ children }: {
   const pause = useCallback(() => {
     let child: HTMLImageElement
     const _children = item_container.current!.children as unknown as HTMLImageElement[]
-    const button = pause_button.current!
-    const span = pause_button.current!.children[0]! as HTMLSpanElement
+    
     if (paused) {
-      // button.classList.remove('bg-white')
-      // button.classList.add('bg-gray-100')
-      // span.classList.remove('top-[-0.1em]', 'left-[0.1em]')
-      // span.classList.add('bottom-[0.18em]', 'left-[0.03em]')
-      // span.innerText = "⏸"
       for (child of _children) {
         child.style.animationPlayState = 'running'
       }
     } else {
-      // button.classList.remove('bg-gray-100')
-      // button.classList.add('bg-white')
-      // span.classList.remove('bottom-[0.18em]', 'left-[0.03em]')
-      // span.classList.add('top-[-0.1em]', 'left-[0.1em]')
-
       for (child of _children) {
         child.style.animationPlayState = 'paused'
       }
     }
     setPause(!paused)
-  }, [item_container, pause_button, paused])
+  }, [item_container, paused])
 
   return (
     <div className="flex flex-col items-center">
