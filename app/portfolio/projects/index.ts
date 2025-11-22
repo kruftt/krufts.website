@@ -10,8 +10,10 @@ import TethersEnd from './tethers-end'
 import RibbitHole from './ribbit-hole'
 import AIME from './aime'
 import Lightbox from './lightbox'
+import Quats from './quats'
 
 const articleList = [
+  Quats,
   LostSkies,
   Valheim,
   MetaView,

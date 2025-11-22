@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 // import LinkBar from '@/components/general/link-bar'
 import "./portfolio.css";
+import { MathJaxContext } from "better-react-mathjax";
 
 export const metadata: Metadata = {
   title: "Marc Doucette - Portfolio",
@@ -14,8 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <div className="max-w-4xl min-h-200 m-auto">
-      {/* <LinkBar></LinkBar> */}
-      {children}
+      <MathJaxContext>
+        {/* <LinkBar></LinkBar> */}
+        {children}
+      </MathJaxContext>
     </div>
   );
 }
