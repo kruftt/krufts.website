@@ -8,7 +8,7 @@ const data: ArticleData = {
   Component: MetaView
 }
 
-function MetaView({state}: {state:PortfolioState}) {
+function MetaView() {
   return (
     <article>
       <ArticleHeader article={data}>

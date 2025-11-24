@@ -16,7 +16,7 @@ export default function Page2() {
       </QuatsHeader>
 
       <p>
-        Suppose now we have a second dimension, just like the first, and we're free to move in either dimension independently. What happens when we move in both directions at the same time? The answer depends on what kind of space we're in, and here we're assuming we're in good old-fashioned Euclidean space, where the pythagorean theorem holds:
+        Suppose now that we have a second dimension, just like the first, and we're free to move in either dimension independently. What happens when we move in both directions at the same time? The answer depends on what kind of space we're in, and here we're assuming we're in good old-fashioned Euclidean space, where the pythagorean theorem holds:
       </p>
 
       <div className="flex flex-wrap justify-evenly">

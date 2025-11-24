@@ -20,7 +20,7 @@ export default function ArticleHeader(
           <li key={tagName}>
             <TagButton
               tag={state.tags[tagName]}
-              selected={state.selectedTags[tagName]}
+              selected={state.selectedTag === tagName}
               toggle={() => dispatch({ type: 'tag_toggle', tag: tagName })}
             />
           </li>

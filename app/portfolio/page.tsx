@@ -9,11 +9,6 @@ export default function Portfolio () {
   const [state, dispatch] = usePortfolio()
   const [tab, changeTab] = useState(state.articleList[0])
   const [updating, changeUpdating] = useState(false)
-  
-  useEffect(() => {
-    addEventListener("popstate", updateSelection)
-    updateSelection();
-  }, [])
 
   const updateSelection = useCallback(() => {
     const articleName = window.location.hash.slice(1).replaceAll('-', ' ')
@@ -26,6 +21,11 @@ export default function Portfolio () {
       changeUpdating(true) // updateHash gives wrong value
     }
   }, [state])
+
+  useEffect(() => {
+    addEventListener("popstate", updateSelection)
+    updateSelection();
+  }, [updateSelection])
 
   const updateHash = useCallback((articleName: string) => {
     if (updating) {
@@ -55,7 +55,7 @@ export default function Portfolio () {
                 <TagButton
                   key={tag.name}
                   tag={tag}
-                  selected={state.selectedTags[tag.name]}
+                  selected={state.selectedTag === tag.name || state.selectedTag === ''}
                   toggle={() => dispatch({ type: 'tag_toggle', tag: tag.name })}
                 /> 
               )

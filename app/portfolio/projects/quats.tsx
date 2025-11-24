@@ -4,7 +4,6 @@ import JsdImage from "@/components/general/jsdelivr-image";
 import { QuatsCycle } from "@/components/quats/quats-cycle";
 import QuaternionVisualizer from "@/components/quats/visualizer";
 import ThreeSwapper from "@/components/quats/three-swap";
-import { MathJaxContext } from "better-react-mathjax";
 
 const data: ArticleData = {
   title: 'Quaternions',

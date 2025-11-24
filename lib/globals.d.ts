@@ -19,7 +19,7 @@ interface PortfolioState {
 
   articleList: string[]
 
-  selectedTags: Record<string, boolean>
+  selectedTag: string
   indicators: Record<string, Record<string, string>>
 }
 
