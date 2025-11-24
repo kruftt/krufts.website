@@ -4,15 +4,24 @@ import projects from "@/app/portfolio/projects"
 
 function generate(): PortfolioState {
   const indicators: Record<string, Record<string, string>> = {};
+  const selectedTags: Record<string, boolean> = {
+    'webdev': true,
+    'gamedev': true,
+    'edu': true,
+    'music': true,
+  }
+
   for (const title of projects.articleList) {
     const colors: Record<string, string> = {}
     const article = projects.articles[title]
     let tagName
     for (tagName of Object.keys(projects.tags)) {
+      // colors[tagName] = projects.tags[tagName].color
       colors[tagName] = 'transparent'
     }
     for (tagName of article.tags) {
-      colors[tagName] = 'bg-gray-200'
+      // colors[tagName] = 'bg-gray-200'
+      colors[tagName] = selectedTags[tagName] ? projects.tags[tagName].color : 'bg-gray-200'
     }
     indicators[title] = colors
   }
@@ -20,7 +29,7 @@ function generate(): PortfolioState {
   return {
     ...projects,
     indicators,
-    selectedTags: {}
+    selectedTags,
   }
 }
 

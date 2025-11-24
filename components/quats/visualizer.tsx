@@ -134,7 +134,7 @@ class Visualizer {
     
     renderer.setClearAlpha(0);
     // renderer.domElement.classList.add('')
-    camera.position.set(0.9, 0.9, 1.2)
+    camera.position.set(0.5, 0.45, 0.2)
     
     controls.enablePan = false
     controls.maxDistance = ZOOM

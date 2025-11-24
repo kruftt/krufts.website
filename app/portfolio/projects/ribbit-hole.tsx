@@ -2,7 +2,7 @@ import ArticleHeader from "@/components/portfolio/article-header"
 import { ArticleCarousel, CarouselItem } from "@/components/portfolio/article-carousel"
 
 const data: ArticleData = {
-  title: 'The Ribbit Hole',
+  title: 'Ribbit Hole',
   tags: ['music', 'webdev'],
   links: [
     ['Project Page', 'https://ccrma.stanford.edu/~doucette/220b/final/final.html'],

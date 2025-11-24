@@ -25,10 +25,10 @@ function TabsList({
     <TabsPrimitive.List
       data-slot="tabs-list"
       className={cn(
-        "bg-muted text-muted-foreground flex flex-wrap w-fit items-center justify-center p-[3px]",
-        "max-w-5/8 m-auto bg-white rounded-lg mb-4",
+        "bg-muted text-muted-foreground inline-flex flex-wrap p-1",
+        "bg-white gap-x-2 m-auto max-w-168 mb-6 justify-center",
         className,
-        "shadow"
+        "shadow rounded"
       )}
       {...props}
     />
@@ -46,19 +46,18 @@ function TabsTrigger({
       data-slot="tabs-trigger"
       value={value}
       className={cn(
-        "data-[state=active]:bg-gray-50 dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:inset-shadow-sm inset-shadow-gray-200 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        // "data-[state=inactive]:bg-background dark:data-[state=inactive]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=inactive]:border-input dark:data-[state=inactive]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=inactive]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "data-[state=active]:bg-gray-50 dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex items-center justify-left gap-1.5 border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:inset-shadow-sm inset-shadow-gray-200 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "flex-grow-0 hover:bg-gray-50 w-40",
         className,
-        "flex-col gap-0 flex-grow-0 hover:bg-gray-50",
       )}
       {...props}
     >
-      { value }
       <div className="p-1 h-4 bg-gray-100 text-center flex justify-center gap-1">
         {Object.values(indicators).map((color, i) =>
           <div key={i} className={"h-2 w-2 " + color} />
         )}
       </div>
+      {value}
     </TabsPrimitive.Trigger>
   )
 }
@@ -73,7 +72,7 @@ function TabsContent({
       className={cn(
         "flex-1 outline-none",
         className,
-        "bg-white rounded-lg shadow-lg p-4"
+        "bg-white rounded-lg shadow-lg p-4 min-h-220"
       )}
       {...props}
     />

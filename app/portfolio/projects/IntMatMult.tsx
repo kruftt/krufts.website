@@ -2,7 +2,7 @@ import ArticleHeader from "@/components/portfolio/article-header"
 import { ArticleCarousel, CarouselItem } from "@/components/portfolio/article-carousel"
 
 const data: ArticleData = {
-  title: 'IntMatMult',
+  title: 'Matrix Mult',
   tags: ['webdev', 'edu'],
   links: [['Github', 'https://github.com/kruftt/IntMatMult'],
           ['Demo', 'https://kruftt.github.io/IntMatMult']],

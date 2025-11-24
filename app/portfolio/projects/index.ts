@@ -25,18 +25,18 @@ const articleList = [
   iQueue,
   RibbitHole,
   AIME,
-  Lightbox
+  // Lightbox
 ]
 
 const tags: Record<string, TagData> = {
   webdev: {
     name: 'webdev',
-    color: 'bg-blue-600 hover:bg-blue-500',
+    color: 'bg-blue-500 hover:bg-blue-400',
     articles: [],
   },
   gamedev: {
     name: 'gamedev',
-    color: 'bg-green-600 hover:bg-green-500',
+    color: 'bg-emerald-600 hover:bg-emerald-500',
     articles: [],
   },  
   edu: {
@@ -46,7 +46,7 @@ const tags: Record<string, TagData> = {
   },
   music: {
     name: 'music',
-    color: 'bg-red-600 hover:bg-red-500',
+    color: 'bg-red-500 hover:bg-red-400',
     articles: [],
   },
 }
@@ -55,12 +55,12 @@ const articles: Record<string, ArticleData> = {}
 for (const article of articleList) {
   articles[article.title] = article;
   for (const tagName of article.tags) {
-    let tag = tags[tagName];
+    const tag = tags[tagName];
     if (!tag) {
-      tag = tags[tagName] = {
-        name: tagName,
-        articles: [],
-      };
+      // tag = tags[tagName] = {
+      //   name: tagName,
+      //   articles: [],
+      // };
     }
     tag.articles.push(article.title);
   }

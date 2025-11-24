@@ -7,8 +7,8 @@ import ThreeSwapper from "@/components/quats/three-swap";
 import { MathJaxContext } from "better-react-mathjax";
 
 const data: ArticleData = {
-  title: 'Quats',
-  tags: ['edu', 'gamedev'],
+  title: 'Quaternions',
+  tags: ['webdev', 'gamedev', 'edu'],
   links: [['Full Article', '/articles/quats-from-scratch/']],
   Component
 };
@@ -22,11 +22,8 @@ function Component() {
       <SectionTabs tabs={['Overview', '3D Visualizer', 'Multiplication']}>
         <SectionTabsContent value='Overview'>
           <section>
-            <p>
-              I've often found that quaternions are a point of confusion among people getting into game development and 3d work, so I took some time to organize my intuitions around them and write an article that builds up to quaternions from "scratch". I included numerous illustrations and interactive components to aid in intuition building around the various topics that are discussed. 
-            </p>
-            <p>
-              To author this article and the various visualizations, I made use of React, Svg, Threejs, Mathjax + Latex, and finally Krita for the illustrations. 
+            <p className="pb-8">
+              Quaternions are a centrally important algebraic structure in domains that involve 3d rotations, such as computer vision and graphics, robotics, physics, and others. I took some time to organize my intuitions around them and write an article that builds up to quaternions from "scratch", attempting to show a way how both quaternions and the geometric algebras could be motivated. I've included numerous illustrations and interactive components to aid in intuition building, making use of React, Svg, Threejs, Mathjax + Latex, and finally Krita for the illustrations. 
             </p>
             <QuatsCycle>
               <JsdImage src="quats/ij_vs_ji.png" id="c1" className="m-auto cycle max-w-7/8 max-h-100" alt="ij vs ji." />
@@ -36,7 +33,7 @@ function Component() {
           </section>
         </SectionTabsContent>
         <SectionTabsContent value='3D Visualizer'>
-          <section>
+          <section className="pt-4 pb-4">
             <QuaternionVisualizer></QuaternionVisualizer>
           </section>
         </SectionTabsContent>

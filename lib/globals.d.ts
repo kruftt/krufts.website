@@ -3,7 +3,7 @@ declare module "*.md"
 interface TagData {
   name: string
   articles: string[]
-  color?: string
+  color: string
 }
 
 interface ArticleData {

@@ -2,7 +2,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/portfolio/portfolio-tabs"
 import { usePortfolio, PortfolioDispatch, PortfolioState } from "./reducer"
 import TagButton from "@/components/portfolio/tag-button"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 
 export default function Portfolio () {
@@ -11,12 +11,11 @@ export default function Portfolio () {
   const [updating, changeUpdating] = useState(false)
   
   useEffect(() => {
-    // addEventListener("hashchange", updateSelection)
     addEventListener("popstate", updateSelection)
     updateSelection();
   }, [])
 
-  function updateSelection() {
+  const updateSelection = useCallback(() => {
     const articleName = window.location.hash.slice(1).replaceAll('-', ' ')
     const index = state.articleList.indexOf(articleName)
     if (index === -1) {
@@ -26,18 +25,17 @@ export default function Portfolio () {
       changeTab(articleName)
       changeUpdating(true) // updateHash gives wrong value
     }
-  }
+  }, [state])
 
-  function updateHash(articleName: string) {
+  const updateHash = useCallback((articleName: string) => {
     if (updating) {
       changeUpdating(false)
       return
     }
     
-    // window.history.pushState({}, '', '#' + articleName.replaceAll(' ', '-'))
     window.location.hash = '#' + articleName.replaceAll(' ', '-')
     changeTab(articleName)
-  }
+  }, [updating])
   
   return (
     <PortfolioState value={state}>
