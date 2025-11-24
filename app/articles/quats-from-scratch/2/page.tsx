@@ -33,7 +33,7 @@ export default function Page2() {
       </MathBlock>
 
       <p>
-        The angle <MathInline>θ</MathInline> is sometimes referred to as the "argument", apparently coming from its uses in astronomy for measuring celestial positions. The root of "argue" means "to shine", as if a verbal argument shines light on an issue and an angle argument tracks the motion of shiny celestial objects. In this sense I think of the argument <MathInline>θ</MathInline> as specifying the direction of a shining beam of light, like a laser guide star.
+        The angle <MathInline>θ</MathInline> is sometimes referred to as the "argument", apparently coming from its uses in astronomy for measuring celestial positions. The root of "argue" means "to shine", as if a verbal argument shines light on an issue and an angle argument tracks the motion of shiny celestial objects. In this sense I think of the argument <MathInline>θ</MathInline> as specifying the direction of a shining beam of light, like the laser guide star of a modern observatory.
       </p>
 
       <p>
@@ -50,11 +50,11 @@ export default function Page2() {
       </QuatsHeader>
 
       <p>
-        In order to rotate, there two basic behaviors we have to capture. The first is easy, staying in the same direction. We already know how to do that: multiply by <MathInline>1</MathInline>, our affirming friend the identity element. The other is to rotate, that is, to shift our position from one dimension to the other. This is similar to reflecting between opposites along the same dimension, but shifting to another dimension instead.
+        In order to rotate, there two basic behaviors we have to capture. The first is easy, staying in the same direction. We already know how to do that: multiply by <MathInline>1</MathInline>, our affirming friend the identity element. The other is to rotate, that is, to shift our position from one dimension to the other. This is similar to reflecting between opposites along the same dimension, but shifting to another instead.
       </p>
 
       <p>
-        We can understand the essence of rotation to be going from pointing in one direction to pointing in another. To model this movement we can start by exchanging the two dimensions. In other words we can take point <MathInline>(a,b)</MathInline> to the point <MathInline>(b,a)</MathInline>, equivalent to reflecting across the line <MathInline>a=b</MathInline>. This takes <MathInline>{"a \\rightarrow b"}</MathInline>, which we want, but also takes <MathInline>{"b \\rightarrow a"}</MathInline>, which is in the wrong direction! We need a second movement to flip <MathInline>b</MathInline> around and get all four going in a cycle. I recommend trying this two-step operation with a piece of paper, flipping it across its diagonal and then horizontal, just to get a tangible feeling for how it rotates a quarter turn.
+        We can understand the essence of rotation to be going from pointing in one direction to pointing in another. To model this movement we can start by exchanging the two dimensions. In other words, we can take the point <MathInline>(a,b)</MathInline> to the point <MathInline>(b,a)</MathInline>, equivalent to reflecting across the line <MathInline>a=b</MathInline>. This takes <MathInline>{"a \\rightarrow b"}</MathInline>, which we want, but also takes <MathInline>{"b \\rightarrow a"}</MathInline>, which is in the wrong direction! We need a second movement to flip <MathInline>b</MathInline> around and get all four going in a cycle. I recommend trying this two-step operation with a piece of paper, flipping it across its diagonal and then horizontal, just to get a tangible feeling for how these two flips rotate the page a quarter turn.
       </p>
 
       <JsdImage src="quats/reflect_to_rotate.png" className="max-w-7/8 max-h-85 m-auto" alt="2 reflections make a rotation." />
@@ -72,7 +72,7 @@ export default function Page2() {
       </div>
 
       <p>
-        Normally, when we repeatedly negate a number it goes in a cycle of 2: plus, minus, plus, minus, ... but now the number is getting swapped out each time and we are cycling between negating two separate numbers. Therefore the full cycle takes 4 rather than 2. Notice that the second reflection, the negation, is a 1-dimensional operation with a cycle of length 2. Meanwhile the first reflection, the swap, is a 2-dimensional operation, but also has a cycle length of 2. When properly mixed together these two alternating behaviors make a cycle of length 4.
+        Normally, repeatedly negating a number causes it to alternate between plus and minus in a 2-step cycle, but now the number is getting swapped out each time and two separate numbers are going through the 2-step cycle independently. Therefore the full cycle takes 4 rather than 2. 
       </p>
 
       <Swapper></Swapper>
@@ -98,7 +98,7 @@ export default function Page2() {
       </div>
 
       <p>
-        Each component in the resulting position is itself composed of two terms, one that stayed in place and one that cycled in from the other component. This combination captures the rotational behavior.
+        Each component in the resulting position is itself composed of two terms, one that <i>stayed</i> in place and one that <i>cycled</i> in from the other component. This combination captures the rotational behavior.
       </p>
 
       <p>
@@ -126,7 +126,7 @@ export default function Page2() {
       <TwoDee></TwoDee>
 
       <p>
-        The word "complex" means "folded together". The complex numbers enfold these two reflections, and therefore the resulting 4-way cyclic relationship, into a piece of mathematical origami called an algebra. The word "algebra" is associated with creating systems that help us balance out equations, and we would like to be able to combine and manipulate these rotations in singular equations, without having to break them up into individually defined components. In order for an algebra to keep track of the two actions of staying and rotating, it needs a variable for each one.
+        The word "complex" means "folded together". The complex numbers enfold these two reflections, and therefore the resulting 4-way cyclic relationship, into a piece of mathematical origami called an algebra. The word "algebra" is associated with creating symbolic systems that encode rules and operations, and we would like to be able to combine and manipulate rotations in singular equations, without having to break them up into individually defined components. In order for an algebra to keep track of the two actions of staying and rotating, it needs a variable for each one.
       </p>
 
       <p>

@@ -43,11 +43,11 @@ export default function Page3() {
       </div>
 
       <p>
-        Therefore now, in addition to knowing how much we want to rotate, we also need to know the axis of rotation.
+        Therefore, in addition to knowing how much we want to rotate, we also need to know the axis of rotation.
       </p>
 
       <p>
-        First we need to know how to <i>stay</i> vs how to <i>rotate</i>. We can then use the pythagorean theorem to transition between the <i>stay</i> and <i>rotate</i> behaviors, just like with 2 dimensions. In the 2D case the rotation behavior was relatively straightforward. We did a swap and a flip to get the four directions going in a cycle. In the 3D case, there is an additional "rotating in place" behavior along the axis, alongside the cycling components. That is to say, when doing a quarter rotation along the first axis we expect our translated point to be:
+        First, we'll need to know how to <i>stay</i> vs how to <i>rotate</i>. Then we can use the pythagorean theorem to transition between the <i>stay</i> and <i>rotate</i> behaviors, just like with 2 dimensions. In the 2D case, the rotation behavior was relatively straightforward, involving a swap and a flip to get the four directions going in a cycle. In the 3D case, there is an additional "rotating in place" behavior along the axis, alongside the cycling components. That is to say, when doing a quarter rotation along the first axis we expect our translated point to be:
       </p>
 
       <div className="text-center">
@@ -171,13 +171,13 @@ export default function Page3() {
       </div>
 
       <p>
-        The algebra doesn't collapse when we combine the behaviors, but things are getting a bit carried away! We have an algebra that can rotate around all three axes, but it does something else. Part of the component parallel to the axis of rotation, the part that is twisting in place, is getting cycled toward <MathInline>-1</MathInline>. We were only considering the real component to be part of the action, meaning roughly <i>stay-in-place</i>, but now its part of the resulting position! Meanwhile, the component along the axis is liable to collapse to <MathInline>0</MathInline> or to end up going the opposite way entirely! We only know where its "supposed" to go because of the context of the action that generated it.
+        The algebra doesn't collapse, but things are getting a bit carried away! We have an algebra that can rotate around all three axes, but it does something else. Part of the component parallel to the axis of rotation, the part that is twisting in place, is getting cycled toward <MathInline>-1</MathInline>. We were only considering the real component to be part of the action, meaning roughly <i>stay-in-place</i>, but now its part of the resulting position! Meanwhile, the component along the axis is liable to collapse to <MathInline>0</MathInline> or to end up going the opposite way entirely! We only know where its "supposed" to go because of the context of the action that generated it.
       </p>
 
       <JsdImage src="quats/axis_actions.png" className="max-w-7/8 max-h-80 m-auto" alt="Two cycles of action." />
 
       <p>
-        Its important to look here at what the algebra is telling us. It is saying that the <i>stay-in-place</i> and <i>rotate-in-place</i> behaviors are two aspects of the same overarching behavior, that of not moving. They both have the same effect on the final position, but how they get there is different. Therefore the "position" that multiplication gives back to us has its axis split in two, the part that stayed and the part that twisted.
+        Let's look at what the algebra is telling us. Its saying that the <i>stay-in-place</i> and <i>rotate-in-place</i> behaviors are two aspects of the same overarching behavior, that of not moving. They both have the same effect on the final position, but how they get there is different. Therefore the "position" that multiplication gives back to us has its axis split in two, the part that stayed and the part that twisted.
       </p>
 
       <p>
@@ -226,7 +226,7 @@ export default function Page3() {
       </MathBlock>
 
       <p>
-        We have performed a rotation around <MathInline>i</MathInline>, but this time going a full half turn (as opposed to a quarter turn in 2d) by performing 2 actions in order to do and undo the twist along the axis of rotation. The fact that we have to do and undo the twist means that the amount of rotation we do in each step gets doubled up on the whole. This doubling up is the reason why quaternions use half the angle of the rotation they are meant to represent. Therefore, to perform a rotation of angle <MathInline>{"\\theta"}</MathInline> around axis <MathInline>i</MathInline>, we can use a quaternion that looks strikingly similar to a 2d complex number doing the same rotation, but the angle has been divided in 2:
+        We have performed a rotation around <MathInline>i</MathInline>, but this time going a full half turn (as opposed to a quarter turn in 2d) by performing 2 actions in order to do and undo the twist along the axis of rotation. The fact that we have to do and undo the twist means that the amount of rotation done in each step gets doubled up on the whole. This double action is the reason why quaternions use half the angle of the rotation they are meant to represent. Therefore, to perform a rotation of angle <MathInline>{"\\theta"}</MathInline> around axis <MathInline>i</MathInline>, we can use a quaternion that looks strikingly similar to a 2d complex number doing the same rotation, but the angle is divided in 2:
       </p>
 
       <MathBlock>

@@ -6,7 +6,7 @@ export default function QuatsFromScratch() {
     <article>
       <div>
         <p>
-          Quaternions come up in domains that involve 3d rotations, such as computer vision and graphics, robotics, physics, and others. Even though quaternions were the original source of the 3d vector operations that most people are familiar with, the dot and cross products, they unfortunately remain an enigma to many people who use them. There is a common misconception that understanding these <i>complex</i> algebraic objects requires a special capacity to imagine a non-intuitive 4-dimensional space, but I am here to tell you that this is not the case!
+          Quaternions come up in domains that involve 3d rotations, such as computer vision and graphics, robotics, physics, and others. Even though quaternions were the original source of the 3d vector operations that most people are familiar with, the dot and cross products, they unfortunately remain an enigma to many. There is a common misconception that understanding these <i>complex</i> algebraic objects requires a special capacity to imagine non-intuitive 4-dimensional spaces, but I am here to tell you that this is not the case!
         </p>
         <JsdImage src="quats/quat_to_vec.png" className="max-w-7/8 max-h-80 m-auto" alt="Quaternion multiplication contains the dot and cross products." />
         <p>
@@ -19,10 +19,10 @@ export default function QuatsFromScratch() {
           <li>If there are no good intuitions for how they work, how could Hamilton have conceived of them while out on a walk, before the standard vector operations?</li>
         </ul>
         <p>
-          Hopefully I can help illuminate these questions and more in this article. We'll find that taking a walk, which generally involves going around a loop and coming back to where you started, was an especially appropriate action for Hamilton to be taking during which to have an insight into the structure of rotations. 
+          Hopefully I can help illuminate these questions and more. In this article, I'd like to present a mathematical story about a way that quaternions could have been motivated and discovered, and which leads naturally into the geometric algebra as well. We'll start in 0 dimensions and work our way up. At each level we'll look at points within the space and operations on them, before coming to focus on rotations and then 3d rotations in particular. At the end we'll look forward toward the geometric algebra, which further builds on the ideas presented here.
         </p>
         <p>
-          We'll start in 0 dimensions and work our way up. At each level we'll look at points within the space and operations we can perform on them. Although I've attempted to make this article as self-contained as possible and to build quaternions "from scratch", my main objective is to help those who are already somewhat familiar with quaternions to build deeper intuitions. If this is your first introduction to the topic, expect to have to reference some additional sources to be able to follow the whole thing! I've tried to emphasize algebraic, geometric, and operational perspectives that I have found useful for working with 3d software tools and libraries, but also hope it can be enjoyed more broadly by anyone interested in these fascinating structures for whatever reason!
+          Although I've attempted to make this article as self-contained as possible and to build quaternions "from scratch", my main objectives are to clarify why quaternions work the way they do and build deeper intuitions about them. If this is your first introduction to the topic, expect to require other materials to be able to follow through the whole thing! This article is intended to be a supplement, rather than a replacement. I've tried to emphasize algebraic and geometric perspectives that I have found useful for my own intuition building and for working with 3d software tools and libraries, but I hope the article can be enjoyed by anyone interested in quaternions for whatever reason!
         </p>
       </div>
     </article>

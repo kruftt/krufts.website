@@ -141,6 +141,7 @@ class Visualizer {
     controls.minDistance = ZOOM
     controls.target.y = TARGET_Y
     controls.enableZoom = false
+    controls.rotateSpeed = 0.4
     
 
     this.resize(renderer)

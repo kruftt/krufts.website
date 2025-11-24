@@ -69,7 +69,7 @@ export default function Page1() {
       </p>
       <MathBlock>
           {"p+(-p)+(-p)=-p"}
-          {"(-1)r=-p"}
+          {"(-1)p=-p"}
       </MathBlock>
  
       <p>
