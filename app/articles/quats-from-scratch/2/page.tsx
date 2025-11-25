@@ -16,7 +16,7 @@ export default function Page2() {
       </QuatsHeader>
 
       <p>
-        Suppose now that we have a second dimension, just like the first, and we're free to move in either dimension independently. What happens when we move in both directions at the same time? The answer depends on what kind of space we're in, and here we're assuming we're in good old-fashioned Euclidean space, where the pythagorean theorem holds:
+        Now let's suppose that we have a second dimension, just like the first, and we're free to move in either dimension independently. What happens when we move in both directions at the same time? The answer depends on what kind of space we're in, and here we're assuming we're in good old-fashioned Euclidean space, where the pythagorean theorem holds:
       </p>
 
       <div className="flex flex-wrap justify-evenly">
@@ -25,7 +25,7 @@ export default function Page2() {
       </div>
 
       <p>
-        This means that moving along the first dimension for a distance of <MathInline>a</MathInline> and the second dimension for a distance of <MathInline>b</MathInline> results in the same position as moving a distance of <MathInline>{"\\sqrt{a^2 + b^2}"}</MathInline> straight toward the final position. The theorem tell us how to translate away from the origin at an angle <MathInline>θ</MathInline> and modulus <MathInline>r</MathInline>:
+        This means that moving along the first dimension for a distance of <MathInline>a</MathInline> and along the second dimension for a distance of <MathInline>b</MathInline> results in the same position as moving a distance of <MathInline>{"\\sqrt{a^2 + b^2}"}</MathInline> straight toward the final position. The theorem tell us how to translate away from the origin at an angle <MathInline>θ</MathInline> and modulus <MathInline>r</MathInline>:
       </p>
 
       <MathBlock>
@@ -33,7 +33,7 @@ export default function Page2() {
       </MathBlock>
 
       <p>
-        The angle <MathInline>θ</MathInline> is sometimes referred to as the "argument", apparently coming from its uses in astronomy for measuring celestial positions. The root of "argue" means "to shine", as if a verbal argument shines light on an issue and an angle argument tracks the motion of shiny celestial objects. In this sense I think of the argument <MathInline>θ</MathInline> as specifying the direction of a shining beam of light, like the laser guide star of a modern observatory.
+        The angle <MathInline>θ</MathInline> is sometimes referred to as the "argument", apparently coming from its uses in astronomy for measuring celestial positions. The root of "argue" means "to shine", as if a verbal argument shines light on an issue and an angle argument tracks the motion of shiny celestial objects.
       </p>
 
       <p>
@@ -50,7 +50,7 @@ export default function Page2() {
       </QuatsHeader>
 
       <p>
-        In order to rotate, there two basic behaviors we have to capture. The first is easy, staying in the same direction. We already know how to do that: multiply by <MathInline>1</MathInline>, our affirming friend the identity element. The other is to rotate, that is, to shift our position from one dimension to the other. This is similar to reflecting between opposites along the same dimension, but shifting to another instead.
+        In order to rotate, there two basic behaviors we have to capture. The first is easy, staying in the same direction. We already know how to do that: multiply by <MathInline>1</MathInline>, our affirming friend, the identity element. The other is to rotate, that is, to shift our position from one dimension to the other. This is similar to reflecting between opposites along the same dimension, but shifting to another instead.
       </p>
 
       <p>
@@ -102,7 +102,7 @@ export default function Page2() {
       </p>
 
       <p>
-        Therefore, similar to the 1 dimensional case, we have two aspects of translations in 2 dimensions, namely "which direction?" and "how far?" The domain of direction has expanded from facing forward or backward, <MathInline>{"\\{-1,1\\}"}</MathInline>, to being able to turn around (here in either direction), <MathInline>{"[-2\\pi:2\\pi]"}</MathInline>. Notice that turning around to face backward can no longer be considered a simple reflection across the first dimension, but rather all points in the plane of rotation must invert through the origin so that "left" and "right" dont get mirrored.
+        Therefore, similar to the 1 dimensional case, we have two aspects of translations in 2 dimensions, namely "which direction?" and "how far?" The domain of direction has expanded from facing forward or backward, <MathInline>{"\\{-1,1\\}"}</MathInline>, to being able to turn around (here in either direction), <MathInline>{"[-2\\pi:2\\pi]"}</MathInline>. Notice that turning around to face backward can no longer be considered a simple reflection across the first dimension, but rather all points in the plane of rotation invert through the origin so that "left" and "right" dont get mirrored. Rotating turns around via two reflections, not one.
       </p>
 
       <div className="flex justify-center items-center gap-4 mt-6">
@@ -130,7 +130,7 @@ export default function Page2() {
       </p>
 
       <p>
-        Consider that a point in 2D has two interpretations. First, as position coordinates, and secondly, as a translation action. When we consider a plain rotation action, without any scaling, we said that the first component represents the <i>stay</i> (or reverse) behavior, while the second component represents the <i>cycle</i> behavior. Together they must make a triangle with hypotenuse length <MathInline>1</MathInline>, according to the pythagorean theorem, so as not to cause any scaling.
+        Consider that a point in 2D has two interpretations. First, as position coordinates, and secondly, as a 2-part action composed of a translation and a rotation. When we consider just the rotation part, we said that the first component represents the <i>stay</i> (or reverse) behavior, while the second component represents the <i>cycle</i> behavior. Together they must make a triangle with hypotenuse length <MathInline>1</MathInline> so as not to cause any scaling.
       </p>
       <p>
         We already have a symbol for the <i>stay</i> behavior, our old friend the identity element, <MathInline>1</MathInline>. Now we need an element to capture the <i>cycle</i> behavior. The standard notation is to use the letter <MathInline>i</MathInline>, which will act a marker representing the second component:
@@ -190,7 +190,7 @@ export default function Page2() {
       </MathBlock>
 
       <p>
-        Notice that multiplying by the conjugate is giving us back the pythagorean theorem, which we started with when we first moved from one dimension to two. By undoing any sort of rotation we've ended up back in 1 dimension. All we have to do to get the original value of <MathInline>r</MathInline> back is to take the square root. This distance from the origin is sometimes called the "Euclidean norm", where "norm" is a generalized term for distances in different types of spaces, and here we're working in Euclidean space in particular.
+        Notice that multiplying by the conjugate is giving us back the pythagorean theorem, which we started with when we first moved from one dimension to two. By undoing any sort of rotation we've ended up back in 1 dimension. All we have to do to get the original value of <MathInline>r</MathInline> back is to take the square root. This distance from the origin is sometimes called the "Euclidean norm", where "norm" is a generalized term for distances and magnitudes. In broader contexts, the euclidean distance, calculated by summing the squares of the components, is referred to as the <MathInline>L^2</MathInline> norm (<MathInline>L</MathInline> named after Lebesgue).
       </p>
 
       <MathBlock>

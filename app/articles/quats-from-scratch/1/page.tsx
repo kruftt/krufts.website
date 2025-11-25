@@ -39,7 +39,7 @@ export default function Page1() {
       </QuatsHeader>
 
       <p>
-        Imagine that going along a dimension is like scaling a ladder, with rungs one unit apart. The number of rungs on the ladder is proportional to its length. Accordingly, these lengths are called "scalars", as they tell us how many rungs it would take to scale to a given position. We can add and multiply scalars to produce different translations. When we multiply two scalars together, it is as if we are using one whole ladder as the rungs of the other.
+        Imagine scaling a ladder with rungs that are one unit apart. The number of rungs on the ladder is proportional to its length. Accordingly, lengths along dimensions are called "scalars", since they tell us how many "rungs" it would take to scale to a given position. We can add and multiply scalars to produce different translations. When we multiply two scalars together, it is as if we are using one whole ladder as the rungs of the other.
       </p>
       <JsdImage src="quats/scalar_multiples.png" className="max-w-7/8 max-h-80 m-auto" alt="Scalar Operations." />
 
@@ -49,7 +49,7 @@ export default function Page1() {
       </MathBlock>
 
       <p>
-        When multiplying by <MathInline>1</MathInline>, we stay on the same scale and at the same point <MathInline>p</MathInline>. In this sense <MathInline>1</MathInline>, considered as an action, says, "just be yourself". Accordingly, it is called the multiplicative identity. Contrast this with multiplying by <MathInline>0</MathInline>, which says, "Wherever you thought you were going, you're here now!" One could call multiplying by <MathInline>0</MathInline> "termination", since once there is no distance between the rungs of a ladder, scaling them doesn't get us anywhere. <MathInline>0</MathInline> is the end of the line, the terminus.
+        When multiplying by <MathInline>1</MathInline>, we stay on the same scale and at the same point <MathInline>p</MathInline>. In this sense <MathInline>1</MathInline>, considered as a command, says, "just be yourself". Accordingly, it is called the multiplicative identity. Contrast this with multiplying by <MathInline>0</MathInline>, which says, "Wherever you thought you were going, you're here now!" One could call multiplying by <MathInline>0</MathInline> "termination", since once there is no distance between the rungs of a ladder, scaling them doesn't get us anywhere. <MathInline>0</MathInline> is the end of the line, the terminus.
       </p>
       <MathBlock>
         {"1\\cdot p=p"}
@@ -65,7 +65,7 @@ export default function Page1() {
       </MathBlock>
 
       <p>
-        The movement of going from a position to its opposite, or vice versa, is called a "reflection" meaning something that is "bent back". In order to "bend back", we can either do two inverse translations or scale by <MathInline>-1</MathInline>, focusing on translation or scaling respectively.
+        The movement of going from a position to its opposite, or vice versa, is called a "reflection" meaning something that is "bent back". In order to "bend back", we can either do two inverse translations or scale by <MathInline>-1</MathInline>.
       </p>
       <MathBlock>
           {"p+(-p)+(-p)=-p"}
@@ -122,7 +122,7 @@ export default function Page1() {
         Notice that if we want to take a walk of distance <MathInline>d</MathInline> and get back to where we started, we'd have to go a distance of <MathInline>{"\\frac{d}{2}"}</MathInline> there and back again. The modulus doesn't care what direction we go and sums up the same either way. This behavior is called being "even". Meanwhile, going in the opposite direction changes the sign of the resulting position. This is called being "odd". The difference is that the position is taking the orientation into account while the distance travelled is not.
       </p>
       <p>
-        Now suppose that, instead of a walk, we're preparing for a pistol duel with a mortal enemy. We've agreed to stand back-to-back and both take <MathInline>r</MathInline> paces before turning to shoot. By taking the difference between our two journeys, we can see the total distance between us, as well as the fact that we're walking the same distance:
+        Now suppose that, instead of a walk, we're in a pistol duel with a mortal enemy. We've agreed to stand back-to-back and both take <MathInline>r</MathInline> paces before turning to shoot. By taking the difference between our two journeys, we can see the total distance between us, as well as the fact that we're walking the same distance:
       </p>
 
       <div className="w-full flex justify-center gap-8 flex-wrap">

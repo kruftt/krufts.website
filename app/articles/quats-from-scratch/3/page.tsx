@@ -30,7 +30,7 @@ export default function Page3() {
       </MathBlock>
 
       <p>
-        We would like to extend our rotation capabilities into three dimensions and to write down a corresponding algebra. We have previously noted that each component of behavior needs its own element. Lets look at what the pieces of a 3d rotation are.
+        We would like to extend our ability to rotate into three dimensions and write down a corresponding algebra. We have previously noted that each component of behavior needs its own element. Lets look at what the pieces of a 3d rotation are.
       </p>
 
       <p>
@@ -241,6 +241,12 @@ export default function Page3() {
 
       <ThreeSwapper></ThreeSwapper>
 
+      <div className='flex justify-center'>
+        <p className='max-w-5/6 text-center'>
+          Multiplying on the left causes both cycles to move in the same direction.<br/>
+          Multiplying on the right causes them to move in opposite directions.
+        </p>
+      </div>
 
       <QuatsHeader>
         {"Getting Yoked"}

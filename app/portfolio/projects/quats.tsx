@@ -29,16 +29,32 @@ function Component() {
               <JsdImage src="quats/i_inverse.png" id="c2" className="cycle max-w-7/8 max-h-100" alt="i*j vs ji*." />
               <JsdImage src="quats/rotation_result.png" id="c3" className="cycle max-w-7/8 max-h-100" alt="The rotation result." />
             </QuatsCycle>
+            <div className='flex justify-center'>
+              <p className='max-w-4/5 text-center'>
+                Conjugation leverages commutative and anticommutative behaviors to achieve a rotation along two dimensions while returning the other to its starting place.
+              </p>
+            </div>
           </section>
         </SectionTabsContent>
         <SectionTabsContent value='3D Visualizer'>
           <section className="pt-4 pb-4">
             <QuaternionVisualizer></QuaternionVisualizer>
+            <div className='flex justify-center'>
+              <p className='max-w-4/5 text-center'>
+              Quaternion rotation can be visualized as a two-step operation which involves a twisting and untwisting along the axis of rotation.
+              </p>
+            </div>
           </section>
         </SectionTabsContent>
         <SectionTabsContent value='Multiplication'>
           <section>
             <ThreeSwapper></ThreeSwapper>
+            <div className='flex justify-center'>
+              <p className='max-w-5/6 text-center'>
+                Multiplying on the left causes both cycles to move in the same direction.<br />
+                Multiplying on the right causes them to move in opposite directions.
+              </p>
+            </div>
           </section>
         </SectionTabsContent>
       </SectionTabs>
