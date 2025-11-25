@@ -1,12 +1,12 @@
 import {
   NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
+  // NavigationMenuContent,
+  // NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
+  // NavigationMenuTrigger,
+  // NavigationMenuViewport,
 } from "@/components/ui/navigation-menu"
 
 export default function LinkBar() {

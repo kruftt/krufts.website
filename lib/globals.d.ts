@@ -16,10 +16,8 @@ interface ArticleData {
 interface PortfolioState {
   articles: Record<string, ArticleData>
   tags: Record<string, TagData>
-
   articleList: string[]
-
-  selectedTag: string
+  selected: Record<string, bool>
   indicators: Record<string, Record<string, string>>
 }
 
@@ -27,3 +25,7 @@ type PortfolioAction = {
   type: 'tag_toggle'
   tag: string
 } 
+// | {
+//   type: 'tag_hover'
+//   tag: string
+// }

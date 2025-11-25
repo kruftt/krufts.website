@@ -4,88 +4,74 @@ import projects from "@/app/portfolio/projects"
 
 function generate(): PortfolioState {
   const indicators: Record<string, Record<string, string>> = {};
-  // const selectedTags: Record<string, boolean> = {
-  //   'webdev': true,
-  //   'gamedev': true,
-  //   'edu': true,
-  //   'music': true,
-  // }
-  const selectedTag = ''
-
+  const selected: Record<string, boolean> = {
+    'webdev': false,
+    'gamedev': false,
+    'edu': false,
+    'music': false,
+  }
+  
   for (const title of projects.articleList) {
     const colors: Record<string, string> = {}
-    const article = projects.articles[title]
+    // const article = projects.articles[title]
     let tagName
     for (tagName of Object.keys(projects.tags)) {
-      // colors[tagName] = projects.tags[tagName].color
       colors[tagName] = 'transparent'
     }
-    for (tagName of article.tags) {
-      // colors[tagName] = 'bg-gray-200'
-      colors[tagName] = projects.tags[tagName].color
-    }
+    // for (tagName of article.tags) {
+      // colors[tagName] = projects.tags[tagName].color
+    //   colors[tagName] = 'bg-gray-200'
+    // }
     indicators[title] = colors
   }
 
-  return {
+  return setIndicators({
     ...projects,
     indicators,
-    selectedTag,
-  }
+    selected,
+  })
+}
+
+function setIndicators(state: PortfolioState) {
+  const { articles, tags, selected } = state
+  const indicators: Record<string, Record<string, string>> = {}
+  
+  for (const article of Object.values(articles)) {
+    indicators[article.title] =
+      Object.values(selected).reduce((anySelected, thisSelected) => anySelected || thisSelected, false)
+        ?
+          article.tags.reduce((indicators, tag) => {
+            indicators[tag] = selected[tag] ? tags[tag].color : 'bg-gray-200'
+            return indicators
+          }, { ...(state.indicators[article.title]) } as Record<string, string>)
+        :
+          article.tags.reduce((indicators, tag) => {
+            indicators[tag] = tags[tag].color
+            return indicators
+          }, { ...(state.indicators[article.title]) } as Record<string,string>)
+      }
+
+  state.indicators = indicators
+  return state
 }
 
 function reducer(state: PortfolioState, action: PortfolioAction): PortfolioState {
   switch (action.type) {
-    case 'tag_toggle': {
-      const _name = action.tag
-      // const tag = state.tags[_name]
-      
-      const indicators: Record<string, Record<string, string>> = {
-        // ...state.indicators
-      };
-      
-      if (_name === state.selectedTag) {
-        // toggle off // turn all on
-        for (const article of Object.values(state.articles)) {
-          indicators[article.title] = article.tags.reduce((prev, cur) => {
-            prev[cur] = state.tags[cur].color
-            return prev
-          }, {
-            'webdev': 'bg-gray-100',
-            'gamedev': 'bg-gray-100',
-            'edu': 'bg-gray-100',
-            'music': 'bg-gray-100',
-          } as Record<string, string>)
+    case 'tag_toggle':
+      return setIndicators({
+        ...state,
+        selected: {
+          'webdev': false,
+          'gamedev': false,
+          'edu': false,
+          'music': false,
+          [action.tag]: state.selected[action.tag] ? false : true
         }
-
-        return {
-          ...state,
-          indicators,
-          selectedTag: ''
-        }
-
-      } else {
-        // toggling on
-        // all off except this tag
-        for (const article of Object.values(state.articles)) {
-          indicators[article.title] = article.tags.reduce((prev, cur) => {
-            prev[cur] = _name === cur ? state.tags[cur].color : 'bg-gray-200'
-            return prev
-          }, {
-            'webdev': 'bg-gray-100',
-            'gamedev': 'bg-gray-100',
-            'edu': 'bg-gray-100',
-            'music': 'bg-gray-100',
-          } as Record<string, string>)
-        }
-
-        return {
-          ...state,
-          indicators,
-          selectedTag: _name
-        }
-      }
-    }
+        // selected: {
+        //   ...state.selected,
+        //   [action.tag]: !state.selected[action.tag]
+        // }
+      })
 
     default:
       return state;

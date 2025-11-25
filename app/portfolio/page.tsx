@@ -36,7 +36,7 @@ export default function Portfolio () {
     window.location.hash = '#' + articleName.replaceAll(' ', '-')
     changeTab(articleName)
   }, [updating])
-  
+
   return (
     <PortfolioState value={state}>
       <PortfolioDispatch value={dispatch}>
@@ -55,7 +55,7 @@ export default function Portfolio () {
                 <TagButton
                   key={tag.name}
                   tag={tag}
-                  selected={state.selectedTag === tag.name || state.selectedTag === ''}
+                  selected={state.selected[tag.name]}
                   toggle={() => dispatch({ type: 'tag_toggle', tag: tag.name })}
                 /> 
               )

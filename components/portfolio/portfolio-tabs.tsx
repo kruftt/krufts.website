@@ -54,7 +54,7 @@ function TabsTrigger({
     >
       <div className="p-1 h-4 bg-gray-100 text-center flex justify-center gap-1">
         {Object.values(indicators).map((color, i) =>
-          <div key={i} className={"h-2 w-2 " + color} />
+          <div key={i} className={"h-2 w-2 transition-[background-color] duration-300 ease-in-out " + color} />
         )}
       </div>
       {value}

@@ -1,31 +1,32 @@
-import { useContext } from "react"
-import TagButton from "./tag-button"
-import { PortfolioDispatch, PortfolioState } from '@/app/portfolio/reducer'
+// import { useContext } from "react"
+// import { PortfolioDispatch, PortfolioState } from '@/app/portfolio/reducer'
+// import TagButton from "./tag-button"
+// import { useCallback } from "react"
 
 export default function ArticleHeader(
   { article, children }:
   { article: ArticleData }
   & React.ComponentProps<'div'>
 ) {
-  const dispatch = useContext(PortfolioDispatch)!
-  const state = useContext(PortfolioState)!
+  // const dispatch = useContext(PortfolioDispatch)!
+  // const state = useContext(PortfolioState)!
 
   return (
     <div className="text-center">
-      <div className="m-auto max-w-2/5 text-3xl mt-4 flex justify-center">
+      <div className="m-auto max-w-2/5 text-3xl mt-4 flex justify-center mb-4">
         { children }
       </div>
-      <ul className="flex gap-2 justify-center mt-6 mb-4">
+      {/* <ul className="flex gap-2 justify-center mt-6 mb-4">
         { article.tags.map((tagName) =>
           <li key={tagName}>
             <TagButton
               tag={state.tags[tagName]}
-              selected={state.selectedTag === tagName}
+              selected={state.selected[tagName]}
               toggle={() => dispatch({ type: 'tag_toggle', tag: tagName })}
             />
           </li>
         )}
-      </ul>
+      </ul> */}
       <nav>
         <ul className="link_list mb-4">
           { article.links.map(([text, target]) =>

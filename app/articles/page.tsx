@@ -5,7 +5,7 @@ export default function Articles() {
   return (
     <article>
       <p>
-        Blah
+        <a href="/articles/quats-from-scratch/">Quaternions from Scratch</a>
       </p>
     </article>
   );
