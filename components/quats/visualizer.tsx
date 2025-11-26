@@ -465,7 +465,7 @@ export default function QuaternionVisualizer() {
       <div className='flex justify-center gap-4'>
         <span className='font-bold text-xl'>-2π</span>
         <input
-          type="range" min={-TAU} step={TAU/120} max={TAU+0.001} defaultValue={Math.PI} onChange={updateTheta}
+          type="range" min={-TAU} step={TAU/360} max={TAU+0.001} defaultValue={Math.PI} onChange={updateTheta}
           className='grow max-w-150 cursor-pointer'  
         />
         <span className='font-bold text-xl'>2π</span>

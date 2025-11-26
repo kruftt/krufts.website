@@ -31,7 +31,7 @@ function Component() {
             </QuatsCycle>
             <div className='flex justify-center'>
               <p className='max-w-4/5 text-center'>
-                Conjugation leverages commutative and anticommutative behaviors to achieve a rotation along two dimensions while returning the other to its starting place.
+                Conjugation leverages commutative and anticommutative behaviors, achieving a rotation along two dimensions while returning the other to its original position.
               </p>
             </div>
           </section>
@@ -52,7 +52,8 @@ function Component() {
             <div className='flex justify-center'>
               <p className='max-w-5/6 text-center'>
                 Multiplying on the left causes both cycles to move in the same direction.<br />
-                Multiplying on the right causes them to move in opposite directions.
+                Multiplying on the right causes them to move in opposite directions.<br />
+                Combining them together allows one to cycle and the other to stay.
               </p>
             </div>
           </section>
