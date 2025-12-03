@@ -1,5 +1,4 @@
 'use client'
-
 import { useCallback, useRef, useState } from "react"
 
 export function QuatsCycle({ children }: {
@@ -8,7 +7,6 @@ export function QuatsCycle({ children }: {
   const item_container = useRef<HTMLDivElement>(null)
   const pause_button = useRef<HTMLButtonElement>(null)
   const [paused, setPause] = useState(false)
-  // const _children = children instanceof Array ? children : [children]
 
   const pause = useCallback(() => {
     let child: HTMLImageElement

@@ -1,5 +1,4 @@
 "use client"
-
 import { useCallback, useEffect, useRef, useState } from "react"
 import { Switch } from '@/components/quats/switch';
 import JsdImage from "../general/jsdelivr-image";
@@ -9,7 +8,6 @@ import { ObjectiveList, ObjectiveListManager } from "./objective-list";
 export default function OneDee({ className }: { className?: string }) {
   const modulus = useRef<HTMLInputElement>(null)
   const svg = useRef<SVGSVGElement>(null)
-  // const plusMinus = useRef<SwitchProps>(null)
   const [p, setP] = useState(0.25)
   const pm = useRef(true)
   const manager = useRef(new ObjectiveListManager(
@@ -52,7 +50,7 @@ export default function OneDee({ className }: { className?: string }) {
   }, [update])
   
   return (
-    <div className={className}>
+    <div className={"select-none " + className}>
       <svg ref={svg} className="w-full h-10">
         <defs>
           <marker

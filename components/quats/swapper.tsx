@@ -1,8 +1,8 @@
 "use client"
-
 import { useCallback, useMemo, useRef, useState } from "react"
 import MathInline from "../general/math-inline";
 import { ObjectiveListManager, ObjectiveList } from "./objective-list";
+
 
 enum ActionType {
   SWAP,
@@ -25,17 +25,6 @@ enum MarchState {
 
 export default function Swapper({ className }: { className?: string }) {
   const svg = useRef<SVGSVGElement>(null)
-  // const red = useRef<SVGCircleElement>(null)
-  // const blue = useRef<SVGCircleElement>(null)
-  // const yellow = useRef<SVGCircleElement>(null)
-  // const green = useRef<SVGCircleElement>(null)
-  // const state = useRef({
-  //   swapper: SwapperState.NORMAL,
-  //   left: 0,
-  //   right: 0,
-  //   marcher: MarchState.ZERO,
-  //   march: 0,
-  // })
   const manager = useRef(new ObjectiveListManager(
     { name: 'Rotate Left 2x', indicators: 2 },
     { name: 'Rotate Right 2x', indicators: 2 },
@@ -76,69 +65,56 @@ export default function Swapper({ className }: { className?: string }) {
     indices.current = [indices.current[2], indices.current[1], indices.current[0], indices.current[3]]
     updateTranslations()
     updateState(ActionType.NEGATE)
-    // console.log('negated')
   }, [updateState, updateTranslations])
   
-  // const negB = useCallback(() => {
-  //   indices.current = [indices.current[0], indices.current[3], indices.current[2], indices.current[1]]
-  //   updateTranslations()
-  // }, [updateState, updateTranslations])
-
   const swap = useCallback(() => {
     indices.current = [indices.current[1], indices.current[0], indices.current[3], indices.current[2]]
     updateTranslations()
     updateState(ActionType.SWAP)
-    // console.log('swapped')
   }, [updateState, updateTranslations])
 
-
   return (
-    <div className={className}>
-        <svg ref={svg} className="m-auto w-full max-w-90 aspect-13/10" viewBox="-55 -55 110 143">
-          <defs>
-            <marker
-              id="arrow_head"
-              viewBox="0 0 2 2"
-              refX="1"
-              refY="1"
-              markerUnits="userSpaceOnUse"
-              markerWidth="6"
-              markerHeight="6"
-              orient="auto-start-reverse"
-            >
-              <path d="M 0 0 L 2 1 L 0 2 z" fill="black" />
-            </marker>
-          </defs>
+    <div className={'select-none ' + className}>
+      <svg ref={svg} className="m-auto w-full max-w-90 aspect-13/10" viewBox="-55 -55 110 143">
+        <defs>
+          <marker
+            id="arrow_head"
+            viewBox="0 0 2 2"
+            refX="1"
+            refY="1"
+            markerUnits="userSpaceOnUse"
+            markerWidth="6"
+            markerHeight="6"
+            orient="auto-start-reverse"
+          >
+            <path d="M 0 0 L 2 1 L 0 2 z" fill="black" />
+          </marker>
+        </defs>
 
+        <path d={'M -28 0 L 28 0'} stroke='black' strokeWidth='2' markerStart="url(#arrow_head)" markerEnd="url(#arrow_head)" opacity={0.9}></path>
+        <path d={'M 0 -28 L 0 28'} stroke='black' strokeWidth='2' markerStart="url(#arrow_head)" markerEnd="url(#arrow_head)" opacity={0.9}></path>
+        
+        <circle className="transition-transform duration-200" cx="0" cy="0" r="9" stroke="none" fill="#a01752" opacity={0.7} transform={positions[0]}></circle>
+        <circle className="transition-transform duration-200" cx="0" cy="0" r="9" stroke="none" fill="#2468a7" opacity={0.7} transform={positions[1]}></circle>
+        <circle className="transition-transform duration-200" cx="0" cy="0" r="9" stroke="none" fill="#b3b100" opacity={0.7} transform={positions[2]}></circle>
+        <circle className="transition-transform duration-200" cx="0" cy="0" r="9" stroke="none" fill="#0c8773" opacity={0.7} transform={positions[3]}></circle>
+        
+        <circle className="transition-transform duration-200" cx="0" cy="78" r="9" stroke="none" fill="#a01752" opacity={0.7} transform={bottomPositions[0]}>
+        </circle>
+        <circle className="transition-transform duration-200" cx="0" cy="78" r="9" stroke="none" fill="#2468a7" opacity={0.7} transform={bottomPositions[1]}></circle>
+        <circle className="transition-transform duration-200" cx="0" cy="78" r="9" stroke="none" fill="#b3b100" opacity={0.7} transform={bottomPositions[2]}></circle>
+        <circle className="transition-transform duration-200" cx="0" cy="78" r="9" stroke="none" fill="#0c8773" opacity={0.7} transform={bottomPositions[3]}></circle>
 
-          <path d={'M -28 0 L 28 0'} stroke='black' strokeWidth='2' markerStart="url(#arrow_head)" markerEnd="url(#arrow_head)" opacity={0.9}></path>
-          <path d={'M 0 -28 L 0 28'} stroke='black' strokeWidth='2' markerStart="url(#arrow_head)" markerEnd="url(#arrow_head)" opacity={0.9}></path>
-          
-          <circle className="transition-transform duration-200" cx="0" cy="0" r="9" stroke="none" fill="#a01752" opacity={0.7} transform={positions[0]}></circle>
-          <circle className="transition-transform duration-200" cx="0" cy="0" r="9" stroke="none" fill="#2468a7" opacity={0.7} transform={positions[1]}></circle>
-            <circle className="transition-transform duration-200" cx="0" cy="0" r="9" stroke="none" fill="#b3b100" opacity={0.7} transform={positions[2]}></circle>
-          <circle className="transition-transform duration-200" cx="0" cy="0" r="9" stroke="none" fill="#0c8773" opacity={0.7} transform={positions[3]}></circle>
-
-          {/* <path d={'M -40 0 L 40 0'} stroke='black' strokeWidth='2' markerStart="url(#arrow_head)" markerEnd="url(#arrow_head)"></path>
-          <path d={'M 0 -40 L 0 40'} stroke='black' strokeWidth='2' markerStart="url(#arrow_head)" markerEnd="url(#arrow_head)"></path> */}
-          
-          <circle className="transition-transform duration-200" cx="0" cy="78" r="9" stroke="none" fill="#a01752" opacity={0.7} transform={bottomPositions[0]}>
-          </circle>
-          <circle className="transition-transform duration-200" cx="0" cy="78" r="9" stroke="none" fill="#2468a7" opacity={0.7} transform={bottomPositions[1]}></circle>
-          <circle className="transition-transform duration-200" cx="0" cy="78" r="9" stroke="none" fill="#b3b100" opacity={0.7} transform={bottomPositions[2]}></circle>
-          <circle className="transition-transform duration-200" cx="0" cy="78" r="9" stroke="none" fill="#0c8773" opacity={0.7} transform={bottomPositions[3]}></circle>
-
-          <text fontSize={11} y={82} x={-3} className="transition-transform duration-200" transform={bottomPositions[0]}>1</text> 
-          <text fontSize={11} y={82} x={-3} className="transition-transform duration-200" transform={bottomPositions[1]}>2</text> 
-          <text fontSize={11} y={82} x={-3} className="transition-transform duration-200" transform={bottomPositions[2]}>3</text> 
-          <text fontSize={11} y={82} x={-3} className="transition-transform duration-200" transform={bottomPositions[3]}>4</text> 
-          
-          <text fontSize={11} y={3} x={-3} className="transition-transform duration-200" transform={positions[0]}>1</text> 
-          <text fontSize={11} y={3} x={-3} className="transition-transform duration-200" transform={positions[1]}>2</text> 
-          <text fontSize={11} y={3} x={-3} className="transition-transform duration-200" transform={positions[2]}>3</text> 
-          <text fontSize={11} y={3} x={-3} className="transition-transform duration-200" transform={positions[3]}>4</text>
-        </svg>
-
+        <text fontSize={11} y={82} x={-3} className="transition-transform duration-200" transform={bottomPositions[0]}>1</text> 
+        <text fontSize={11} y={82} x={-3} className="transition-transform duration-200" transform={bottomPositions[1]}>2</text> 
+        <text fontSize={11} y={82} x={-3} className="transition-transform duration-200" transform={bottomPositions[2]}>3</text> 
+        <text fontSize={11} y={82} x={-3} className="transition-transform duration-200" transform={bottomPositions[3]}>4</text> 
+        
+        <text fontSize={11} y={3} x={-3} className="transition-transform duration-200" transform={positions[0]}>1</text> 
+        <text fontSize={11} y={3} x={-3} className="transition-transform duration-200" transform={positions[1]}>2</text> 
+        <text fontSize={11} y={3} x={-3} className="transition-transform duration-200" transform={positions[2]}>3</text> 
+        <text fontSize={11} y={3} x={-3} className="transition-transform duration-200" transform={positions[3]}>4</text>
+      </svg>
 
       <div className="flex justify-center gap-3 mt-8">
         <button
@@ -147,22 +123,12 @@ export default function Swapper({ className }: { className?: string }) {
         >
           <MathInline>(b, a)</MathInline>
         </button>
-
         <button
           className="border border-gray-400 pt-1 pb-1 pl-2 pr-2 rounded-lg bg-gray-100 hover:bg-white active:bg-gray-200 cursor-pointer"
           onClick={negA}
         >
           <MathInline>(-a, b)</MathInline>
         </button>
-
-        {/*         
-        <button
-          className="border border-gray-400 pt-1 pb-1 pl-2 pr-2 rounded-lg bg-gray-100 hover:bg-white active:bg-gray-200"
-          onClick={negB}
-        >
-          <MathInline>(a, -b)</MathInline>
-        </button>
-         */}
       </div>
       <ObjectiveList className="mt-6 mb-6" objectives={listData} />
     </div>
@@ -176,6 +142,7 @@ interface TwoSwapperState {
   move(action: ActionType): number
   next(): TwoSwapperState
 }
+
 
 class TwoSwapper implements TwoSwapperState{
   index = 0
@@ -217,6 +184,7 @@ class TwoSwapper implements TwoSwapperState{
     return new TwoSwapper()
   }
 }
+
 
 class RotateLeft implements TwoSwapperState {
   public index = 0

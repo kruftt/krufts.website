@@ -1,5 +1,4 @@
 "use client"
-
 import { useCallback, useRef, useState } from "react"
 import MathInline from "../general/math-inline";
 import { cn } from "@/lib/utils";
@@ -21,19 +20,13 @@ export default function TwoDee({ className }: { className?: string }) {
     const sin_v = 50.0 * Math.sin(v)
     setP([cos_v, sin_v, v])
     const _manager = manager.current
-    // const p = v / (0.5 * Math.PI)
     _manager.setProgress(0, (v < 0) ? 0 : 0.015 + v / (0.5 * Math.PI))
     _manager.setProgress(1, (0.015 + (2.0 * Math.PI) - v) / ((Math.PI)))
-    // _manager.setProgress(0, (p < 0) ? 0 : 0.015+p)
-    // _manager.setProgress(1, (p < 0) ? 4 : 4 - p)
-    // _manager.setProgress(2, (p > 0) ? 0 : 0.015-p)
     setObjectives(_manager.getData())
-    // _manager.setProgress(0, (v < 0) ? 0 : .012 + (v / (0.5 * Math.PI)))
-    // _manager.setProgress(1, 0.12 + ((2.0 * Math.PI) - v) / (Math.PI))
   }, [])
 
   return (
-    <div className="">
+    <div className="select-none">
       <div className={cn('w-full flex justify-center', className)}>
         <svg ref={svg} className="w-full max-w-70 aspect-1/1" viewBox="-55 -55 110 110">
           <defs>
@@ -62,29 +55,22 @@ export default function TwoDee({ className }: { className?: string }) {
             strokeWidth={1}
             fill="#b3b100d0"
           ></path>
-
           <path
             d={`M -50 0 L 50 0`}
             stroke='#000000d0'
             strokeWidth="1"
-            // markerStart="url(#triangle)"
-            // markerEnd="url(#triangle)"
           ></path>
           <path
             d={`M 0 -50 L 0 50`}
             stroke='#000000d0'
             strokeWidth="1"
-            // markerStart="url(#triangle)"
-            // markerEnd="url(#triangle)"
           ></path>
-
           <path
             d={`M 0 0 L ${p[0]} ${-p[1]}`}
             stroke='black'
             strokeWidth={2}
             markerEnd="url(#triangle)"
           ></path>
-         
           <circle cx="0" cy="0" r="2" stroke="black"></circle>
         </svg>
       </div>

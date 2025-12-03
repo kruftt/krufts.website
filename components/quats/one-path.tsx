@@ -1,8 +1,6 @@
 "use client"
-
 import { useEffect, useRef, useState, useCallback } from "react"
 import MathInline from "../general/math-inline"
-
 
 export default function OnePath({ className }: { className?: string }) {
   const svg = useRef<SVGSVGElement>(null)
@@ -36,7 +34,7 @@ export default function OnePath({ className }: { className?: string }) {
   }, [update, _update])
   
   return (
-    <div className={className}>
+    <div className={"select-none " + className}>
       <svg
         ref={svg}
         viewBox={`-${state.half_width} 0 ${state.width} 48`}

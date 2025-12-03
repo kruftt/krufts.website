@@ -1,6 +1,4 @@
 'use client'
-
-// import { createContext, useReducer, ActionDispatch } from "react"
 import * as THREE from "three"
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { Line2 } from 'three/addons/lines/Line2.js'
@@ -11,14 +9,11 @@ import MathBlock from "../general/math-block";
 import { ObjectiveList, ObjectiveListManager } from "./objective-list";
 
 const TAU = 6.2831853
-// const ONE_OVER_EIGHT_ROOT_2 = 0.088388834
 const ONE_OVER_ROOT_TWO = 0.70710678
 const ORIGIN = new THREE.Vector3(0, 0, 0);
 
 const FONT_SIZE = 42
 const TEXT_SCALE = 0.002
-// const ZOOM_MIN = 0.5
-// const ZOOM_MAX = 2
 const ZOOM = 1.75
 
 const SHADOW_WIDTH = 2
@@ -56,7 +51,6 @@ const m_spiral_shadow = new LineMaterial({
   opacity: SPIRAL_OPACITY,   
   transparent: true,
 });
-
 const m_axis_one = new LineMaterial({
   color: C_GREEN,
   linewidth: Q_WIDTH,
@@ -75,7 +69,6 @@ const m_region_one = new THREE.MeshBasicMaterial({
   opacity: REGION_OPACITY,
   transparent: true
 })
-
 const m_axis_two = new LineMaterial({
   color: C_RED,
   linewidth: Q_WIDTH,
@@ -95,18 +88,11 @@ const m_region_two = new THREE.MeshBasicMaterial({
   transparent: true
 })
 
-// const m_axis = new LineMaterial({
-//   color: 0x000000,
-//   linewidth: 1,
-// });
-
-
 class Visualizer {
   scene: THREE.Scene
   renderer: THREE.WebGLRenderer
   camera: THREE.PerspectiveCamera
   controls: OrbitControls
-  // axes: VisualizerAxes
   theta: number
   aq_1: THREE.Quaternion
   aq_2: THREE.Quaternion
@@ -130,11 +116,9 @@ class Visualizer {
     const scene = this.scene = new THREE.Scene();
     const renderer = this.renderer = new THREE.WebGLRenderer({ canvas });
     const camera = this.camera = new THREE.PerspectiveCamera(67, 1.33, 0.01, 4);
-    // const camera = this.camera = new THREE.PerspectiveCamera(67, 1.7, 0.01, 4);
     const controls = this.controls = new OrbitControls(camera, renderer.domElement);
     
     renderer.setClearAlpha(0);
-    // renderer.domElement.classList.add('')
     camera.position.set(0.4, 0.3, 0.25)
     
     controls.enablePan = false
@@ -144,11 +128,9 @@ class Visualizer {
     controls.enableZoom = false
     controls.rotateSpeed = 0.4
     
-
     this.resize(renderer)
     controls.update()
 
-    // this.axes = new VisualizerAxes(scene)
     this.theta = 0
     this.aq_1 = new THREE.Quaternion(1, 0, 0, 0)
     this.aq_2 = new THREE.Quaternion(1, 0, 0, 0)
@@ -184,19 +166,10 @@ class Visualizer {
     const canvas = renderer.domElement
     const _width = Math.min(canvas.parentElement?.clientWidth || 640, 640)
     const _height = _width * .75
-    // console.log(_width, _height)
     if (canvas.height != _height) {
       renderer.setSize(_width, _height, true)
       this.controls.target.set(0, TARGET_Y, 0)
     }
-
-    // const _size = Math.max(
-    //   Math.min(768, window.innerWidth * WIDTH_RATIO, window.innerHeight * HEIGHT_RATIO), 512)
-    // renderer.setSize(_size, _size * .75);
-      // const _size = Math.max(
-    //   Math.min(768, window.innerWidth * WIDTH_RATIO, window.innerHeight * HEIGHT_RATIO), 512)
-    // renderer.setSize(_size, _size * .5625);
-    // renderer.setSize(_size, _size * .75);
   }
 
   setTheta(theta: number) {
@@ -238,26 +211,8 @@ class Visualizer {
 }
 
 
-// class VisualizerAxes {
-//   lines: Line2[]
-//   constructor(scene: THREE.Scene) {
-//     this.lines = []
-//     this.lines.push(new Line2(new LineGeometry()
-//       .setFromPoints([new THREE.Vector3(-1, 0, 0), new THREE.Vector3(1, 0, 0)]), m_axis))
-//     this.lines.push(new Line2(new LineGeometry()
-//       .setFromPoints([new THREE.Vector3(0, -1, 0), new THREE.Vector3(0, 1, 0)]), m_axis))
-//     this.lines.push(new Line2(new LineGeometry()
-//       .setFromPoints([new THREE.Vector3(0, 0, -1), new THREE.Vector3(0, 0, 1)]), m_axis))
-//     scene.add(...this.lines)
-//   }
-// }
-
-
 class VisualizerVector {
   p_plane: THREE.Vector3
-  /**
-   * [vector, axis, spiral_shadow, plane]
-   */
   lines: [Line2, Line2, Line2, Line2]
   label?: THREE.Mesh
   spiral_axis: THREE.Vector3[]
@@ -421,7 +376,6 @@ class VisualizerArc {
 
     this.line.geometry.setFromPoints(this.points)
     this.region.geometry.setFromPoints(this.faces)
-    // this.region.geometry.computeVertexNormals()
   }
 }
 
@@ -438,8 +392,6 @@ function makeLabelCanvas(size: number, name: string) {
   ctx.canvas.height = height
   ctx.font = font
   ctx.textBaseline = 'top'
-  // ctx.fillStyle = 'white';
-  // ctx.fillRect(0, 0, width, height);
   ctx.fillStyle = 'black';
   ctx.fillText(name, border, border);
   return ctx.canvas;
@@ -450,13 +402,11 @@ export default function QuaternionVisualizer() {
   const canvas = useRef<HTMLCanvasElement>(null)
   const visualizer = useRef<Visualizer>(null)
   const manager = useRef(new ObjectiveListManager(
-      { name: 'Complete the rotation', indicators: 2 },
-      { name: 'Reverse the rotation', indicators: 2 },
-    ))
+    { name: 'Complete the rotation', indicators: 2 },
+    { name: 'Reverse the rotation', indicators: 2 },
+  ))
   
   const [objectives, setObjectives] = useState(manager.current.getData())
-
-  // console.log('render')
 
   useEffect(() => {
     visualizer.current = new Visualizer(canvas.current!);
@@ -475,7 +425,7 @@ export default function QuaternionVisualizer() {
   }, [])
 
   return (
-    <div className="">
+    <div className="select-none">
       <canvas className="m-auto" ref={canvas}></canvas>
       <MathBlock>{"q = \\cos{(\\frac{\\theta}{2})} + \\hat{q}\\sin{(\\frac{\\theta}{2})}"}</MathBlock>
       <div className='flex justify-center gap-4'>

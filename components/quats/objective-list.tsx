@@ -1,9 +1,5 @@
 "use client"
-
-// import { useEffect, useRef, useState } from "react"
-// import JsdImage from "../general/jsdelivr-image";
 import { cn } from "@/lib/utils"
-
 
 interface ObjectiveDef {
   name: string
@@ -83,7 +79,7 @@ export function ObjectiveList({ className, objectives }: {
 }) {
   return (
     <div className={cn(
-      "flex justify-center gap-3",
+      "flex justify-center gap-3 select-none",
       'transition-opacity duration-1600',
       objectives.active < objectives.objectives.length
         ? ''
