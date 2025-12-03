@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from "react"
 import { cn } from "@/lib/utils";
 import MathInline from "../general/math-inline";
+import { ObjectiveList, ObjectiveListManager } from "./objective-list";
 
 const INNER_OFFSET = 12
 const OUTER_OFFSET = 30
@@ -49,6 +50,15 @@ export default function ThreeSwapper({ className }: { className?: string }) {
     p1: 0,
     p2: 0,
   })
+
+  const manager = useRef(new ObjectiveListManager(
+    { name: 'Isolate the inner cycle - counter-clockwise', indicators: 2 },
+    { name: 'Isolate the inner cycle - clockwise', indicators: 2 },
+    { name: 'Isolate the outer cycle - counter-clockwise', indicators: 2 },
+    { name: 'Isolate the outer cycle - clockwise', indicators: 2 },
+  ))
+  const [objectives, setObjectives] = useState(manager.current.getData())
+  const rotationState = useRef<ThreeSwapperState>(new RotateAroundI())
   
   const update = useCallback(() => {
     p1.current!.style.transform = outer_translations[state.p1]
@@ -71,6 +81,17 @@ export default function ThreeSwapper({ className }: { className?: string }) {
         break
     }
     update()
+
+    const rs = rotationState.current
+    const man = manager.current
+    const progress = rs.move(t)
+    man.setProgress(rs.number, progress)
+    setObjectives(man.getData())
+
+    if (progress === 2) {
+      rotationState.current = rotationState.current.next()
+    }
+    
   }, [state.p1, state.p2, update])
 
   useEffect(() => {
@@ -80,7 +101,7 @@ export default function ThreeSwapper({ className }: { className?: string }) {
   return (
     <div className={className}>
       
-        <svg ref={svg} className="m-auto w-full max-w-110 aspect-4/3" viewBox="-60 -45 120 90">
+        <svg ref={svg} className="m-auto w-full max-w-110 aspect-4/3" viewBox="-61 -45 122 90">
           <defs>
             <marker
               id="arrow_head"
@@ -141,18 +162,18 @@ export default function ThreeSwapper({ className }: { className?: string }) {
             markerStart="url(#arrow_head)"
             markerEnd="url(#arrow_head)"
           ></path>
+          {/* 008080 808000 e3df04 d67405 */}
+        <circle ref={p1} className="transition-transform duration-200 opacity-[0.8]" r="6" stroke="#555" strokeWidth={0.3} fill="#e3df04" transform={outer_translations[state.p1]}></circle>
+        <circle ref={p2} className="transition-transform duration-200 opacity-[0.8]" r="6" stroke="#555" strokeWidth={0.3} fill="#d67405" transform={inner_circles[state.p2]}></circle>
 
-          <circle ref={p1} className="transition-transform duration-200 opacity-[0.6]" r="6" fill="#008080" transform={outer_translations[state.p1]}></circle>
-          <circle ref={p2} className="transition-transform duration-200 opacity-[0.6]" r="6" fill="#808000" transform={inner_circles[state.p2]}></circle>
-
-          <text y="3" textAnchor="middle" fontSize="7" fontStyle="bold" transform={outer_translations[0]}>i</text>
-          <text x="3" y="2" textAnchor="end" fontSize="7" fontStyle="bold" transform={outer_translations[1]}>-1</text>
-          <text x="-1" y="2" textAnchor="middle" fontSize="7" fontStyle="bold" transform={outer_translations[2]}>-i</text>
-          <text x="-2" y="2" textAnchor="start" fontSize="7" fontStyle="bold" transform={outer_translations[3]}>1</text>
-          <text x="-6" y="5" textAnchor="end" fontSize="7" fontStyle="bold" transform={inner_translations[0]}>j</text>
-          <text x="5" y="5" textAnchor="start" fontSize="7" fontStyle="bold" transform={inner_translations[1]}>k</text>
-          <text x="4" y="-1" textAnchor="start" fontSize="7" fontStyle="bold" transform={inner_translations[2]}>-j</text>
-          <text x="-4" y="-1" textAnchor="end" fontSize="7" fontStyle="bold" transform={inner_translations[3]}>-k</text>
+        <text y="2.5" textAnchor="middle" fontSize="7" fontWeight={400} transform={outer_translations[0]}>i</text>
+          <text x="2.2" y="2.2" textAnchor="end" fontSize="7" fontWeight={400} transform={outer_translations[1]}>-1</text>
+          <text x="-1" y="2.5" textAnchor="middle" fontSize="7" fontWeight={400} transform={outer_translations[2]}>-i</text>
+          <text x="-1.8" y="2.2" textAnchor="start" fontSize="7" fontWeight={400} transform={outer_translations[3]}>1</text>
+          <text x="-6" y="5" textAnchor="end" fontSize="7" fontWeight={400} transform={inner_translations[0]}>j</text>
+          <text x="5" y="5" textAnchor="start" fontSize="7" fontWeight={400} transform={inner_translations[1]}>k</text>
+          <text x="4" y="-1" textAnchor="start" fontSize="7" fontWeight={400} transform={inner_translations[2]}>-j</text>
+          <text x="-4" y="-1" textAnchor="end" fontSize="7" fontWeight={400} transform={inner_translations[3]}>-k</text>
         </svg>
 
 
@@ -192,6 +213,154 @@ export default function ThreeSwapper({ className }: { className?: string }) {
         </button>
 
       </div>
+
+      <ObjectiveList className="mt-6 mb-8" objectives={objectives} />
     </div>
   )
+}
+
+
+enum RotationState {
+  ZERO,
+  ONE,
+  TWO,
+  THREE
+}
+
+interface ThreeSwapperState {
+  number: number
+  move(action: MULT_TYPE): number
+  next(): ThreeSwapperState
+}
+
+class RotateAroundI implements ThreeSwapperState {
+  public number = 0
+  private state: RotationState = 0
+
+  move(action: MULT_TYPE) {
+    switch (action) {
+      case MULT_TYPE.L_i:
+        if (this.state === 2) {
+          this.state += 1
+        } else {
+          this.state = 1
+        }
+        break
+      case MULT_TYPE.R_i_i:
+        if (this.state === 1 || this.state === 3) {
+          this.state += 1
+        } else {
+          this.state = 0
+        }
+        break
+      case MULT_TYPE.R_i:
+      case MULT_TYPE.L_i_i:
+        this.state = 0
+        break
+    }
+    return this.state * 0.5
+  }
+
+  next() {
+    return new ReverseAroundI()
+  }
+}
+
+class ReverseAroundI implements ThreeSwapperState {
+  public number = 1
+  private state: RotationState = 0
+
+  move(action: MULT_TYPE) {
+    switch (action) {
+      case MULT_TYPE.L_i_i:
+        if (this.state === 2) {
+          this.state += 1
+        } else {
+          this.state = 1
+        }
+        break
+      case MULT_TYPE.R_i:
+        if (this.state === 1 || this.state === 3) {
+          this.state += 1
+        } else {
+          this.state = 0
+        }
+        break
+      case MULT_TYPE.R_i_i:
+      case MULT_TYPE.L_i:
+        this.state = 0
+        break
+    }
+    return this.state * 0.5
+  }
+
+  next() {
+    return new RotateOuter()
+  }
+}
+
+class RotateOuter implements ThreeSwapperState {
+  public number = 2
+  private state: RotationState = 0
+
+  move(action: MULT_TYPE) {
+    switch (action) {
+      case MULT_TYPE.L_i:
+        if (this.state === 2) {
+          this.state += 1
+        } else {
+          this.state = 1
+        }
+        break
+      case MULT_TYPE.R_i:
+        if (this.state === 1 || this.state === 3) {
+          this.state += 1
+        } else {
+          this.state = 0
+        }
+        break
+      case MULT_TYPE.R_i_i:
+      case MULT_TYPE.L_i_i:
+        this.state = 0
+        break
+    }
+    return this.state * 0.5
+  }
+
+  next() {
+    return new ReverseOuter()
+  }
+}
+
+class ReverseOuter implements ThreeSwapperState {
+  public number = 3
+  private state: RotationState = 0
+
+  move(action: MULT_TYPE) {
+    switch (action) {
+      case MULT_TYPE.L_i_i:
+        if (this.state === 2) {
+          this.state += 1
+        } else {
+          this.state = 1
+        }
+        break
+      case MULT_TYPE.R_i_i:
+        if (this.state === 1 || this.state === 3) {
+          this.state += 1
+        } else {
+          this.state = 0
+        }
+        break
+      case MULT_TYPE.R_i:
+      case MULT_TYPE.L_i:
+        this.state = 0
+        break
+    }
+    return this.state * 0.5
+  }
+
+  next() {
+    return new RotateAroundI()
+  }
 }

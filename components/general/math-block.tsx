@@ -19,7 +19,7 @@ export default function MathBlock(
   )
 
   return (
-    <MathJax className={cn("mt-4 mb-6", className)} inline={false}>
+    <MathJax className={cn("mt-4 mb-6", className)} inline={false} dynamic={false}>
       <div className={'flex flex-col items-center'}>
         {lines}
       </div>

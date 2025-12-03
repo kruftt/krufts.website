@@ -1,5 +1,6 @@
 import ArticleHeader from "@/components/portfolio/article-header"
 import { SectionTabs, SectionTabsContent } from "@/components/portfolio/article-tabs"
+import { ArticleCarousel, CarouselItem } from "@/components/portfolio/article-carousel"
 
 const data: ArticleData = {
   title: 'Lost Skies',
@@ -21,23 +22,38 @@ function Component() {
         <SectionTabsContent value='Overview'>
           <section>
             <p>
-              A friend of mine is working on a forthcoming survival-craft game called <a href="https://lostskiesgame.com">Lost Skies</a>. I helped initiate a modding community by authoring several mods while documenting my code, workflow, and project configuration for others. This included setting up a C# build environment and writing a custom <a href="https://github.com/kruftt/ThunderstoreAdapter">msbuild task library</a> for compiling mods and packaging them for distribution on <a href="https://thunderstore.io">thunderstore.io</a>.
+              A friend of mine is working on a forthcoming survival-crafting game called <a href="https://lostskiesgame.com">Lost Skies</a>. I helped initiate a modding community by authoring several mods and documenting my code, workflow, and project configuration for others. This included setting up a C# build environment and writing a custom <a href="https://github.com/kruftt/ThunderstoreAdapter">msbuild task library</a> for compiling mods and packaging them for distribution on <a href="https://thunderstore.io">thunderstore.io</a>.
             </p>
             <p>
               In early development the game was built on a Mono C# backend, but switched to an IL2CPP (Internal Language to C++) backend on the Early Access launch in order to enhance security. While this made reverse-engineering and modding significantly more difficult (by preventing decompilation and/or transpilation of the IL assemblies), it gave me an opportunity to learn about the IL2CPP compiler and to explore methods of reverse-engineering native assemblies, such as using tools like Ghidra or IDA pro.
             </p>
           </section>
-          <div className="text-center mt-8">
-            <img src="/img/il2cpp_light.jpg" alt="Unity IL2CPP" className="m-auto" />
-          </div>
+          <ArticleCarousel>
+            <CarouselItem>
+              <div className="flex justify-center items-center gap-4">
+                <a className="max-w-[calc(33%-8px)]" href="https://thunderstore.io/c/lost-skies/p/kruft/Herald_Tracker/">
+                  <img src="/img/ls_herald_tracker.png" alt="Herald Tracker." />
+                </a>
+                <a className="max-w-[calc(33%-8px)]" href="https://thunderstore.io/c/lost-skies/p/kruft/ShipCam_Pro/">
+                  <img src="/img/ls_shipcam_pro.png" alt="Shipcam Pro." />
+                </a>
+                <a className="max-w-[calc(33%-8px)]" href="https://thunderstore.io/c/lost-skies/p/kruft/Point_To_Interact/">
+                  <img src="/img/ls_point_to_interact.png" alt="Point To Interact." />
+                </a>
+              </div>
+            </CarouselItem>
+            <CarouselItem>
+              <img src="/img/il2cpp_light.jpg" alt="Unity IL2CPP" className="m-auto" />
+            </CarouselItem>
+          </ArticleCarousel>
         </SectionTabsContent>
         <SectionTabsContent value='Point to Interact'>
           <section>
             <p>
-              One mod I authored, entitled <a href="https://github.com/kruftt/LostSkiesMods/blob/main/PointToInteract/src/Patch.cs">Point To Interact</a>, improves 3d object selection. By default, every in-game frame uses a spherical collider to detect interactables around the player and displays them in a scrollable list that is navigable with a mousewheel or a controller's d-pad. However, this system feels unintuitive when using a mouse since pointing at an object doesn't guarantee it will be selected.
+              One mod I authored was entitled <a href="https://github.com/kruftt/LostSkiesMods/blob/main/PointToInteract/src/Patch.cs">Point To Interact</a>. The purpose is to improve 3d object selection. By default, every frame uses a spherical collider to detect interactables around the player and displays them in a scrollable list that is navigable with a mousewheel or a controller's d-pad. However, this system feels unintuitive when using a mouse, since pointing at an object doesn't guarantee it will be selected.
             </p>
             <p>
-              To address this I used a raycast from the camera to the cursor, filtering  out the results of the proximity check. If no interactable is under the cursor it falls back to the default behavior. This significantly improves the functionality, especially in common cluttered scenarios such as selecting between adjacent storage cabinets.
+              To address this I used a raycast from the camera to the cursor, filtering  out the results of the proximity check. If no interactable is under the cursor it falls back to the default behavior. This significantly improves the functionality, especially in common cluttered scenarios such as selecting between adjacent storage cabinets, as shown in the mod's cover image below:
             </p>
           </section>
           <div className="text-center mt-8">

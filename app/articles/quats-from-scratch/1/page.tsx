@@ -73,16 +73,16 @@ export default function Page1() {
       </MathBlock>
  
       <p>
-        Notice that we've gotten two directions, forward and backward, out of a single dimension. In this way, even though we can represent both a point and the action of getting to that point with the same number, we can think about the action as specifying two distinct aspects of behavior, namely "which direction?" and "how far?".
+        Notice that we've gotten two directions, forward and backward, out of a single dimension. In this way, even though we can represent both a point and the action of getting to that point with the same number, we can think about the action as specifying two distinct aspects of behavior, namely "which direction?" and "how far?". We can put these two separate pieces of information next to each other as component coordinates, where the phrase "component coordinates" means roughly "parts placed together in order".
       </p>
 
       <OneDee className={'mt-12 mb-8'}></OneDee>
 
       {/* <JsdImage src="quats/scalar_action.png" className="max-w-7/8 max-h-11 m-auto mt-5!" alt="A ray from the origin." /> */}
 
-      <p>
+      {/* <p>
         We can put these two separate pieces of information next to each other as component coordinates, where the phrase "component coordinates" means roughly "parts placed together in order".
-      </p>
+      </p> */}
 
       <QuatsHeader>
         {"There and Back Again"}

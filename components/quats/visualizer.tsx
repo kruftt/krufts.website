@@ -6,8 +6,9 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { Line2 } from 'three/addons/lines/Line2.js'
 import { LineGeometry } from 'three/addons/lines/LineGeometry.js';
 import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
-import { ChangeEvent, useEffect, useRef } from "react";
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import MathBlock from "../general/math-block";
+import { ObjectiveList, ObjectiveListManager } from "./objective-list";
 
 const TAU = 6.2831853
 // const ONE_OVER_EIGHT_ROOT_2 = 0.088388834
@@ -448,27 +449,45 @@ function makeLabelCanvas(size: number, name: string) {
 export default function QuaternionVisualizer() {
   const canvas = useRef<HTMLCanvasElement>(null)
   const visualizer = useRef<Visualizer>(null)
+  const manager = useRef(new ObjectiveListManager(
+      { name: 'Complete the rotation', indicators: 2 },
+      { name: 'Reverse the rotation', indicators: 2 },
+    ))
+  
+  const [objectives, setObjectives] = useState(manager.current.getData())
+
+  // console.log('render')
 
   useEffect(() => {
     visualizer.current = new Visualizer(canvas.current!);
-  })
+    manager.current.setProgress(0, 1)
+    setObjectives(manager.current.getData())
+  }, [])
 
-  function updateTheta(e: ChangeEvent<HTMLInputElement>) {
+  const updateTheta = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const v = parseFloat(e.target.value);
     visualizer.current!.setTheta(v)
-  }
+    // console.log('theta')
+    const _manager = manager.current
+    _manager.setProgress(0, (v < 0) ? 0 : 0.015 + v / (Math.PI))
+    _manager.setProgress(1, (0.015 + (2.0 * Math.PI) - v) / ((2.0 * Math.PI)))
+    setObjectives(_manager.getData())
+  }, [])
 
   return (
     <div className="">
       <canvas className="m-auto" ref={canvas}></canvas>
-      <MathBlock>{"q = \\cos{\\theta} + \\hat{q}\\sin{\\theta}"}</MathBlock>
+      <MathBlock>{"q = \\cos{(\\frac{\\theta}{2})} + \\hat{q}\\sin{(\\frac{\\theta}{2})}"}</MathBlock>
       <div className='flex justify-center gap-4'>
         <span className='font-bold text-xl'>-2π</span>
         <input
-          type="range" min={-TAU} step={TAU/360} max={TAU+0.001} defaultValue={Math.PI} onChange={updateTheta}
+          type="range" min={-TAU} step={TAU/720} max={TAU+0.001} defaultValue={Math.PI} onChange={updateTheta}
           className='grow max-w-150 cursor-pointer'  
         />
         <span className='font-bold text-xl'>2π</span>
+      </div>
+      <div>
+        <ObjectiveList className="mt-4 mb-8" objectives={objectives} />
       </div>
     </div>
   )

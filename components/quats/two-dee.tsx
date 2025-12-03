@@ -1,21 +1,36 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useCallback, useRef, useState } from "react"
 import MathInline from "../general/math-inline";
 import { cn } from "@/lib/utils";
-
+import { ObjectiveListManager, ObjectiveList } from "./objective-list";
 
 export default function TwoDee({ className }: { className?: string }) {
   const arg = useRef<HTMLInputElement>(null)
   const svg = useRef<SVGSVGElement>(null)
   const [p, setP] = useState<[number, number, number]>([50.0, 0.0, 0.0])
+  const manager = useRef(new ObjectiveListManager(
+    { name: 'Rotate counter-clockwise', indicators: 4 },
+    { name: 'Rotate clockwise', indicators: 4 },
+  ))
+  const [objectives, setObjectives] = useState(manager.current.getData())
 
-  function update() {
+  const update = useCallback(() => {
     const v = parseFloat(arg.current!.value)
     const cos_v = 50.0 * Math.cos(v)
     const sin_v = 50.0 * Math.sin(v)
     setP([cos_v, sin_v, v])
-  }
+    const _manager = manager.current
+    // const p = v / (0.5 * Math.PI)
+    _manager.setProgress(0, (v < 0) ? 0 : 0.015 + v / (0.5 * Math.PI))
+    _manager.setProgress(1, (0.015 + (2.0 * Math.PI) - v) / ((Math.PI)))
+    // _manager.setProgress(0, (p < 0) ? 0 : 0.015+p)
+    // _manager.setProgress(1, (p < 0) ? 4 : 4 - p)
+    // _manager.setProgress(2, (p > 0) ? 0 : 0.015-p)
+    setObjectives(_manager.getData())
+    // _manager.setProgress(0, (v < 0) ? 0 : .012 + (v / (0.5 * Math.PI)))
+    // _manager.setProgress(1, 0.12 + ((2.0 * Math.PI) - v) / (Math.PI))
+  }, [])
 
   return (
     <div className="">
@@ -87,6 +102,7 @@ export default function TwoDee({ className }: { className?: string }) {
           ></input>
         <MathInline dynamic={false}>{"2\\pi"}</MathInline>
         </div>
+        <ObjectiveList className="mt-8 mb-8" objectives={objectives} />
     </div>
   )
 }

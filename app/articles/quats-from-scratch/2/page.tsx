@@ -81,7 +81,7 @@ export default function Page2() {
         If we reverse the order of the reflections, the first component gets negated before getting swapped, causing the rotation to move in the opposite direction. This operation is called the conjugate, meaning "joined together". Notice that applying a rotation and then applying its conjugate will do and then undo the reflections in the reverse order. They are inverse operations.
       </p>
 
-      <MathBlock>ABBA = 1</MathBlock>
+      {/* <MathBlock>ABBA = 1</MathBlock> */}
 
       <QuatsHeader>
         {"Complexification"}

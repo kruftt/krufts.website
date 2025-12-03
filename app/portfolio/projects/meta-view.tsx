@@ -19,7 +19,7 @@ function MetaView() {
           I am developing a plugin for the markdown-based note-taking app <a href="https://obsidian.md/">Obsidian</a> using the recently released <a href="https://svelte.dev">Svelte 5</a> frontend framework. Obsidian supports YAML metadata on notes. The Metaview plugin adds the ability to create metadata templates with predefined property names and types that can be added to notes in a composable manner. It also supports arbitrarily nested data, allowing more flexibility in how you store your metadata, among many other features.
         </p>
       </section>
-      <ArticleCarousel >
+      <ArticleCarousel>
         <CarouselItem>
           <img className="m-auto" src="/img/metaview1.jpg" alt="Template configuration." />
         </CarouselItem>

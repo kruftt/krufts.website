@@ -1,30 +1,47 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { Switch } from '@/components/quats/switch';
 import JsdImage from "../general/jsdelivr-image";
+import { ObjectiveList, ObjectiveListManager } from "./objective-list";
 
 
 export default function OneDee({ className }: { className?: string }) {
   const modulus = useRef<HTMLInputElement>(null)
   const svg = useRef<SVGSVGElement>(null)
   // const plusMinus = useRef<SwitchProps>(null)
-  const [p, setP] = useState(0.01)
+  const [p, setP] = useState(0.25)
   const pm = useRef(true)
+  const manager = useRef(new ObjectiveListManager(
+    { name: 'Scale to the maximum' },
+    { name: 'Invert the direction' },
+    { name: 'Scale to 0' },
+  ))
+  const [listData, setListData] = useState(manager.current.getData())
   
-  function update() {
+  const update = useCallback(() => {
     const slider_value = parseFloat(modulus.current!.value)
+    const abs_value = Math.abs(slider_value)
+    manager.current.setProgress(0, abs_value)
+    manager.current.setProgress(2, 1.0 - abs_value)
+    if (slider_value < 0.02 && slider_value > -0.02) {
+      manager.current.setProgress(2,1)
+    }
+
     const total_width = svg.current!.clientWidth
     const max_width = total_width * 0.5
     const arrow_width = Math.round(slider_value * max_width * 0.95)
     svg.current!.setAttribute('viewBox', `-${max_width} 0 ${total_width} 1`)
     setP(pm.current ? arrow_width : -arrow_width)
-  }
+    setListData(manager.current.getData())
+  }, [modulus, manager, svg, pm])
 
-  function check(c: boolean) {
+  const reflect = useCallback((c: boolean) => {
     pm.current = c
+    manager.current.setProgress(1, 1)
+    setListData(manager.current.getData())
     update()
-  }
+  }, [pm, manager, update])
 
   useEffect(() => {
     update()
@@ -32,7 +49,7 @@ export default function OneDee({ className }: { className?: string }) {
     return () => {
       window.removeEventListener("resize", update)
     }
-  })
+  }, [update])
   
   return (
     <div className={className}>
@@ -55,7 +72,7 @@ export default function OneDee({ className }: { className?: string }) {
       </svg>
       <JsdImage src="quats/scalar_action.png" className="max-w-7/8 max-h-11 m-auto mt-6! mb-6!" alt="A ray from the origin." />
       <div className="flex justify-center gap-3">
-        <Switch className="cursor-pointer" defaultChecked={true} onCheckedChange={check}></Switch>
+        <Switch className="cursor-pointer" defaultChecked={true} onCheckedChange={reflect}></Switch>
         <input
           ref={modulus}
           type="range"
@@ -63,10 +80,11 @@ export default function OneDee({ className }: { className?: string }) {
           max={1}
           step={0.01}
           onChange={update}
-          defaultValue={0.5}
+          defaultValue={0.25}
           className="accent-black cursor-pointer"
         ></input>
       </div>
+      <ObjectiveList objectives={listData} className="mt-6 mb-4" />
     </div>
   )
 }

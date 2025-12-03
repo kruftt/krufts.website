@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils"
 export default function BmcButton() {
   return (
     <Button
-      onClick={() => window.open('https://buymeacoffee.com/kruft')}
       className={cn(
         // 'bg-gray-200 hover:bg-white active:bg-gray-800',
         // 'drop-shadow-sm hover:drop-shadow-lg',
@@ -19,6 +18,7 @@ export default function BmcButton() {
       )}
       variant={'default'}
     >
+      <a href="https://buymeacoffee.com/kruft" className='w-full h-full'></a> 
     </Button>
   )
 }

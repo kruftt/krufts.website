@@ -22,7 +22,7 @@ function Component() {
         <SectionTabsContent value='Overview'>
           <section>
             <p className="pb-8">
-              Quaternions are a centrally important algebraic structure in domains that involve 3d rotations, such as computer vision and graphics, robotics, physics, and others. I took some time to organize my intuitions around them and write an article that builds up to quaternions from "scratch", attempting to show a way how both quaternions and the geometric algebras could be motivated. I've included numerous illustrations and interactive components to aid in intuition building, making use of React, Svg, Threejs, Mathjax + Latex, and finally Krita for the illustrations. 
+              Quaternions are a centrally important algebraic structure in domains that involve 3d rotations, such as computer vision and graphics, robotics, physics, and others. I took some time to organize my intuitions around them and write an article that builds up to quaternions from "scratch", attempting to show a way how both quaternions and the geometric algebras could be motivated. In addition to clarifying the ideas through writing, I've included numerous illustrations and gamified interactive components to aid in intuition building. To author this article I made use of tools like React, Svg, Threejs, Latex, and Krita. 
             </p>
             <QuatsCycle>
               <JsdImage src="quats/ij_vs_ji.png" id="c1" className="m-auto cycle max-w-7/8 max-h-100" alt="ij vs ji." />
@@ -31,7 +31,7 @@ function Component() {
             </QuatsCycle>
             <div className='flex justify-center'>
               <p className='max-w-4/5 text-center'>
-                Conjugation leverages commutative and anticommutative behaviors, achieving a rotation along two dimensions while returning the other to its original position.
+                Quaternions leverage commutative and anticommutative behaviors to rotate in the plane of rotation while "staying still" along the axis.
               </p>
             </div>
           </section>

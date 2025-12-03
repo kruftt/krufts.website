@@ -124,7 +124,7 @@ export default function Page3() {
       <JsdImage src="quats/planar_actions.png" className="max-w-7/8 max-h-100 m-auto mt-8 mb-4" alt="Three planar actions." />
 
       <p>
-        Each complex variable represents a quater rotation in one of the planes / around one of the axes, while the real component represents staying in place (or purely reversing). Furthermore, we know that the real component cannot be on an axis or else the algebra collapses. So now we have three algebraic variables, taking up all three dimensions. Where has the real component gone? Can we just forget it entirely? How do we interpret what these rotations do e.g. to <MathInline>1</MathInline>? We know that:
+        Each complex variable represents a quarter rotation in one of the planes / around one of the axes, while the real component represents staying in place (or purely reversing). Furthermore, we know that the real component cannot be on an axis or else the algebra collapses. So now we have three algebraic variables, taking up all three dimensions. Where has the real component gone? Can we just forget it entirely? How do we interpret what these rotations do e.g. to <MathInline>1</MathInline>? We know that:
       </p>
 
       <MathBlock>
@@ -198,19 +198,38 @@ export default function Page3() {
       </p>
 
       <p>
-        Let's look at the resulting of swapping the order of <MathInline>ii</MathInline> and <MathInline>ij</MathInline>. The green and gold arrows represent left and right multiplication by <MathInline>i</MathInline> respectively. When acting on itself, the order doesn't matter, but when acting within the plane of rotation, reversing the order makes it as if we rotated from the opposite axis, along the red arrow! This is expressed by the statement <MathInline>{'ji=-ij'}</MathInline>. Switching the order gives a reversed rotation, but with the same twist along the axis.
+        Let's first consider multiplying the point <MathInline>(i + j)</MathInline> "on the left" by <MathInline>i</MathInline>, represented by the green arrow. The <MathInline>i</MathInline> component, represented by the yellow dot, is along the axis of rotation while the <MathInline>j</MathInline> component, represented by the orange dot, is in the plane of rotation:
       </p>
 
       <JsdImage src="quats/ij_vs_ji.png" className="max-w-7/8 max-h-100 m-auto" alt="ij vs ji." />
+      
+      <div className='text-center'>
+        <MathBlock>
+          {"i(i + j)"}
+          {"i^2 + ij"}
+          {"-1 + k"}
+        </MathBlock>
+      </div>
 
       <p>
-        Suppose that we have multiplied on the left by <MathInline>i</MathInline>, represented by the green arrow above. <MathInline>j</MathInline> has moved to <MathInline>k</MathInline>, while <MathInline>i</MathInline>, along the axis of rotation, has done a twist into <MathInline>-1</MathInline>. We'll take advantage of the anti-commutativity in the plane of rotation to undo this twist while doubling up on the rotation. Lets look at the next step, multiplying by the conjugate <MathInline>i^*</MathInline> <i>on the right</i>, to undo the twist.
+        This takes <MathInline>{"i \\rightarrow -1"}</MathInline> and <MathInline>{"j \\rightarrow k"}</MathInline>. We can consider <MathInline>-1</MathInline> as signifying that the parallel component, <MathInline>i</MathInline>, has done a counter-clockwise twist. Now we'll undo this twist by multiplying by the conjugate, <MathInline>i^*</MathInline>, but take advantage of the anti-commutativity in the plane of rotation by multiplying on the right, as represented by the gold arrow:
       </p>
 
       <JsdImage src="quats/i_inverse.png" className="max-w-7/8 max-h-100 m-auto" alt="i*j vs ji*." />
 
+      <div className='text-center'>
+        <MathBlock>
+          {"(-1 + k)i^*"}
+          {"-i^* + ki"}
+          {"i - j"}
+        </MathBlock>
+      </div>
+
       <p>
-        Now, instead of following the counter-clockwise green path representing left multiplication by <MathInline>i^*</MathInline>, we multiply on the right and we follow the gold/red paths. The rotation doubles and the twist cancels out, leaving us only with movement in the plane of rotation!
+        First note that the twisted, parallel component at <MathInline>-1</MathInline> has been untwisted back to <MathInline>i</MathInline>, as expected from multiplying by the conjugate. But what happened within the plane of rotation? What does it mean to multiply <i>on the right</i> by <MathInline>i^*</MathInline>? The algebra tells us that this is the same as if <MathInline>k</MathInline> was multiplying <MathInline>i^*</MathInline> on the left, i.e. as if <MathInline>k</MathInline> was the axis of rotation, represented by the gold arrow <MathInline>ki^*=j^*</MathInline>. But what does this mean as an operation on <MathInline>k</MathInline>? One that takes <MathInline>k</MathInline> to <MathInline>j^*</MathInline>? Notice that, within the plane of rotation, this is the same as the original rotation that resulted from multiplying <i>on the left</i> by <MathInline>i</MathInline>.
+      </p>
+      <p>
+        By both <i>taking the conjugate</i> and multiplying <i>on the right</i> we are both rotating in the opposite direction and from the opposite side, such that the two reverses cancel each other out. Meanwhile, the axis of rotation only cares about which direction the rotation goes, i.e. whether or not we are using the conjugate. By leveraging this difference the rotation doubles up and the twist cancels out, leaving movement only in the plane of rotation!
       </p>
 
       <QuatsCycle>
@@ -226,7 +245,13 @@ export default function Page3() {
       </MathBlock>
 
       <p>
-        We have performed a rotation around <MathInline>i</MathInline>, but this time going a full half turn (as opposed to a quarter turn in 2d) by performing 2 actions in order to do and undo the twist along the axis of rotation. The fact that we have to do and undo the twist means that the amount of rotation done in each step gets doubled up on the whole. This double action is the reason why quaternions use half the angle of the rotation they are meant to represent. Therefore, to perform a rotation of angle <MathInline>{"\\theta"}</MathInline> around axis <MathInline>i</MathInline>, we can use a quaternion that looks strikingly similar to a 2d complex number doing the same rotation, but the angle is divided in 2:
+        By multiplying on the left by <MathInline>i</MathInline> and the right by <MathInline>i^*</MathInline>, we have performed a counter-clockwise rotation around <MathInline>i</MathInline>. This time we have gone a half turn, as opposed to only a quarter turn in 2d, by performing 2 actions, each involved a quarter turn, in order to do and undo the twist along the axis of rotation.
+      </p>
+
+      <ThreeSwapper className='mt-16'></ThreeSwapper>
+
+      <p>
+        The fact that we have to do and undo the twist means that the amount of rotation done in each step gets doubled up on the whole. This double action is the reason why quaternions use half the angle of the rotation they are meant to represent. Therefore, in order to perform a rotation of angle <MathInline>{"\\theta"}</MathInline> around axis <MathInline>i</MathInline>, we can use a quaternion that looks strikingly similar to a 2d complex number doing the same rotation, but the angle is divided in 2:
       </p>
 
       <MathBlock>
@@ -238,15 +263,6 @@ export default function Page3() {
       <p>
         So we've rotated a vector <MathInline>p</MathInline> around <MathInline>i</MathInline> for an angle <MathInline>{"\\theta"}</MathInline>. But, seeing as we've defined everything symmetrically, <MathInline>i</MathInline> could have been any unit vector involving <MathInline>(i,j,k)</MathInline> around which to rotate! Any quaternion with a norm of <MathInline>1</MathInline>, called a versor (meaning "turner"), could be substituted in for <MathInline>q</MathInline> in order to rotate around its axis.
       </p>
-
-      <ThreeSwapper></ThreeSwapper>
-
-      <div className='flex justify-center'>
-        <p className='max-w-5/6 text-center'>
-          Multiplying on the left causes both cycles to move in the same direction.<br/>
-          Multiplying on the right causes them to move in opposite directions.
-        </p>
-      </div>
 
       <QuatsHeader>
         {"Getting Yoked"}
