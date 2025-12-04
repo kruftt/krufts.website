@@ -30,11 +30,11 @@ export default function Page3() {
       </MathBlock>
 
       <p>
-        We would like to extend our ability to rotate into three dimensions and write down a corresponding algebra. We have previously noted that each component of behavior needs its own element. Lets look at what the pieces of a 3d rotation are.
+        We would like to extend our ability to rotate into three dimensions and write down a corresponding algebra. We have previously noted that each component of behavior needs its own element. Lets look at the components of a 3d rotation.
       </p>
 
       <p>
-        The basics are similar to 2 dimensions in that rotation clearly involves an exchange from one direction to another in a cycle. The main difference is that in 3 dimensions there is an <i>axis</i> of rotation that goes along for the ride, without any exchanging. We can picture a top spinning on its axis:
+        The basics are similar to 2 dimensions in that a rotation clearly involves an exchange from one direction to another in a cycle. The main difference is that in 3 dimensions there is an <i>axis</i> of rotation that goes along for the ride, without any exchanging. We can picture a top spinning on its axis:
       </p>
 
       <div className="flex flex-col items-center">
@@ -47,7 +47,7 @@ export default function Page3() {
       </p>
 
       <p>
-        First, we'll need to know how to <i>stay</i> vs how to <i>rotate</i>. Then we can use the pythagorean theorem to transition between the <i>stay</i> and <i>rotate</i> behaviors, just like with 2 dimensions. In the 2D case, the rotation behavior was relatively straightforward, involving a swap and a flip to get the four directions going in a cycle. In the 3D case, there is an additional "rotating in place" behavior along the axis, alongside the cycling components. That is to say, when doing a quarter rotation along the first axis we expect our translated point to be:
+        First, we'll need to figure out how to <i>rotate</i>. Then, just like with 2 dimensions, we can use the pythagorean theorem to transition between staying and rotating. In the 2D case, the rotation behavior was relatively straightforward, involving a swap and a flip to get the four directions going in a cycle. In the 3D case, there is an additional "rotating in place" behavior along the axis, alongside the cycling components. That is to say, when doing a quarter rotation around the first axis we expect our translated point to be:
       </p>
 
       <div className="text-center">
@@ -114,7 +114,7 @@ export default function Page3() {
       
       
       <p>
-        In 2 dimensions we only had one possible plane of rotation and were able to use a single algebraic variable to represent turning in that plane. Conveniently, this allowed us to think of points both as positions and actions, freely switching between perspectives. But now that we have three possible planes of rotation, not only do we need a variable for each one, but we still need extra room for information about how much to rotate at all. Therefore, looking ahead, we expect terms in our algebra to have the general form:
+        In 2 dimensions, we had only one possible plane of rotation and were able to use a single algebraic variable to represent turning in that plane. Conveniently, this allowed us to think of points both as positions and actions and to freely switch between perspectives. Now that we have three possible planes of rotation, however, not only do we need a variable for each one, but we still need extra room for information about how much to <i>stay</i> vs <i>rotate</i> at all. Therefore, looking ahead, we expect terms in our algebra to have the general form:
       </p>
 
       <MathBlock>
@@ -171,17 +171,17 @@ export default function Page3() {
       </div>
 
       <p>
-        The algebra doesn't collapse, but things are getting a bit carried away! We have an algebra that can rotate around all three axes, but it does something else. Part of the component parallel to the axis of rotation, the part that is twisting in place, is getting cycled toward <MathInline>-1</MathInline>. We were only considering the real component to be part of the action, meaning roughly <i>stay-in-place</i>, but now its part of the resulting position! Meanwhile, the component along the axis is liable to collapse to <MathInline>0</MathInline> or to end up going the opposite way entirely! We only know where its "supposed" to go because of the context of the action that generated it.
+        The algebra doesn't collapse, but things are getting a bit carried away! We have an algebra that can rotate around all three axes, but it does something else. Part of the component parallel to the axis of rotation, the part that is twisting in place, is getting cycled toward <MathInline>-1</MathInline>. We were only considering the real component to be part of the action, meaning roughly <i>stay-in-place</i>, but now its part of the resulting position! Meanwhile, the component along the axis is liable to collapse to <MathInline>0</MathInline> or to end up going the opposite way entirely. We only know where its "supposed" to go because of the context of the action that generated it.
       </p>
 
       <JsdImage src="quats/axis_actions.png" className="max-w-7/8 max-h-80 m-auto" alt="Two cycles of action." />
 
       <p>
-        Let's look at what the algebra is telling us. Its saying that the <i>stay-in-place</i> and <i>rotate-in-place</i> behaviors are two aspects of the same overarching behavior, that of not moving. They both have the same effect on the final position, but how they get there is different. Therefore the "position" that multiplication gives back to us has its axis split in two, the part that stayed and the part that twisted.
+        Let's look at what the algebra is telling us. Its saying that the <i>stay-in-place</i> and <i>rotate-in-place</i> behaviors are two aspects of the same overarching behavior, that of not moving. They both have the same effect on the final position, but how they get there is different. Therefore the "position" that multiplication gives back to us has its axis split in two, the part that <i>stayed</i> and the part that <i>twisted</i>.
       </p>
 
       <p>
-        After doing a multiplication, we <i>could</i> step out of the algebra and use the pythagorean theorem to sum up the lengths of the axis and twisted components, but this completely defeats the purpose of having an algebra! We need to be able to undo the twist without undoing the rotation. Another two-step process is in order.
+        After doing a multiplication, one option is to step out of the algebra and use the pythagorean theorem to sum up the twisted component and the axis, but this completely defeats the purpose of having an algebra! We need to be able to undo the twist without undoing the rotation. Another two-step process is in order.
       </p>
 
 
@@ -194,11 +194,11 @@ export default function Page3() {
       <JsdImage src="quats/cats_cradle.png" className="max-w-7/8 max-h-80 m-auto" alt="Can you see the pattern?" />
 
       <p>
-        Is there anything fundamentally different between the two cycles that will allow them to be separated? Recall that the order in which axes multiply matters because it keeps track of which axis is rotating the other. We need to contrast this antisymmetric behavior on the plane of rotation, where order matters, with the symmetric behavior of an axis twisting on itself, where the order is irrelevant.
+        Is there anything fundamentally different between the two cycles that will allow them to be separated? Recall that the order in which axes multiply matters because it keeps track of which axis is rotating the other. We need to contrast this antisymmetric behavior in the plane of rotation, where order matters, with the symmetric behavior of twisting, where the order is irrelevant.
       </p>
 
       <p>
-        Let's first consider multiplying the point <MathInline>(i + j)</MathInline> "on the left" by <MathInline>i</MathInline>, represented by the green arrow. The <MathInline>i</MathInline> component, represented by the yellow dot, is along the axis of rotation while the <MathInline>j</MathInline> component, represented by the orange dot, is in the plane of rotation:
+        Let's first consider multiplying the point <MathInline>(i + j)</MathInline> <i>on the left</i> by <MathInline>i</MathInline>, represented by the green arrow. The <MathInline>i</MathInline> component, represented by the yellow dot, is along the axis of rotation while the <MathInline>j</MathInline> component, represented by the orange dot, is in the plane of rotation:
       </p>
 
       <JsdImage src="quats/ij_vs_ji.png" className="max-w-7/8 max-h-100 m-auto" alt="ij vs ji." />
@@ -212,7 +212,7 @@ export default function Page3() {
       </div>
 
       <p>
-        This takes <MathInline>{"i \\rightarrow -1"}</MathInline> and <MathInline>{"j \\rightarrow k"}</MathInline>. We can consider <MathInline>-1</MathInline> as signifying that the parallel component, <MathInline>i</MathInline>, has done a counter-clockwise twist. Now we'll undo this twist by multiplying by the conjugate, <MathInline>i^*</MathInline>, but take advantage of the anti-commutativity in the plane of rotation by multiplying on the right, as represented by the gold arrow:
+        This takes <MathInline>{"i \\rightarrow -1"}</MathInline> and <MathInline>{"j \\rightarrow k"}</MathInline>. We can consider the <MathInline>-1</MathInline> term as signifying that the parallel component, <MathInline>i</MathInline>, has done a counter-clockwise twist, while <MathInline>j</MathInline> has undergone a quarter rotation. Now we'll undo the twist by multiplying by the conjugate, <MathInline>i^*</MathInline>, but this time we'll multiply <i>on the right</i>, as represented by the gold arrow:
       </p>
 
       <JsdImage src="quats/i_inverse.png" className="max-w-7/8 max-h-100 m-auto" alt="i*j vs ji*." />
@@ -226,10 +226,10 @@ export default function Page3() {
       </div>
 
       <p>
-        First note that the twisted, parallel component at <MathInline>-1</MathInline> has been untwisted back to <MathInline>i</MathInline>, as expected from multiplying by the conjugate. But what happened within the plane of rotation? What does it mean to multiply <i>on the right</i> by <MathInline>i^*</MathInline>? The algebra tells us that this is the same as if <MathInline>k</MathInline> was multiplying <MathInline>i^*</MathInline> on the left, i.e. as if <MathInline>k</MathInline> was the axis of rotation, represented by the gold arrow <MathInline>ki^*=j^*</MathInline>. But what does this mean as an operation on <MathInline>k</MathInline>? One that takes <MathInline>k</MathInline> to <MathInline>j^*</MathInline>? Notice that, within the plane of rotation, this is the same as the original rotation that resulted from multiplying <i>on the left</i> by <MathInline>i</MathInline>.
+        First note that the twisted, parallel component at <MathInline>-1</MathInline> has been untwisted back to <MathInline>i</MathInline>, as expected from multiplying by the conjugate. But what happened within the plane of rotation? What does it mean to multiply <i>on the right</i> by <MathInline>i^*</MathInline>? The algebra tells us that this is the same as if <MathInline>k</MathInline> was multiplying <MathInline>i^*</MathInline> <i>on the left</i>, i.e. as if <MathInline>k</MathInline> was the axis of rotation, represented by the gold arrow <MathInline>ki^*=j^*</MathInline>. But what does this mean as an operation on <MathInline>k</MathInline>? One that takes <MathInline>k</MathInline> to <MathInline>j^*</MathInline>? Notice that, within the plane of rotation, this results in the same action as the first rotation, the one that resulted from multiplying by <MathInline>i</MathInline> <i>on the left</i>.
       </p>
       <p>
-        By both <i>taking the conjugate</i> and multiplying <i>on the right</i> we are both rotating in the opposite direction and from the opposite side, such that the two reverses cancel each other out. Meanwhile, the axis of rotation only cares about which direction the rotation goes, i.e. whether or not we are using the conjugate. By leveraging this difference the rotation doubles up and the twist cancels out, leaving movement only in the plane of rotation!
+        By both <i>taking the conjugate</i> and multiplying <i>on the right</i> we are both rotating in the opposite direction and from the opposite side, such that the two reverses cancel each other out. Meanwhile, the axis of rotation only cares about which direction the rotation goes, i.e. whether or not we are using the conjugate. By leveraging this difference, the rotation doubles up and the twist cancels out, leaving movement only in the plane of rotation!
       </p>
 
       <QuatsCycle>
@@ -245,13 +245,13 @@ export default function Page3() {
       </MathBlock>
 
       <p>
-        By multiplying on the left by <MathInline>i</MathInline> and the right by <MathInline>i^*</MathInline>, we have performed a counter-clockwise rotation around <MathInline>i</MathInline>. This time we have gone a half turn, as opposed to only a quarter turn in 2d, by performing 2 actions, each involved a quarter turn, in order to do and undo the twist along the axis of rotation.
+        By multiplying on the left by <MathInline>i</MathInline> and the right by <MathInline>i^*</MathInline>, we have performed a counter-clockwise rotation around <MathInline>i</MathInline>. This time we have gone a full half turn, as opposed to a single quarter turn in 2d, by performing 2 quarter turns in order to do and undo the twist along the axis of rotation. You can get a feeling for this interaction between left and right multiplication here:
       </p>
 
       <ThreeSwapper className='mt-16'></ThreeSwapper>
 
       <p>
-        The fact that we have to do and undo the twist means that the amount of rotation done in each step gets doubled up on the whole. This double action is the reason why quaternions use half the angle of the rotation they are meant to represent. Therefore, in order to perform a rotation of angle <MathInline>{"\\theta"}</MathInline> around axis <MathInline>i</MathInline>, we can use a quaternion that looks strikingly similar to a 2d complex number doing the same rotation, but the angle is divided in 2:
+        The fact that we have to do and undo the twist means that the amount of rotation done in each step gets doubled up on the whole. This double action is the reason why quaternions use half the angle of the rotation they are meant to represent. Therefore, in order to perform a rotation of angle <MathInline>{"\\theta"}</MathInline> around axis <MathInline>i</MathInline>, we can use a quaternion that looks strikingly similar to a complex number representing a rotation, but the angle is divided in 2:
       </p>
 
       <MathBlock>
@@ -262,6 +262,10 @@ export default function Page3() {
 
       <p>
         So we've rotated a vector <MathInline>p</MathInline> around <MathInline>i</MathInline> for an angle <MathInline>{"\\theta"}</MathInline>. But, seeing as we've defined everything symmetrically, <MathInline>i</MathInline> could have been any unit vector involving <MathInline>(i,j,k)</MathInline> around which to rotate! Any quaternion with a norm of <MathInline>1</MathInline>, called a versor (meaning "turner"), could be substituted in for <MathInline>q</MathInline> in order to rotate around its axis.
+      </p>
+
+      <p>
+        Notice what we've achieved in terms of two other common ways of representing 3d rotations, Euler angles and angle-axis. Euler angles represent rotations purely around one of the three axes, which we used as a base case to help us derive the quaternion algebra. Defining this algebra in a general way has then left us with a type of angle-axis representation, but one that encodes half the angle rather than the full angle so as to be able to do and undo the twisting action!
       </p>
 
       <QuatsHeader>

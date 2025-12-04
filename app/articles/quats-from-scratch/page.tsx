@@ -6,11 +6,11 @@ export default function QuatsFromScratch() {
     <article>
       <div>
         <p>
-          Quaternions are central to subjects involving 3D rotations, such as computer vision, graphics, robotics, and physics. Even though quaternions were the original source of the 3D vector operations that most are familiar with, the dot and cross products, they all too often remain shrouded in mystery. There is a common misconception that understanding these <i>complex</i> algebraic objects requires a special capacity to imagine non-intuitive 4-dimensional spaces, but I am here to tell you that this is not the case!
+          Quaternions are central to subjects involving 3D rotations such as computer vision, graphics, robotics, and physics. Even though quaternions were the original source of the 3D vector operations that most are familiar with, the dot and cross products, they all too often remain shrouded in mystery. There is a common misconception that understanding these <i>complex</i> algebraic objects requires a special capacity to imagine non-intuitive 4-dimensional spaces, but I am here to tell you that this is not the case!
         </p>
         <JsdImage src="quats/quat_to_vec.png" className="max-w-7/8 max-h-80 m-auto" alt="Quaternion multiplication contains the dot and cross products." />
         <p>
-          Some aspects of quaternions may seem a bit mysterious:
+          Some aspects of quaternions and how they are used may seem a bit mysterious:
         </p>
         <ul className="list-disc ml-8 mt-4 mb-6">
           <li>Why do quaternions require 4 variables to rotate a point in 3d?</li>

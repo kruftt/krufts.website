@@ -17,7 +17,7 @@ export default function Page1() {
       <JsdImage src="quats/ray.png" className="max-w-7/8 max-h-35 m-auto" alt="A ray from the origin." />
       
       <p>
-        BANG! Suppose now there is a dimension, a way to measure apart, and a ray of light shines forth from the origin. At some arbitrary distance we can declare that the ray has traveled <MathInline>1</MathInline> unit. This basis element enables us to measure distances to other points by comparison.
+        BANG! Suppose now there is a dimension, a way to measure apart, and a ray of light shines forth from the origin. At some arbitrary distance we can declare that the ray has traveled <MathInline>1</MathInline> unit. This basis unit enables us to measure distances to other points by comparison.
       </p>
       
       <p>
@@ -73,7 +73,7 @@ export default function Page1() {
       </MathBlock>
  
       <p>
-        Notice that we've gotten two directions, forward and backward, out of a single dimension. In this way, even though we can represent both a point and the action of getting to that point with the same number, we can think about the action as specifying two distinct aspects of behavior, namely "which direction?" and "how far?". We can put these two separate pieces of information next to each other as component coordinates, where the phrase "component coordinates" means roughly "parts placed together in order".
+        Notice that we've gotten two directions, forward and backward, out of a single dimension. In this way, even though we can represent both a point and the action of getting to that point with the same number, we can think about the action as specifying two distinct aspects of behavior, namely "which direction?" and "how far?". We can put these two separate pieces of information next to each other as component coordinates, where the phrase "component coordinates" means roughly "parts placed together in order". 
       </p>
 
       <OneDee className={'mt-12 mb-8'}></OneDee>

@@ -16,7 +16,7 @@ export default function Page2() {
       </QuatsHeader>
 
       <p>
-        Now let's suppose that we have a second dimension, just like the first, and we're free to move in either dimension independently. What happens when we move in both directions at the same time? The answer depends on what kind of space we're in, and here we're assuming we're in good old-fashioned Euclidean space, where the pythagorean theorem holds:
+        Now, let's suppose that there is second dimension, just like the first, and we're free to move in either dimension independently. What happens when we move in both directions at the same time? The answer depends on what kind of space we're in, and here we're assuming we're in good old-fashioned Euclidean space, where the pythagorean theorem holds:
       </p>
 
       <div className="flex flex-wrap justify-evenly">
@@ -37,11 +37,11 @@ export default function Page2() {
       </p>
 
       <p>
-        Now that we can point in any combination of two directions, what have we lost? We've lost the ability to order all the points along a single line. We can still order the points along a given direction, but not in general.
+        So now that we can point in any combination of two directions, what have we lost? We've lost the ability to order all the points along a single line. We can still order the points along a given direction, but not in general.
       </p>
 
       <p>
-        So then, how do we think about the actual action of rotation? How do we take a point from where we got by going along one direction, to where we would have gotten had we gone in another direction? Similar to taking the inverse in 1 dimension, but we want to be able to go in any combination of 2 directions.
+        But then how do we think about the actual action of rotation? How do we take a point from where we got by going along one direction, to where we would have gotten had we gone in another direction? Similar to taking the inverse in 1 dimension, but we want to be able to go in any combination of 2 directions.
       </p>
 
       <QuatsHeader>
@@ -72,7 +72,7 @@ export default function Page2() {
       </div>
 
       <p>
-        Normally, repeatedly negating a number causes it to alternate between plus and minus in a 2-step cycle, but now the number is getting swapped out each time and two separate numbers are going through the 2-step cycle independently. Therefore the full cycle takes 4 rather than 2. 
+        Normally, repeatedly negating a number causes it to alternate between plus and minus in a 2-step cycle, but now the number is getting swapped out each time and two separate numbers are going through the 2-step cycle independently. Therefore the full cycle takes 4 rather than 2. Try it out here:
       </p>
 
       <Swapper></Swapper>
@@ -102,7 +102,7 @@ export default function Page2() {
       </p>
 
       <p>
-        Therefore, similar to the 1 dimensional case, we have two aspects of translations in 2 dimensions, namely "which direction?" and "how far?" The domain of direction has expanded from facing forward or backward, <MathInline>{"\\{-1,1\\}"}</MathInline>, to being able to turn around (here in either direction), <MathInline>{"[-2\\pi:2\\pi]"}</MathInline>. Notice that turning around to face backward can no longer be considered a simple reflection across the first dimension, but rather all points in the plane of rotation invert through the origin so that "left" and "right" dont get mirrored. Rotating turns around via two reflections, not one.
+        Therefore, similar to the 1 dimensional case, we have two aspects of translations in 2 dimensions, namely "which direction?" and "how far?" The domain of direction has expanded from facing forward or backward, <MathInline>{"\\{-1,1\\}"}</MathInline>, to being able to turn around (here in either direction), <MathInline>{"[-2\\pi:2\\pi]"}</MathInline>. Notice that turning around to face backward can no longer be considered a simple reflection across the first dimension, but rather all points in the plane of rotation invert through the origin so that "left" and "right" dont get mirrored. Rotating turns around via two reflections, not one. Try taking a spin below:
       </p>
 
       <div className="flex justify-center items-center gap-4 mt-6">
@@ -126,17 +126,17 @@ export default function Page2() {
       <TwoDee></TwoDee>
 
       <p>
-        The word "complex" means "folded together". The complex numbers enfold these two reflections, and therefore the resulting 4-way cyclic relationship, into a piece of mathematical origami called an algebra. The word "algebra" is associated with creating symbolic systems that encode rules and operations, and we would like to be able to combine and manipulate rotations in singular equations, without having to break them up into individually defined components. In order for an algebra to keep track of the two actions of staying and rotating, it needs a variable for each one.
+        The word "complex" means "folded together". The complex numbers enfold this 4-way cycle into a piece of mathematical origami called an algebra. The word "algebra" is associated with creating symbolic systems that encode rules and operations, and we would like to be able to combine and manipulate rotations in singular equations, without having to break them up into individually defined components. In order for the complex numbers to keep track of the two actions of staying and rotating, it needs a variable for each one.
       </p>
 
       <p>
-        Consider that a point in 2D has two interpretations. First, as position coordinates, and secondly, as a 2-part action composed of a translation and a rotation. When we consider just the rotation part, we said that the first component represents the <i>stay</i> (or reverse) behavior, while the second component represents the <i>cycle</i> behavior. Together they must make a triangle with hypotenuse length <MathInline>1</MathInline> so as not to cause any scaling.
+        Consider that a point in 2D has two interpretations. First, as position coordinates, and secondly, as an action composed of a translation and a rotation. When we consider a rotation on its own, the first component represents the <i>stay</i> (or reverse) behavior, while the second component represents the <i>cycle</i> behavior. Together they must make a triangle with hypotenuse length <MathInline>1</MathInline> so as not to cause any scaling.
       </p>
       <p>
         We already have a symbol for the <i>stay</i> behavior, our old friend the identity element, <MathInline>1</MathInline>. Now we need an element to capture the <i>cycle</i> behavior. The standard notation is to use the letter <MathInline>i</MathInline>, which will act a marker representing the second component:
       </p>
 
-      <div className="flex flex-wrap justify-evenly gap-4">
+      <div className="flex flex-wrap justify-evenly gap-4 mb-6">
         <div className="flex flex-col items-center">
           <span>Stay : <MathInline>1</MathInline></span>
           <MathInline>{"(a,b)\\rightarrow(a,b)"}</MathInline>
@@ -170,7 +170,7 @@ export default function Page2() {
       </QuatsHeader>
 
       <p>
-        Previously, we noted that reversing the order of reflections causes rotations to reverse, which is called the conjugate. Since <MathInline>{"i"}</MathInline> captures the cycling behavior in our algebra, negating the <MathInline>{"i"}</MathInline> component causes the rotation to move in the opposite direction. When multiplied by its conjugate, the rotations represented by complex numbers cancel out, resulting in a point on the real number line.
+        Previously, we noted that reversing the order of reflections causes rotations to reverse, which is called the conjugate. Since <MathInline>{"i"}</MathInline> captures the cycling behavior in our algebra, negating the <MathInline>{"i"}</MathInline> component causes the rotation to move in the opposite direction, equivalent to reversing the order of reflections. When multiplied by its conjugate, the rotations represented by complex numbers cancel out, resulting in a point on the real number line.
       </p>
 
       <MathBlock>
@@ -190,7 +190,7 @@ export default function Page2() {
       </MathBlock>
 
       <p>
-        Notice that multiplying by the conjugate is giving us back the pythagorean theorem, which we started with when we first moved from one dimension to two. By undoing any sort of rotation we've ended up back in 1 dimension. All we have to do to get the original value of <MathInline>r</MathInline> back is to take the square root. This distance from the origin is sometimes called the "Euclidean norm", where "norm" is a generalized term for distances and magnitudes. In broader contexts, the euclidean distance, calculated by summing the squares of the components, is referred to as the <MathInline>L^2</MathInline> norm (<MathInline>L</MathInline> named after Lebesgue).
+        Notice that multiplying by the conjugate is giving us back the relationship that we started with when we first moved to two dimensions, the pythagorean theorem. By undoing any sort of rotation we've ended up back in 1 dimension. All we have to do from here to get the original value of <MathInline>r</MathInline> is to take the square root. This distance from the origin is sometimes called the "Euclidean norm", where "norm" is a generalized term for distances and magnitudes. In broader contexts, the euclidean distance, calculated by summing the squares of the components, is referred to as the <MathInline>L^2</MathInline> norm (<MathInline>L</MathInline> named after Lebesgue).
       </p>
 
       <MathBlock>
