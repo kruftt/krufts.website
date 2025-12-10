@@ -2,8 +2,8 @@ import { Button } from '@/components/ui/button'
 import { cn } from "@/lib/utils"
 
 export default function SimpleButton(
-  { children }:
-  { children: React.ReactNode }
+  { children, className, onClick }:
+  React.HTMLProps<HTMLButtonElement>
 ) {
   return (
     <Button
@@ -12,8 +12,10 @@ export default function SimpleButton(
         'drop-shadow-sm hover:drop-shadow-lg',
         'active:text-gray-100',
         'pl-4 pr-4 rounded-2xl text-sm border-1 border-gray-500 ',
+        className
       )}
       variant={'default'}
+      onClick={onClick}
     >{ children }</Button>
   )
 }
