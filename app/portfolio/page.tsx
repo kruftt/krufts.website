@@ -43,7 +43,7 @@ export default function Portfolio () {
         <section className="mt-8">
           <div className="text-center">
             <h3 className="text-4xl">Marc Doucette</h3>
-            <h4 className="text-xl">Educator and Software Developer</h4>
+            <h4 className="text-xl">Educator, Designer, Software Developer</h4>
             {/* <h4 className="text-xl">Game and Web Developer</h4> */}
             <h4 className="text-base">
               <a href="mailto:marc.t.doucette@gmail.com">marc.t.doucette@gmail.com</a>

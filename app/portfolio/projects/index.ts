@@ -17,14 +17,14 @@ const articleList = [
   LostSkies,
   Valheim,
   MetaView,
+  TethersEnd,
   Apollo,
   Tutoring,
   IntMatMult,
   Riftbreaker,
-  TethersEnd,
+  AIME,
   iQueue,
   RibbitHole,
-  AIME,
   // Lightbox
 ]
 

@@ -180,7 +180,7 @@ function CarouselPrevious({
       data-slot="carousel-previous"
       variant={"ghost"}
       className={cn(
-        "absolute size-8 rounded-none justify-start hover:bg-accent/25 disabled:opacity-0",
+        "absolute size-8 rounded-none justify-start hover:bg-accent/50 disabled:opacity-0",
         orientation === "horizontal"
           ? "w-1/6 h-1/1 top-0 -left-8"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -207,7 +207,7 @@ function CarouselNext({
       data-slot="carousel-next"
       variant="ghost"
       className={cn(
-        "absolute size-8 rounded-none justify-end hover:bg-accent/25 disabled:opacity-0",
+        "absolute size-8 rounded-none justify-end hover:bg-accent/50 disabled:opacity-0",
         orientation === "horizontal"
           ? "w-1/6 h-1/1 top-0 -right-8"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
