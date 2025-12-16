@@ -22,7 +22,7 @@ function Component() {
         <SectionTabsContent value='Overview'>
           <section>
             <p className="pb-8">
-              Quaternions are a centrally important algebraic structure in domains that involve 3d rotations, such as computer vision, graphics, robotics, physics, and others. I took some time to organize my intuitions around quaternions and write an article that builds them up from "scratch". In addition to clarifying the ideas through writing, I've produced numerous illustrations and interactive components to aid in intuition building. To author this article I made use of tools like React, Svg, Threejs, Latex, and Krita. 
+              Quaternions are an important algebraic structure in domains that involve 3d rotations, such as computer vision, graphics, robotics, physics, and others. I took some time to organize my intuitions around quaternions and write an article that builds them up from "scratch". In addition to clarifying the ideas through writing, I've produced numerous illustrations and interactive components to help give readers a sense of how quaternions <i>feel</i>. To author this article I made use of tools like React, Svg, Threejs, Latex, and Krita. 
             </p>
             <QuatsCycle>
               <JsdImage src="quats/ij_vs_ji.png" id="c1" className="m-auto cycle max-w-7/8 max-h-100" alt="ij vs ji." />

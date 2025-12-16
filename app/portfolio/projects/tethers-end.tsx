@@ -22,7 +22,7 @@ function Component() {
         <SectionTabsContent value='Intro'>
           <section>
             <p>
-              Circa 2023 I used Godot to begin prototyping an ARPG inspired game entitled <i>Tether's End</i>. In Tether's End, players pilot remote controlled drones across the surface of an abandoned mining planet from the safety of a space station tethered to its equator. I implemented some core systems such as the ability to save / load games, fly around, a hex-based resource scanning system, and basic ship statistics. For the planet's surface, I wrote a rudimentary <a href="https://ccrma.stanford.edu/~doucette/gaming/code/terrain_generator.gd">terrain generator</a>, using noise to create texture and normal maps. At the time, the project served as a good introduction to Godot and GDScript, but I've now moved on and picked this game idea back up in Bevy.
+              Circa 2023 I used Godot to begin prototyping an ARPG inspired game entitled <i>Tether's End</i>. In Tether's End, players pilot remote controlled drones across the surface of an abandoned mining planet from the safety of a space station that is tethered to its equator. I implemented some core systemsm, such as the ability to save / load games, fly around, a hex-based resource scanning system, and basic ship statistics. For the planet's surface, I wrote a rudimentary <a href="https://ccrma.stanford.edu/~doucette/gaming/code/terrain_generator.gd">terrain generator</a>, using noise to create texture and normal maps. At the time, the project served as a good introduction to Godot and GDScript, but I've now moved on and picked this game idea back up in Bevy.
             </p>
 
             <p>
@@ -94,7 +94,7 @@ function Component() {
             <ArticleCarousel>
               <CarouselItem>
                 <p>
-                  A weapon systems in Tether's End consists of a row of components in component slots. When the player fires a weapon, the effect of each component is activated in the order it is slotted, from left to right, forming a "firing chain". In order to make use of the effects of each component, the chain should end with a projectile that can make use of all the effects:
+                  A weapon systems in Tether's End consists of a row of components in component slots. When the player fires a weapon, the effect of each component is activated in the order it is slotted, from left to right, forming a "firing chain". In order to make use of the effects of each component, the chain should end with a projectile that can embody all the effects:
                 </p>
 
                 <div className="flex justify-center mt-8 mb-12">
@@ -154,7 +154,7 @@ function Component() {
                   Triggered effects, like these fireworks, exist in Noita and allow for a lot of player creativity. Noita goes further, however, and adds spells that completely alter the behavior of the "firing chain" and while also lowering or removing the costs of other spells! This blows up the space of possible lategame wand builds.
                 </p>
                 <p>
-                  Recall the complex wand shown earlier. It makes use of a special spell called Add Trigger, which can turn any projectile into a trigger spell. This is powerful in and of itself, but one of its side effects is that makes modifiers that appear alongside it FREE! This is partly what allows such complex wands as this one shown earlier to function:
+                  Recall the complex wand shown earlier. It makes use of a special spell called Add Trigger, which can turn any projectile into a trigger spell. This is powerful in and of itself, but one of its side effects is that it makes modifiers that appear alongside it FREE! This is partly what allows such complex wands as this one shown earlier to function:
                 </p>
 
                 <div className="flex justify-center mt-5 mb-5">

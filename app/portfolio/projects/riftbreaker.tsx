@@ -33,7 +33,7 @@ function Component() {
         </SectionTabsContent>
         <SectionTabsContent value='RB-Reference'>
           <div>
-            I also created the <a href="https://kruftt.github.io/rb-reference/">RiftBreaker Reference</a>, a web-based tool for browsing extracted game data. It included a user-requested economy feature which allowed users to view resource and energy statistics associated with custom builds, going far beyond what was possible by using the wiki!
+            I created the <a href="https://kruftt.github.io/rb-reference/">RiftBreaker Reference</a>, a web-based tool for browsing extracted game data. It included a user-requested economy feature which allowed users to view resource and energy statistics associated with custom builds, going far beyond what was possible by using the wiki!
           </div>
           <div className="mt-4">
             <img className="m-auto" src="/img/rb-reference.jpg" alt="The Riftbreaker Reference" />

@@ -26,7 +26,7 @@ function Component() {
       <SectionTabs tabs={['Explosive Bomb', 'Smooth Armor Scaling', 'Resource Cost Scaling']}>
         <SectionTabsContent value='Explosive Bomb'>
           <p>
-            I recently heard a Valheim player complaining that there was no good way to speed up mining during certain key progression choke points, such as in the swamps. <a href="https://thunderstore.io/c/valheim/p/kruft/Explosive_Bomb/">Explosive Bomb</a> was designed, in part, to remedy this gap. Although it becomes available early in the second progression tier, it requires a Surtling Core, which are hard to come by at that stage of the game. I've balanced the item to be especially effective for mining, good for chopping trees, and to have decent utility in early combat, all making up for its moderately expensive price.
+            I recently overheard a Valheim player complaining that there was just no good way to speed up mining during certain key progression choke points, such as in the swamps. <a href="https://thunderstore.io/c/valheim/p/kruft/Explosive_Bomb/">Explosive Bomb</a> was designed, in part, to remedy this gap. Although it becomes available early in the second progression tier, it requires a Surtling Core, which are hard to come by at that stage of the game. I've balanced the item to be great for mining, good for chopping trees, and decent in early combat, its many uses making up for its moderately expensive price.
           </p>
           <p>
             Authoring this mod involved creating my own model, materials, and sounds, exporting them as an asset package made to be compatible with Valheim, and some amount of code to get it loaded and registered into the game.

@@ -23,8 +23,8 @@ const articleList = [
   IntMatMult,
   Riftbreaker,
   AIME,
-  iQueue,
   RibbitHole,
+  iQueue,
   // Lightbox
 ]
 
