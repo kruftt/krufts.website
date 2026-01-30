@@ -9,10 +9,12 @@ import Riftbreaker from './riftbreaker'
 import TethersEnd from './tethers-end'
 import RibbitHole from './ribbit-hole'
 import AIME from './aime'
-// import Lightbox from './lightbox'
+import Lightbox from './lightbox'
 import Quats from './quats'
+import DOTS from './dots'
 
 const articleList = [
+  DOTS,
   Quats,
   LostSkies,
   Valheim,
@@ -25,7 +27,7 @@ const articleList = [
   AIME,
   RibbitHole,
   iQueue,
-  // Lightbox
+  Lightbox
 ]
 
 const tags: Record<string, TagData> = {
