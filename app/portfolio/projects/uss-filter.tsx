@@ -20,16 +20,10 @@ function Component() {
       <SectionTabs tabs={['Demo', 'Shader Code']}>
         <SectionTabsContent value='Demo'>
           <p>
-            As part of my ongoing exploration into Unity 6.3's current feature set, I took a detour into the UI Toolkit and its new custom USS (Unity Style Sheets) filters feature.
+            As part of an exploration into Unity 6.3, I implemented a custom USS (Unity Style Sheets) filter. Filters provide a method to do post-processing on UI Toolkit VisualElements, akin to CSS filters for HTML elements. VisualElements are first rendered into a texture and then fed into the filter, which is a shader program. Since Unity's Shader Graph visual language doesn't support filters, I had to write the shaders by hand and do some boilerplate to link them up with a style sheet property.
           </p>
           <p>
-            Custom filters provide a method to do post-processing on individual UITK VisualElements. Elements are first rendered into a texture (shaders can also be written for this stage) and then fed into the filter. Since the Shader Graph visual language doesn't support USS filters, I had to write the shaders by hand and do some boilerplate to link them up with a USS filter property. The end result, however, is a USS/UI Builder friendly workflow with live previews!
-          </p>
-          <p>
-            In this small demo, I have three focusable VisualElements that all make use of the same custom filter using different USS styles. These parameters can be controlled and previewed from directly within the UI Builder's Inspector panel, and here are animated using USS transitions. No interface code is required for these effects at all.
-          </p>
-          <p>
-            I did bump into some minor issues and limitations with the new filter system. E.g., when running in the UI Builder, the shader's _Time variable gets patchy updates. There are also a few cases where an UXML file can get corrupted by an invalid filter attribute and need to be manually repaired. Furthermore, there is a limit of 4 USS variables per filter pass, which can only be floats or colors. None of these issues were totally blocking and I am excited for when the system does get fully ironed out, its a joy to work with!
+            In this small demo, I have three focusable VisualElements that make use of the same custom filter, but using different styling parameters. 
           </p>
           <br />
           <div>
@@ -73,13 +67,13 @@ function Component() {
       struct Attributes
       {
         float4 positionOS : POSITION;
-      float2 uv : TEXCOORD0;
+        float2 uv : TEXCOORD0;
       };
 
       struct Varyings
       {
         float4 positionHCS : SV_POSITION;
-      float2 uv : TEXCOORD0;
+        float2 uv : TEXCOORD0;
       };
 
       TEXTURE2D(_MainTex);
@@ -91,12 +85,12 @@ function Component() {
       float4 _NoiseMap_TexelSize;
 
       CBUFFER_START(UnityPerMaterial)
-      float4 _MainTex_ST;
-      float4 _NoiseMap_ST;
-      half4 _BaseColor;
-      half4 _EffectColor;
-      float4 _Scroll;
-      float4 _Spread;
+        float4 _MainTex_ST;
+        float4 _NoiseMap_ST;
+        half4 _BaseColor;
+        half4 _EffectColor;
+        float4 _Scroll;
+        float4 _Spread;
       CBUFFER_END
 
 
@@ -104,18 +98,18 @@ function Component() {
       Varyings vert(Attributes IN)
       {
         Varyings OUT;
-      OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
-      OUT.uv = TRANSFORM_TEX(IN.uv, _MainTex);
-      return OUT;
+        OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
+        OUT.uv = TRANSFORM_TEX(IN.uv, _MainTex);
+        return OUT;
       }
 
 
       float GetSaturation(float4 c)
       {
         float maxC = max(c.r, max(c.g, c.b));
-      float minC = min(c.r, min(c.g, c.b));
-      float delta = maxC - minC;
-          return c.a * ((maxC > 0.00001) ? delta / maxC : 0.0);
+        float minC = min(c.r, min(c.g, c.b));
+        float delta = maxC - minC;
+        return c.a * ((maxC > 0.00001) ? delta / maxC : 0.0);
       }
 
 
@@ -129,36 +123,36 @@ function Component() {
         float noiseSampleDensity = 4.0;
 
         float2 uvNoise = float2(
-        noiseSampleDensity * _NoiseMap_TexelSize.x,
-        noiseSampleDensity * _NoiseMap_TexelSize.y
+          noiseSampleDensity * _NoiseMap_TexelSize.x,
+          noiseSampleDensity * _NoiseMap_TexelSize.y
         );
 
         float4 _scroll = 100 * (LinearToSRGB(_Scroll) - 0.5);
         float4 _spread = LinearToSRGB(_Spread) - 0.5;
 
         half4 noiseSample = SAMPLE_TEXTURE2D(_NoiseMap, sampler_NoiseMap, float2(
-        uvNoise.x * (_scroll.x * _Time[1] - _spread.x * _MainTex_TexelSize.z - IN.positionHCS.x),
-        uvNoise.y * (_scroll.y * _Time[1] - _spread.y * _MainTex_TexelSize.w - IN.positionHCS.y)
+          uvNoise.x * (_scroll.x * _Time[1] - _spread.x * _MainTex_TexelSize.z - IN.positionHCS.x),
+          uvNoise.y * (_scroll.y * _Time[1] - _spread.y * _MainTex_TexelSize.w - IN.positionHCS.y)
         ));
 
         // Lerp with 2nd noise sample
         noiseSample = lerp(noiseSample,
-        SAMPLE_TEXTURE2D(_NoiseMap, sampler_NoiseMap, float2(
-        uvNoise.x * (_scroll.z * _Time[1] - _spread.x * _MainTex_TexelSize.z - IN.positionHCS.x),
-        uvNoise.y * (_scroll.w * _Time[1] - _spread.y * _MainTex_TexelSize.w - IN.positionHCS.y)
-        )),
+          SAMPLE_TEXTURE2D(_NoiseMap, sampler_NoiseMap, float2(
+            uvNoise.x * (_scroll.z * _Time[1] - _spread.x * _MainTex_TexelSize.z - IN.positionHCS.x),
+            uvNoise.y * (_scroll.w * _Time[1] - _spread.y * _MainTex_TexelSize.w - IN.positionHCS.y)
+          )),
         0.5);
 
         // Effect Sample
         float2 uvEffect = float2(
-        IN.uv.x - (_spread.x + (noiseSample.r * _spread.z)),
-        IN.uv.y - (_spread.y + (noiseSample.g * _spread.w))
+          IN.uv.x - (_spread.x + (noiseSample.r * _spread.z)),
+          IN.uv.y - (_spread.y + (noiseSample.g * _spread.w))
         );
 
         // TODO: How does Unity calculate this padding?
         half4 effectSample = (
-                uvEffect.x > 0.02 && uvEffect.x < .98
-                && uvEffect.y > 0.033 && uvEffect.y < 0.92
+          uvEffect.x > 0.02 && uvEffect.x < .98
+          && uvEffect.y > 0.033 && uvEffect.y < 0.92
         )
         ? SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uvEffect)
         : half4(0, 0, 0, 0);
@@ -173,13 +167,13 @@ function Component() {
 
         // Alpha Blend
         return (_spread.y < 0)
-        ? float4(
-        (1 - groundColor.a) * effectAlpha * effectColor + groundColor.a * groundColor.rgb,
-        1 - (1 - effectAlpha) * (1 - groundColor.a)
-        )
-        : float4(
-        effectAlpha * effectColor + (1 - effectAlpha) * groundColor.rgb,
-        1 - (1 - effectAlpha) * (1 - groundColor.a));
+          ? float4(
+            (1 - groundColor.a) * effectAlpha * effectColor + groundColor.a * groundColor.rgb,
+            1 - (1 - effectAlpha) * (1 - groundColor.a)
+          )
+          : float4(
+            effectAlpha * effectColor + (1 - effectAlpha) * groundColor.rgb,
+            1 - (1 - effectAlpha) * (1 - groundColor.a));
         }
 
         ENDHLSL

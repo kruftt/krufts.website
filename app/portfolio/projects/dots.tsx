@@ -22,7 +22,7 @@ function Component() {
         <SectionTabsContent value='Particle Demo'>
           <section>
             <p>
-              In recent explorations of Unity's "Data-Oriented Technology Stack", also known as DOTS, I implemented a set of modular and performant systems using several core ECS architectural patterns. To test these systems, I built a demo in which the user can push around 10,000 animated, colored dots that are otherwise attracted toward the center of the screen.
+              In recent explorations of Unity's "Data-Oriented Technology Stack" (DOTS), I implemented a set of modular and performant systems using several core ECS architectural patterns. To test these systems, I built a demo in which the user can push around 10,000 animated, colored dots that are otherwise attracted toward the center of the screen.
             </p>
             <p>
               In order to achieve this result, I combined Unity's DOTS framework with the Low-Level 2D Physics API (Box2D) to build high-performance animation and physics systems. This included shader-driven animations, prefab instantiation, entity lifecycle management, and Physics API integration. Key systems aggregate forces from multiple sources and batch their application across all bodies in a single API call, with force and transform state synchronized between the Entity and Physics worlds using vectorizable, contiguous memory operations.
@@ -36,13 +36,16 @@ function Component() {
         <SectionTabsContent value='Profiler'>
           <section>
             <p>
-              The primary performance advantages of an ECS architecture come from the caching and parallelization benefits. The general idea is to reduce cache misses (by accessing contiguous regions of memory) and to take as much work off the main thread as possible (by leveraging the job system and the Burst compiler). Even in the fairly simple case of controlling 10,000 animations by writing to shader parameters, the nature of the architectural benefits are apparent in the profiler.
+              The performance advantages of the ECS architecture come from caching and parallelization benefits. The idea is to reduce cache misses (by accessing contiguous regions of memory) and to take as much work off the main thread as possible (by leveraging the job system and the Burst compiler). Even in this simple case of controlling 10,000 animations, the nature of the architectural benefits are apparent in the profiler.
             </p>
             <p>
-              These slides depict a 4-step sequence: first, showing a naive implementation of a "Flipbook Animation", second, the same implementation but Burst compiled, third, as a parallelized job without Burst, and finally, as a parallelized job with Burst. The runtime in the single threaded version drops from 1.5ms to 0.3ms with Burst, and then down to under 0.01ms when the main thread is only scheduling jobs. The parallelized job without burst ran in approximately 0.1ms, while with Burst it collapsed down to under 0.02ms.
-            </p>
-            <p>
-              Since this system does not need to make any structural changes to entities, the benefits of the Burst compiler and parallelization are relatively transparent. I.e. there is no need to write to an Entity Command Buffer from the worker threads and then to replay the buffer back on the main thread, so we're not paying a hidden cost later during the replay a command buffer system.
+              These slides depict a 4-step sequence:
+              <ul className="mt-2 ml-8 list-disc">
+                <li>A naive implementation (1.5ms)</li>
+                <li>A naive implementation using the Burst compiler (0.3ms)</li>
+                <li>A parallelized job (0.01ms main thread, 0.1ms worker threads)</li>
+                <li>A parallelized job with Burst (0.01ms main thread, 0.02ms worker threads)</li>
+              </ul>
             </p>
             <br />
             <ArticleCarousel>
