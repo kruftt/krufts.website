@@ -1,35 +1,22 @@
-import Apollo from './apollo';
-import LostSkies from "./lost-skies";
-import MetaView from "./meta-view";
 import Tutoring from './tutoring'
-import iQueue from './iQueue'
-import IntMatMult from './IntMatMult'
-import Valheim from './valheim'
-import Riftbreaker from './riftbreaker'
 import TethersEnd from './tethers-end'
-import RibbitHole from './ribbit-hole'
-import AIME from './aime'
-// import Lightbox from './lightbox'
+import ComputerMusic from './computer-music'
 import Quats from './quats'
-import DOTS from './dots'
-import USSFilter from './uss-filter'
+import Unity6 from './unity-6.3'
+import UnityMods from './unity-mods'
+import MiscMods from './misc-mods'
+import EdTech from './edtech-tools'
 
 const articleList = [
-  USSFilter,
-  DOTS,
   Quats,
-  LostSkies,
-  Valheim,
-  MetaView,
-  TethersEnd,
-  Apollo,
+  Unity6,
   Tutoring,
-  IntMatMult,
-  Riftbreaker,
-  AIME,
-  RibbitHole,
-  iQueue,
-  // Lightbox,
+  ComputerMusic,
+  
+  EdTech,
+  UnityMods,
+  MiscMods,
+  TethersEnd,
 ]
 
 const tags: Record<string, TagData> = {

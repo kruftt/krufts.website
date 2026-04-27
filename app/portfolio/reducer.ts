@@ -19,7 +19,7 @@ function generate(): PortfolioState {
       colors[tagName] = 'transparent'
     }
     // for (tagName of article.tags) {
-      // colors[tagName] = projects.tags[tagName].color
+    //   colors[tagName] = projects.tags[tagName].color
     //   colors[tagName] = 'bg-gray-200'
     // }
     indicators[title] = colors
@@ -29,6 +29,7 @@ function generate(): PortfolioState {
     ...projects,
     indicators,
     selected,
+    anySelected: false,
   })
 }
 
@@ -36,9 +37,11 @@ function setIndicators(state: PortfolioState) {
   const { articles, tags, selected } = state
   const indicators: Record<string, Record<string, string>> = {}
   
+  state.anySelected = Object.values(selected).reduce((anySelected, thisSelected) => anySelected || thisSelected, false)
+
   for (const article of Object.values(articles)) {
     indicators[article.title] =
-      Object.values(selected).reduce((anySelected, thisSelected) => anySelected || thisSelected, false)
+      state.anySelected
         ?
           article.tags.reduce((indicators, tag) => {
             indicators[tag] = selected[tag] ? tags[tag].color : 'bg-gray-200'

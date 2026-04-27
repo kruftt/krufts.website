@@ -1,11 +1,14 @@
 import ArticleHeader from "@/components/portfolio/article-header"
 import { ArticleCarousel, CarouselItem } from "@/components/portfolio/article-carousel"
 import { SectionTabs, SectionTabsContent } from "@/components/portfolio/article-tabs"
+import IntMatMult from './IntMatMult'
 
 const data: ArticleData = {
   title: 'Tutoring',
   tags: ['edu', 'webdev'],
-  links: [],
+  links: [
+    
+  ],
   Component
 };
 
@@ -20,12 +23,35 @@ function Component() {
           Over the past few years I've tutored high school and junior college students at various levels of proficiency in Mathematics and Computer Science. This has involved verbal communication and hand-drawn sketches while referencing material in their books and coursework. However, I have occasionally produced my own reference materials outside of these. Included here are a few examples.
         </p>
       </div>
+      <br />
       <SectionTabs tabs={[
+        'Matrix Multiplication',
         'Dot Product',
         'Exterior Product',
         'Trig Derivatives',
-        'Matrix Multiplication'
         ]}>
+        
+        <br />
+
+        <SectionTabsContent value='Matrix Multiplication'>
+          <h2 className="text-2xl text-center">Matrix Multiplication</h2>
+          <SectionTabs tabs={['Interactive Widget', 'Diagrams']}>
+            <SectionTabsContent value="Interactive Widget">
+              <IntMatMult.Component></IntMatMult.Component>
+            </SectionTabsContent>
+            <SectionTabsContent value="Diagrams">
+              <ArticleCarousel>
+                <CarouselItem>
+                  <img src="/img/matrix1.jpg" className="m-auto" alt="Inner and Outer products" />
+                </CarouselItem>
+                <CarouselItem>
+                  <img src="/img/matrix2.jpg" className="m-auto" alt="Combinations of rows and columns" />
+                </CarouselItem>
+              </ArticleCarousel>
+            </SectionTabsContent>
+          </SectionTabs>
+        </SectionTabsContent>
+
         <SectionTabsContent value='Dot Product' className="text-center">
           <div className="max-w-7/8 m-auto">
             <p>
@@ -237,20 +263,6 @@ function Component() {
           </ArticleCarousel>
         </SectionTabsContent>
 
-        <SectionTabsContent value='Matrix Multiplication'>
-          <div className="max-w-7/8 m-auto">
-            In order to help students build intuition for matrix multiplication I created the following graphics that visualize matrix multiplation in terms of the rows and columns of the matrices.<br />
-          </div>
-          <br />
-          <ArticleCarousel>
-            <CarouselItem>
-              <img src="/img/matrix1.jpg" className="m-auto" alt="Inner and Outer products" />
-            </CarouselItem>
-            <CarouselItem>
-              <img src="/img/matrix2.jpg" className="m-auto" alt="Combinations of rows and columns" />
-            </CarouselItem>
-          </ArticleCarousel>
-        </SectionTabsContent>
       </SectionTabs>
     </article>
   )

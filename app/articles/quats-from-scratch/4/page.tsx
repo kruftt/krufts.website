@@ -76,7 +76,7 @@ export default function Page4() {
       </p>
 
       <p>
-        When switching our interpretation of quaternions between rotations and positions, what we are doing in terms of the geometric algebra is switching between <i>dual</i> subspaces. That is to say, the axis of rotation is in a dual subspace to the plane of rotation, where together they fill the entirety of 3D. Similarly, the "twisted" oriented volume component forms a dual subspace with the scalar component, together "filling" 3D space. The quaternion variables are only able to carry these complementary meanings because of this dual relationship, and its up to us not to mix up the interpretations. The geometric algebra, however, disentangles these behaviors and can give a clear and direct picture all the way through, but at the expense of doubling the number of elements in the algebra!
+        When switching our interpretation of quaternions between rotations and positions, what we are doing in terms of the geometric algebra is switching between <i>dual</i> subspaces. That is to say, the axis of rotation is in a dual subspace to the plane of rotation, where together they fill the entirety of 3D. Similarly, the "twisted" oriented volume component forms a dual subspace with the scalar component, together "filling" 3D space. The quaternion variables are able to carry these complementary meanings only because of this dual relationship, and its up to us not to mix up the interpretations. The geometric algebra, however, disentangles these behaviors and can give a clear and direct picture all the way through, but at the expense of doubling the number of elements in the algebra!
       </p>
 
       <QuatsHeader>

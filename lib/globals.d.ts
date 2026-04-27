@@ -19,6 +19,7 @@ interface PortfolioState {
   articleList: string[]
   selected: Record<string, bool>
   indicators: Record<string, Record<string, string>>
+  anySelected: boolean
 }
 
 type PortfolioAction = {

@@ -28,7 +28,7 @@ export default function Swapper({ className }: { className?: string }) {
   const manager = useRef(new ObjectiveListManager(
     { name: 'Rotate Left 2x', indicators: 2 },
     { name: 'Rotate Right 2x', indicators: 2 },
-    { name: 'Left, Right, Right, Left', indicators: 4 },
+    { name: 'Rotate Left 1x, Right 2x, Left 1x', indicators: 4 },
   ))
   const [listData, setListData] = useState(manager.current.getData())
   const swapState = useRef<TwoSwapperState>(new RotateLeft(new TwoSwapper()))
