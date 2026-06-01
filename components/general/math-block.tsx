@@ -8,14 +8,14 @@ export default function MathBlock(
     { children: string | string[], inline?: boolean, className?: string }
 ) {
 
-  if (!(children instanceof Array)) {
+  if (!(Array.isArray(children))) {
     children = [children]
   }
 
-  const lines = children.map((statement, i) =>
+  const lines = children.map((statement) =>
     inline
-      ? <span key={i}>{"\\(" + statement + "\\)"}</span>
-      : <span key={i}>{ "\\[" + statement + "\\]" }</span>
+      ? <span key={statement}>{`\\(${statement}\\)`}</span>
+      : <span key={statement}>{`\\[${statement}\\]`}</span>
   )
 
   return (

@@ -1,14 +1,18 @@
 // 'use client'
 import JsdImage from "@/components/general/jsdelivr-image"
+import { QuatsHeader } from "./_components/quats-header"
 
 export default function QuatsFromScratch() {
   return (
     <article>
+      <QuatsHeader>
+        {"Introduction"}
+      </QuatsHeader>
       <div>
         <p>
           Quaternions are central to subjects involving 3D rotations, such as computer vision, graphics, robotics, and physics. Even though quaternions were the original source of the 3D vector operations that most people are familiar with, the dot and cross products, they all too often remain shrouded in mystery. There is a common misconception that understanding these <i>complex</i> algebraic objects requires a special capacity to imagine non-intuitive 4-dimensional spaces, but I am here to tell you that this is not the case!
         </p>
-        <JsdImage src="quats/quat_to_vec.png" className="max-w-7/8 max-h-80 m-auto" alt="Quaternion multiplication contains the dot and cross products." />
+        <JsdImage src="quats/quat_to_vec.png" width={1580} height={822} className="max-w-7/8 max-h-80 m-auto" alt="Quaternion multiplication contains the dot and cross products." />
         <p>
           Some aspects of quaternions may seem a bit mysterious:
         </p>

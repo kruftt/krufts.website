@@ -1,299 +1,525 @@
-'use client'
-import '@/app/articles/quats-from-scratch/3/3d.css'
-import MathBlock from '@/components/general/math-block';
-import MathInline from '@/components/general/math-inline';
-import { QuatsHeader } from '@/components/quats/quats-header';
-import { QuatsCycle } from '@/components/quats/quats-cycle';
-import ThreeSwapper from '@/components/quats/three-swap';
-import JsdImage from "@/components/general/jsdelivr-image"
+"use client";
+import "@/app/articles/quats-from-scratch/3/3d.css";
+import JsdImage from "@/components/general/jsdelivr-image";
+import MathBlock from "@/components/general/math-block";
+import MathInline from "@/components/general/math-inline";
+import { QuatsCycle } from "../_components/quats-cycle";
+import { QuatsHeader } from "../_components/quats-header";
+import ThreeSwapper from "../_components/three-swap";
 
 export default function Page3() {
-  const twister_url = process.env.NODE_ENV === "development"
-    ? 'bg-[url(/img/quats/twister.png)]'
-    : 'bg-[url(https://cdn.jsdelivr.net/gh/kruftt/krufts.website@images/quats/twister.png)]'
-
-  return (
-    <article>
-
-      <QuatsHeader>
-        {"Dimension 3"}
-        {"It All Revolves Around This"}
-      </QuatsHeader>
-
-
-      <p>
-        Home at last, three dimensions. We can get from two to three dimensions in the same way as before, tack on another dimension, gesture at the pythagorean theorem, and call it good. This gives us a position in three 3 dimensions that we can add, subtract, and scale as desired.
-      </p>
-
-      <MathBlock>
-        p=(a,b,c)
-      </MathBlock>
-
-      <p>
-        We would like to extend our ability to rotate into three dimensions and write down a corresponding algebra. We have previously noted that each component of behavior needs its own element. Lets look at the components of a 3d rotation.
-      </p>
-
-      <p>
-        The basics are similar to 2 dimensions in that a rotation clearly involves an exchange from one direction to another in a cycle. The main difference is that in 3 dimensions there is an <i>axis</i> of rotation that goes along for the ride, without any exchanging. We can picture a top spinning on its axis:
-      </p>
-
-      <div className="flex flex-col items-center">
-        <JsdImage src="quats/top.png" className="max-w-7/8 max-h-70" alt="A spinning top." />
-
-      </div>
-
-      <p>
-        Therefore, in addition to knowing how much we want to rotate, we also need to know the axis of rotation.
-      </p>
-
-      <p>
-        First, we'll need to figure out how to <i>rotate</i>. Then, just like with 2 dimensions, we can use the pythagorean theorem to transition between staying and rotating. In the 2D case, the rotation behavior was relatively straightforward, involving a swap and a flip to get the four directions going in a cycle. In the 3D case, there is an additional "rotating in place" behavior along the axis, alongside the cycling components. That is to say, when doing a quarter rotation around the first axis we expect our translated point to be:
-      </p>
-
-      <div className="text-center">
-        <MathInline>{"(a,b,c) \\rightarrow (a,-c,b)"}</MathInline>
-
-      </div>
-
-      <p>
-        Where the first component <MathInline>a</MathInline> is on the axis of rotation, and <MathInline>b</MathInline> and <MathInline>c</MathInline> are in the plane of rotation.
-      </p>
-
-      <JsdImage src="quats/3d_components.png" className="max-w-7/8 max-h-100 m-auto" alt="The components of a 3d rotation action." />
-
-
-      <QuatsHeader>
-        {"A Bubble Bursts"}
-        {"The Singularity is Here"}
-      </QuatsHeader>      
-      <p>
-        Suppose we keep the exact same setup as in two dimensions and add an additional complex variable. Each can rotate in its plane, but stays still while the other is rotating:
-      </p>
-
-      <JsdImage src="quats/two_var.png" className="max-w-7/8 max-h-80 m-auto" alt="Two variable algebra." />
-
-      <div className="flex justify-evenly">
-        <MathBlock>
-          {"i^2=-1"}
-          {"ij=j"}
-        </MathBlock>
-        <MathBlock>
-          {"j^2=-1"}
-          {"ji=i"}
-        </MathBlock>
-
-      </div>
-
-      <p>
-        This does indeed allow us to rotate in these two planes, but there are some strange things afoot. The first is that <MathInline>{"ij \\neq ji"}</MathInline>. The order of actions can no longer be switched, they no longer commute ("commute" means "change together"). This is reflecting the fact that we have to be clear which axis is doing the rotating and which is being rotated. Doing rotations in reverse order does not usually result in the same translation. This is contrary to two dimensions in which we could exchange the order freely, and only the total amount of rotation mattered. Given this issue of axes rotating each other, losing commutativity appears to be an unavoidable complication.
-      </p>
-
-      <p>
-        Moving on to the second issue and, unfortunately, it is catastrophic. We can see it by substituting <MathInline>j=ij</MathInline> into itself:
-      </p>
-
-      <MathBlock>
-        {"j=ij"}
-        {"j=iij"}
-        {"j=-j"}
-        {"2j=0"}
-        {"i=j=0"}
-      </MathBlock>
-
-      <JsdImage src="quats/bubble.png" className="max-w-7/8 max-h-60 m-auto mt-8 mb-6" alt="The bubble bursts." />
-
-      <p>
-        Its all collapsed! What happened!? The issue is we are trying to get these elements to perform double duty. The first statements, like <MathInline>i^2=-1</MathInline>, tell them to act as rotations, while the second statements, <MathInline>ij=j</MathInline>, tell them to act as the identity. But when we combine these behaviors into a single statement, the algebra collapses back into the singularity, the only place where both of these behaviors can be part of the same action! Similarly, if <MathInline>i</MathInline> and <MathInline>j</MathInline> dont affect each other, how could we rotate between them? We cannot expect <MathInline>1</MathInline> to step in and cause a rotation or else we will overload it's behavior as well, ending in another catastrophe.
-      </p>
-      
-      
-      <QuatsHeader>
-        {"The Third Wheel"}
-        {"Two is Company, Three's a Crowd"}
-      </QuatsHeader>
-      
-      
-      <p>
-        In 2 dimensions, we had only one possible plane of rotation and were able to use a single algebraic variable to represent turning in that plane. Conveniently, this allowed us to think of points both as positions and actions and to freely switch between perspectives. Now that we have three possible planes of rotation, however, not only do we need a variable for each one, but we still need extra room for information about how much to <i>stay</i> vs <i>rotate</i> at all. Therefore, looking ahead, we expect terms in our algebra to have the general form:
-      </p>
-
-      <MathBlock>
-        a + bi + cj + dk
-      </MathBlock>
-
-      <JsdImage src="quats/planar_actions.png" className="max-w-7/8 max-h-100 m-auto mt-8 mb-4" alt="Three planar actions." />
-
-      <p>
-        Each complex variable represents a quarter rotation in one of the planes / around one of the axes, while the real component represents staying in place (or purely reversing). Furthermore, we know that the real component cannot be on an axis or else the algebra collapses. So now we have three algebraic variables, taking up all three dimensions. Where has the real component gone? Can we just forget it entirely? How do we interpret what these rotations do e.g. to <MathInline>1</MathInline>? We know that:
-      </p>
-
-      <MathBlock>
-        {"i\\cdot1=i"}
-      </MathBlock>
-
-      <p>
-        But <MathInline>1</MathInline> is no longer in our picture! 
-      </p>
-
-      <p>
-        Consider that turning all the way around on an axis is, at least positionally, equivalent to staying in place. Algebraically we can say <MathInline>i^4=1</MathInline>. But we also know that <MathInline>{"i\\neq \\pm1"}</MathInline>. This means <MathInline>i</MathInline> must cycle with <MathInline>1</MathInline> in exactly the same 4-step procedure as in the 2D case.
-      </p>
-
-      <div className={`${twister_url} bg-cover bg-center w-1/1 pb-10 z-10`}>
-
-
-        <QuatsHeader>
-          {"The Eye of the Storm"}
-          {"It's a Real Twister"}
-        </QuatsHeader>
-
-
-        <div className="flex flex-col items-center">
-          <span>Therefore we have:</span>
-          <MathBlock>
-            {"i^2=-1"}
-            {"j^2=-1"}
-            {"k^2=-1"}
-          </MathBlock>
-          <MathBlock>
-            {"ij=k"}
-            {"jk=i"}
-            {"ki=j"}
-          </MathBlock>
-          <MathBlock>
-            {"ij=k"}
-            {"ijk=k^2"}
-            {"ijk=-1"}
-            {"ijk=i^2=j^2=k^2=-1"}
-          </MathBlock>
-        </div>
-
-      </div>
-
-      <p>
-        The algebra doesn't collapse, but things are getting a bit carried away! We have an algebra that can rotate around all three axes, but it does something else. Part of the component parallel to the axis of rotation, the part that is twisting in place, is getting cycled toward <MathInline>-1</MathInline>. We were only considering the real component to be part of the action, meaning roughly <i>stay-in-place</i>, but now its part of the resulting position! Meanwhile, the component along the axis is liable to collapse to <MathInline>0</MathInline> or to end up going the opposite way entirely. We only know where its "supposed" to go because of the context of the action that generated it.
-      </p>
-
-      <JsdImage src="quats/axis_actions.png" className="max-w-7/8 max-h-80 m-auto" alt="Two cycles of action." />
-
-      <p>
-        Let's look at what the algebra is telling us. Its saying that the <i>stay-in-place</i> and <i>rotate-in-place</i> behaviors are two aspects of the same overarching behavior, that of not moving. They both have the same effect on the final position, but how they get there is different. Therefore the "position" that multiplication gives back to us has its axis split in two, the part that <i>stayed</i> and the part that <i>twisted</i>.
-      </p>
-
-      <p>
-        After doing a multiplication, one option is to step out of the algebra and use the pythagorean theorem to sum up the twisted component and the axis, but this completely defeats the purpose of having an algebra! We need to be able to undo the twist without undoing the rotation. Another two-step process is in order.
-      </p>
-
-
-      <QuatsHeader>
-        {"Controlled Opposition"}
-        {"How to Pull the Strings"}
-      </QuatsHeader>
-
-
-      <JsdImage src="quats/cats_cradle.png" className="max-w-7/8 max-h-80 m-auto" alt="Can you see the pattern?" />
-
-      <p>
-        Is there anything fundamentally different between the two cycles that will allow them to be separated? Recall that the order in which axes multiply matters because it keeps track of which axis is rotating the other. We need to contrast this antisymmetric behavior in the plane of rotation, where order matters, with the symmetric behavior of twisting, where the order is irrelevant.
-      </p>
-
-      <p>
-        Let's first consider multiplying the point <MathInline>(i + j)</MathInline> <i>on the left</i> by <MathInline>i</MathInline>, represented by the green arrow. The <MathInline>i</MathInline> component, represented by the yellow dot, is along the axis of rotation while the <MathInline>j</MathInline> component, represented by the orange dot, is in the plane of rotation:
-      </p>
-
-      <JsdImage src="quats/ij_vs_ji.png" className="max-w-7/8 max-h-100 m-auto" alt="ij vs ji." />
-      
-      <div className='text-center'>
-        <MathBlock>
-          {"i(i + j)"}
-          {"i^2 + ij"}
-          {"-1 + k"}
-        </MathBlock>
-      </div>
-
-      <p>
-        This takes <MathInline>{"i \\rightarrow -1"}</MathInline> and <MathInline>{"j \\rightarrow k"}</MathInline>. We can consider the <MathInline>-1</MathInline> term as signifying that the parallel component, <MathInline>i</MathInline>, has done a counter-clockwise twist, while <MathInline>j</MathInline> has undergone a quarter rotation. Now we'll undo the twist by multiplying by the conjugate, <MathInline>i^*</MathInline>, but this time we'll multiply <i>on the right</i>, as represented by the gold arrow:
-      </p>
-
-      <JsdImage src="quats/i_inverse.png" className="max-w-7/8 max-h-100 m-auto" alt="i*j vs ji*." />
-
-      <div className='text-center'>
-        <MathBlock>
-          {"(-1 + k)i^*"}
-          {"-i^* + ki"}
-          {"i - j"}
-        </MathBlock>
-      </div>
-
-      <p>
-        First note that the twisted, parallel component at <MathInline>-1</MathInline> has been untwisted back to <MathInline>i</MathInline>, as expected from multiplying by the conjugate. But what happened within the plane of rotation? What does it mean to multiply <i>on the right</i> by <MathInline>i^*</MathInline>? The algebra tells us that this is the same as if <MathInline>k</MathInline> was multiplying <MathInline>i^*</MathInline> <i>on the left</i>, i.e. as if <MathInline>k</MathInline> was the axis of rotation, represented by the gold arrow <MathInline>ki^*=j^*</MathInline>. But what does this mean as an operation on <MathInline>k</MathInline>? One that takes <MathInline>k</MathInline> to <MathInline>j^*</MathInline>? Notice that, within the plane of rotation, this results in the same action as the first rotation, the one that resulted from multiplying by <MathInline>i</MathInline> <i>on the left</i>.
-      </p>
-      <p>
-        By both <i>taking the conjugate</i> and multiplying <i>on the right</i> we are both rotating in the opposite direction and from the opposite side, such that the two reverses cancel each other out. Meanwhile, the axis of rotation only cares about which direction the rotation goes, i.e. whether or not we are using the conjugate. By leveraging this difference, the rotation doubles up and the twist cancels out, leaving movement only in the plane of rotation!
-      </p>
-
-      <QuatsCycle>
-        <JsdImage src="quats/ij_vs_ji.png" id="c1" className="m-auto cycle max-w-7/8 max-h-100" alt="ij vs ji." />
-        <JsdImage src="quats/i_inverse.png" id="c2" className="cycle max-w-7/8 max-h-100" alt="i*j vs ji*." />
-        <JsdImage src="quats/rotation_result.png" id="c3" className="cycle max-w-7/8 max-h-100" alt="The rotation result." />
-      </QuatsCycle>
-
-      <MathBlock>
-        {"i(i+j)i^*"}
-        {"(-1+k)i^*"}
-        {"i - j"}
-      </MathBlock>
-
-      <p>
-        By multiplying on the left by <MathInline>i</MathInline> and the right by <MathInline>i^*</MathInline>, we have performed a counter-clockwise rotation around <MathInline>i</MathInline>. This time we have gone a full half turn, as opposed to a single quarter turn in 2d, by performing 2 quarter turns in order to do and undo the twist along the axis of rotation. You can get a feeling for this interaction between left and right multiplication here:
-      </p>
-
-      <ThreeSwapper className='mt-16'></ThreeSwapper>
-
-      <p>
-        The fact that we have to do and undo the twist means that the amount of rotation done in each step gets doubled up on the whole. This double action is the reason why quaternions use half the angle of the rotation they are meant to represent. Therefore, in order to perform a rotation of angle <MathInline>{"\\theta"}</MathInline> around axis <MathInline>i</MathInline>, we can use a quaternion that looks strikingly similar to a complex number representing a rotation, but the angle is divided in 2:
-      </p>
-
-      <MathBlock>
-        {"q = \\cos{\\frac{\\theta}{2}}+i\\sin{\\frac{\\theta}{2}}"}
-        {"q^{-1} = \\cos{\\frac{\\theta}{2}}-i\\sin{\\frac{\\theta}{2}}"}
-        {"p' = qpq^{-1}"}
-      </MathBlock>
-
-      <p>
-        So we've rotated a vector <MathInline>p</MathInline> around <MathInline>i</MathInline> for an angle <MathInline>{"\\theta"}</MathInline>. But, seeing as we've defined everything symmetrically, <MathInline>i</MathInline> could have been any unit vector involving <MathInline>(i,j,k)</MathInline> around which to rotate! Any quaternion with a norm of <MathInline>1</MathInline>, called a versor (meaning "turner"), could be substituted in for <MathInline>q</MathInline> in order to rotate around its axis.
-      </p>
-
-      <p>
-        Notice what we've achieved in terms of two other common ways of representing 3d rotations, Euler angles and angle-axis. Euler angles represent rotations purely around one of the three axes, which we used as a base case to help us derive the quaternion algebra. Defining this algebra in a general way has then left us with a type of angle-axis representation, but one that encodes half the angle rather than the full angle so as to be able to do and undo the twisting action!
-      </p>
-
-      <QuatsHeader>
-        {"Getting Yoked"}
-        {"Its a Push and Pull"}
-        {/* {"Its the Middle Way"} */}
-      </QuatsHeader>
-
-      <p>
-        This process of placing a versor and its conjugate on either side is called conjugation. The word <i>conjugate</i> shares a root with the word <i>yoke</i>, as in a beam that binds working oxen. We can say that we have conjugated <MathInline>p</MathInline> by <MathInline>q</MathInline> in order to rotate it, so <MathInline>p</MathInline> and <MathInline>p'</MathInline> are related through <MathInline>q</MathInline> by conjugation. I suppose that versors are like oxen, working hard to rotate <MathInline>p</MathInline> around the axis via the yoke of conjugation!
-      </p>
-
-      <p>
-        Tracing through the operation, we can see how the real component, the twist, gets cancelled out, while the rotation doubles up:
-      </p>
-
-      <QuatsCycle>
-        <JsdImage src="quats/yoke_terms.png" id="y1" className="m-auto yoke max-w-9/10 max-h-150" alt="Yoked terms." />
-        <JsdImage src="quats/yoke_actions.png" id="y2" className="yoke max-w-9/10 max-h-150" alt="Yoked actions." />
-      </QuatsCycle>
-
-      <MathBlock>
-        {"p = ai + bj + ck"}
-        {"q = \\cos{\\frac{\\theta}{2}} + \\sin{\\frac{\\theta}{2}}\\hat{u}"}
-        {"q^{-1} = \\cos{\\frac{\\theta}{2}} - \\sin{\\frac{\\theta}{2}}\\hat{u}"}
-        {"p' = qpq^{-1}"}
-      </MathBlock>
-
-    </article>
-  );
+	const twister_url =
+		process.env.NODE_ENV === "development"
+			? "bg-[url(/img/quats/twister.png)]"
+			: "bg-[url(https://cdn.jsdelivr.net/gh/kruftt/krufts.website@images/quats/twister.png)]";
+
+	return (
+		<article>
+			<QuatsHeader>
+				{"Dimension 3"}
+				{"It All Revolves Around This"}
+			</QuatsHeader>
+
+			<p>
+				Home at last, three dimensions. We can get from two to three dimensions
+				in the same way as before, tack on another dimension, gesture at the
+				pythagorean theorem, and call it good. This gives us a position in three
+				3 dimensions that we can add, subtract, and scale as desired.
+			</p>
+
+			<MathBlock>p=(a,b,c)</MathBlock>
+
+			<p>
+				We would like to extend our ability to rotate into three dimensions and
+				write down a corresponding algebra. We have previously noted that each
+				component of behavior needs its own element. Lets look at the components
+				of a 3d rotation.
+			</p>
+
+			<p>
+				The basics are similar to 2 dimensions in that a rotation clearly
+				involves an exchange from one direction to another in a cycle. The main
+				difference is that in 3 dimensions there is an <i>axis</i> of rotation
+				that goes along for the ride, without any exchanging. We can picture a
+				top spinning on its axis:
+			</p>
+
+			<div className="flex flex-col items-center">
+				<JsdImage
+					src="quats/top.png"
+					width={583}
+					height={620}
+					className="max-w-7/8 max-h-70"
+					alt="A spinning top."
+				/>
+			</div>
+
+			<p>
+				Therefore, in addition to knowing how much we want to rotate, we also
+				need to know the axis of rotation.
+			</p>
+
+			<p>
+				First, we'll need to figure out how to <i>rotate</i>. Then, just like
+				with 2 dimensions, we can use the pythagorean theorem to transition
+				between staying and rotating. In the 2D case, the rotation behavior was
+				relatively straightforward, involving a swap and a flip to get the four
+				directions going in a cycle. In the 3D case, there is an additional
+				"rotating in place" behavior along the axis, alongside the cycling
+				components. That is to say, when doing a quarter rotation around the
+				first axis we expect our translated point to be:
+			</p>
+
+			<div className="text-center">
+				<MathInline>{"(a,b,c) \\rightarrow (a,-c,b)"}</MathInline>
+			</div>
+
+			<p>
+				Where the first component <MathInline>a</MathInline> is on the axis of
+				rotation, and <MathInline>b</MathInline> and <MathInline>c</MathInline>{" "}
+				are in the plane of rotation.
+			</p>
+
+			<JsdImage
+				src="quats/3d_components.png"
+				width={2048}
+				height={1024}
+				className="max-w-7/8 max-h-100 m-auto"
+				alt="The components of a 3d rotation action."
+			/>
+
+			<QuatsHeader>
+				{"A Bubble Bursts"}
+				{"The Singularity is Here"}
+			</QuatsHeader>
+			<p>
+				Suppose we keep the exact same setup as in two dimensions and add an
+				additional complex variable. Each can rotate in its plane, but stays
+				still while the other is rotating:
+			</p>
+
+			<JsdImage
+				src="quats/two_var.png"
+				width={1039}
+				height={862}
+				className="max-w-7/8 max-h-80 m-auto"
+				alt="Two variable algebra."
+			/>
+
+			<div className="flex justify-evenly">
+				<MathBlock>
+					{"i^2=-1"}
+					{"ij=j"}
+				</MathBlock>
+				<MathBlock>
+					{"j^2=-1"}
+					{"ji=i"}
+				</MathBlock>
+			</div>
+
+			<p>
+				This does indeed allow us to rotate in these two planes, but there are
+				some strange things afoot. The first is that{" "}
+				<MathInline>{"ij \\neq ji"}</MathInline>. The order of actions can no
+				longer be switched, they no longer commute ("commute" means "change
+				together"). This is reflecting the fact that we have to be clear which
+				axis is doing the rotating and which is being rotated. Doing rotations
+				in reverse order does not usually result in the same translation. This
+				is contrary to two dimensions in which we could exchange the order
+				freely, and only the total amount of rotation mattered. Given this issue
+				of axes rotating each other, losing commutativity appears to be an
+				unavoidable complication.
+			</p>
+
+			<p>
+				Moving on to the second issue and, unfortunately, it is catastrophic. We
+				can see it by substituting <MathInline>j=ij</MathInline> into itself:
+			</p>
+
+			<MathBlock>
+				{"j=ij"}
+				{"j=iij"}
+				{"j=-j"}
+				{"2j=0"}
+				{"i=j=0"}
+			</MathBlock>
+
+			<JsdImage
+				src="quats/bubble.png"
+				width={1365}
+				height={760}
+				className="max-w-7/8 max-h-60 m-auto mt-8 mb-6"
+				alt="The bubble bursts."
+			/>
+
+			<p>
+				Its all collapsed! What happened!? The issue is we are trying to get
+				these elements to perform double duty. The first statements, like{" "}
+				<MathInline>i^2=-1</MathInline>, tell them to act as rotations, while
+				the second statements, <MathInline>ij=j</MathInline>, tell them to act
+				as the identity. But when we combine these behaviors into a single
+				statement, the algebra collapses back into the singularity, the only
+				place where both of these behaviors can be part of the same action!
+				Similarly, if <MathInline>i</MathInline> and <MathInline>j</MathInline>{" "}
+				dont affect each other, how could we rotate between them? We cannot
+				expect <MathInline>1</MathInline> to step in and cause a rotation or
+				else we will overload it's behavior as well, ending in another
+				catastrophe.
+			</p>
+
+			<QuatsHeader>
+				{"The Third Wheel"}
+				{"Two is Company, Three's a Crowd"}
+			</QuatsHeader>
+
+			<p>
+				In 2 dimensions, we had only one possible plane of rotation and were
+				able to use a single algebraic variable to represent turning in that
+				plane. Conveniently, this allowed us to think of points both as
+				positions and actions and to freely switch between perspectives. Now
+				that we have three possible planes of rotation, however, not only do we
+				need a variable for each one, but we still need extra room for
+				information about how much to <i>stay</i> vs <i>rotate</i> at all.
+				Therefore, looking ahead, we expect terms in our algebra to have the
+				general form:
+			</p>
+
+			<MathBlock>a + bi + cj + dk</MathBlock>
+
+			<JsdImage
+				src="quats/planar_actions.png"
+				width={1050}
+				height={980}
+				className="max-w-7/8 max-h-100 m-auto mt-8 mb-4"
+				alt="Three planar actions."
+			/>
+
+			<p>
+				Each complex variable represents a quarter rotation in one of the planes
+				/ around one of the axes, while the real component represents staying in
+				place (or purely reversing). Furthermore, we know that the real
+				component cannot be on an axis or else the algebra collapses. So now we
+				have three algebraic variables, taking up all three dimensions. Where
+				has the real component gone? Can we just forget it entirely? How do we
+				interpret what these rotations do e.g. to <MathInline>1</MathInline>? We
+				know that:
+			</p>
+
+			<MathBlock>{"i\\cdot1=i"}</MathBlock>
+
+			<p>
+				But <MathInline>1</MathInline> is no longer in our picture!
+			</p>
+
+			<p>
+				Consider that turning all the way around on an axis is, at least
+				positionally, equivalent to staying in place. Algebraically we can say{" "}
+				<MathInline>i^4=1</MathInline>. But we also know that{" "}
+				<MathInline>{"i\\neq \\pm1"}</MathInline>. This means{" "}
+				<MathInline>i</MathInline> must cycle with <MathInline>1</MathInline> in
+				exactly the same 4-step procedure as in the 2D case.
+			</p>
+
+			<div className={`${twister_url} bg-cover bg-center w-1/1 pb-10 z-10`}>
+				<QuatsHeader>
+					{"The Eye of the Storm"}
+					{"It's a Real Twister"}
+				</QuatsHeader>
+
+				<div className="flex flex-col items-center">
+					<span>Therefore we have:</span>
+					<MathBlock>
+						{"i^2=-1"}
+						{"j^2=-1"}
+						{"k^2=-1"}
+					</MathBlock>
+					<MathBlock>
+						{"ij=k"}
+						{"jk=i"}
+						{"ki=j"}
+					</MathBlock>
+					<MathBlock>
+						{"ij=k"}
+						{"ijk=k^2"}
+						{"ijk=-1"}
+						{"ijk=i^2=j^2=k^2=-1"}
+					</MathBlock>
+				</div>
+			</div>
+
+			<p>
+				The algebra doesn't collapse, but things are getting a bit carried away!
+				We have an algebra that can rotate around all three axes, but it does
+				something else. Part of the component parallel to the axis of rotation,
+				the part that is twisting in place, is getting cycled toward{" "}
+				<MathInline>-1</MathInline>. We were only considering the real component
+				to be part of the action, meaning roughly <i>stay-in-place</i>, but now
+				its part of the resulting position! Meanwhile, the component along the
+				axis is liable to collapse to <MathInline>0</MathInline> or to end up
+				going the opposite way entirely. We only know where its "supposed" to go
+				because of the context of the action that generated it.
+			</p>
+
+			<JsdImage
+				src="quats/axis_actions.png"
+				width={1614}
+				height={846}
+				className="max-w-7/8 max-h-80 m-auto"
+				alt="Two cycles of action."
+			/>
+
+			<p>
+				Let's look at what the algebra is telling us. Its saying that the{" "}
+				<i>stay-in-place</i> and <i>rotate-in-place</i> behaviors are two
+				aspects of the same overarching behavior, that of not moving. They both
+				have the same effect on the final position, but how they get there is
+				different. Therefore the "position" that multiplication gives back to us
+				has its axis split in two, the part that <i>stayed</i> and the part that{" "}
+				<i>twisted</i>.
+			</p>
+
+			<p>
+				After doing a multiplication, one option is to step out of the algebra
+				and use the pythagorean theorem to sum up the twisted component and the
+				axis, but this completely defeats the purpose of having an algebra! We
+				need to be able to undo the twist without undoing the rotation. Another
+				two-step process is in order.
+			</p>
+
+			<QuatsHeader>
+				{"Controlled Opposition"}
+				{"How to Pull the Strings"}
+			</QuatsHeader>
+
+			<JsdImage
+				src="quats/cats_cradle.png"
+				width={2048}
+				height={1024}
+				className="max-w-7/8 max-h-80 m-auto"
+				alt="Can you see the pattern?"
+			/>
+
+			<p>
+				Is there anything fundamentally different between the two cycles that
+				will allow them to be separated? Recall that the order in which axes
+				multiply matters because it keeps track of which axis is rotating the
+				other. We need to contrast this antisymmetric behavior in the plane of
+				rotation, where order matters, with the symmetric behavior of twisting,
+				where the order is irrelevant.
+			</p>
+
+			<p>
+				Let's first consider multiplying the point{" "}
+				<MathInline>(i + j)</MathInline> <i>on the left</i> by{" "}
+				<MathInline>i</MathInline>, represented by the green arrow. The{" "}
+				<MathInline>i</MathInline> component, represented by the yellow dot, is
+				along the axis of rotation while the <MathInline>j</MathInline>{" "}
+				component, represented by the orange dot, is in the plane of rotation:
+			</p>
+
+			<JsdImage
+				src="quats/ij_vs_ji.png"
+				width={1415}
+				height={661}
+				className="max-w-7/8 max-h-100 m-auto"
+				alt="ij vs ji."
+			/>
+
+			<div className="text-center">
+				<MathBlock>
+					{"i(i + j)"}
+					{"i^2 + ij"}
+					{"-1 + k"}
+				</MathBlock>
+			</div>
+
+			<p>
+				This takes <MathInline>{"i \\rightarrow -1"}</MathInline> and{" "}
+				<MathInline>{"j \\rightarrow k"}</MathInline>. We can consider the{" "}
+				<MathInline>-1</MathInline> term as signifying that the parallel
+				component, <MathInline>i</MathInline>, has done a counter-clockwise
+				twist, while <MathInline>j</MathInline> has undergone a quarter
+				rotation. Now we'll undo the twist by multiplying by the conjugate,{" "}
+				<MathInline>i^*</MathInline>, but this time we'll multiply{" "}
+				<i>on the right</i>, as represented by the gold arrow:
+			</p>
+
+			<JsdImage
+				src="quats/i_inverse.png"
+				width={1415}
+				height={661}
+				className="max-w-7/8 max-h-100 m-auto"
+				alt="i*j vs ji*."
+			/>
+
+			<div className="text-center">
+				<MathBlock>
+					{"(-1 + k)i^*"}
+					{"-i^* + ki"}
+					{"i - j"}
+				</MathBlock>
+			</div>
+
+			<p>
+				First note that the twisted, parallel component at{" "}
+				<MathInline>-1</MathInline> has been untwisted back to{" "}
+				<MathInline>i</MathInline>, as expected from multiplying by the
+				conjugate. But what happened within the plane of rotation? What does it
+				mean to multiply <i>on the right</i> by <MathInline>i^*</MathInline>?
+				The algebra tells us that this is the same as if{" "}
+				<MathInline>k</MathInline> was multiplying <MathInline>i^*</MathInline>{" "}
+				<i>on the left</i>, i.e. as if <MathInline>k</MathInline> was the axis
+				of rotation, represented by the gold arrow{" "}
+				<MathInline>ki^*=j^*</MathInline>. But what does this mean as an
+				operation on <MathInline>k</MathInline>? One that takes{" "}
+				<MathInline>k</MathInline> to <MathInline>j^*</MathInline>? Notice that,
+				within the plane of rotation, this results in the same action as the
+				first rotation, the one that resulted from multiplying by{" "}
+				<MathInline>i</MathInline> <i>on the left</i>.
+			</p>
+			<p>
+				By both <i>taking the conjugate</i> and multiplying <i>on the right</i>{" "}
+				we are both rotating in the opposite direction and from the opposite
+				side, such that the two reverses cancel each other out. Meanwhile, the
+				axis of rotation only cares about which direction the rotation goes,
+				i.e. whether or not we are using the conjugate. By leveraging this
+				difference, the rotation doubles up and the twist cancels out, leaving
+				movement only in the plane of rotation!
+			</p>
+
+			<QuatsCycle>
+				<JsdImage
+					src="quats/ij_vs_ji.png"
+					width={1415}
+					height={661}
+					id="c1"
+					className="m-auto cycle max-w-7/8 max-h-100"
+					alt="ij vs ji."
+				/>
+				<JsdImage
+					src="quats/i_inverse.png"
+					width={1415}
+					height={661}
+					id="c2"
+					className="cycle max-w-7/8 max-h-100"
+					alt="i*j vs ji*."
+				/>
+				<JsdImage
+					src="quats/rotation_result.png"
+					width={1415}
+					height={661}
+					id="c3"
+					className="cycle max-w-7/8 max-h-100"
+					alt="The rotation result."
+				/>
+			</QuatsCycle>
+
+			<MathBlock>
+				{"i(i+j)i^*"}
+				{"(-1+k)i^*"}
+				{"i - j"}
+			</MathBlock>
+
+			<p>
+				By multiplying on the left by <MathInline>i</MathInline> and the right
+				by <MathInline>i^*</MathInline>, we have performed a counter-clockwise
+				rotation around <MathInline>i</MathInline>. This time we have gone a
+				full half turn, as opposed to a single quarter turn in 2d, by performing
+				2 quarter turns in order to do and undo the twist along the axis of
+				rotation. You can get a feeling for this interaction between left and
+				right multiplication here:
+			</p>
+
+			<ThreeSwapper className="mt-16"></ThreeSwapper>
+
+			<p>
+				The fact that we have to do and undo the twist means that the amount of
+				rotation done in each step gets doubled up on the whole. This double
+				action is the reason why quaternions use half the angle of the rotation
+				they are meant to represent. Therefore, in order to perform a rotation
+				of angle <MathInline>{"\\theta"}</MathInline> around axis{" "}
+				<MathInline>i</MathInline>, we can use a quaternion that looks
+				strikingly similar to a complex number representing a rotation, but the
+				angle is divided in 2:
+			</p>
+
+			<MathBlock>
+				{"q = \\cos{\\frac{\\theta}{2}}+i\\sin{\\frac{\\theta}{2}}"}
+				{"q^{-1} = \\cos{\\frac{\\theta}{2}}-i\\sin{\\frac{\\theta}{2}}"}
+				{"p' = qpq^{-1}"}
+			</MathBlock>
+
+			<p>
+				So we've rotated a vector <MathInline>p</MathInline> around{" "}
+				<MathInline>i</MathInline> for an angle{" "}
+				<MathInline>{"\\theta"}</MathInline>. But, seeing as we've defined
+				everything symmetrically, <MathInline>i</MathInline> could have been any
+				unit vector involving <MathInline>(i,j,k)</MathInline> around which to
+				rotate! Any quaternion with a norm of <MathInline>1</MathInline>, called
+				a versor (meaning "turner"), could be substituted in for{" "}
+				<MathInline>q</MathInline> in order to rotate around its axis.
+			</p>
+
+			<p>
+				Notice what we've achieved in terms of two other common ways of
+				representing 3d rotations, Euler angles and angle-axis. Euler angles
+				represent rotations purely around one of the three axes, which we used
+				as a base case to help us derive the quaternion algebra. Defining this
+				algebra in a general way has then left us with a type of angle-axis
+				representation, but one that encodes half the angle rather than the full
+				angle so as to be able to do and undo the twisting action!
+			</p>
+
+			<QuatsHeader>
+				{"Getting Yoked"}
+				{"Its a Push and Pull"}
+				{/* {"Its the Middle Way"} */}
+			</QuatsHeader>
+
+			<p>
+				This process of placing a versor and its conjugate on either side is
+				called conjugation. The word <i>conjugate</i> shares a root with the
+				word <i>yoke</i>, as in a beam that binds working oxen. We can say that
+				we have conjugated <MathInline>p</MathInline> by{" "}
+				<MathInline>q</MathInline> in order to rotate it, so{" "}
+				<MathInline>p</MathInline> and <MathInline>p'</MathInline> are related
+				through <MathInline>q</MathInline> by conjugation. I suppose that
+				versors are like oxen, working hard to rotate <MathInline>p</MathInline>{" "}
+				around the axis via the yoke of conjugation!
+			</p>
+
+			<p>
+				Tracing through the operation, we can see how the real component, the
+				twist, gets cancelled out, while the rotation doubles up:
+			</p>
+
+			<QuatsCycle>
+				<JsdImage
+					src="quats/yoke_terms.png"
+					width={1823}
+					height={1024}
+					id="y1"
+					className="m-auto yoke max-w-9/10 max-h-150"
+					alt="Yoked terms."
+				/>
+				<JsdImage
+					src="quats/yoke_actions.png"
+					width={1823}
+					height={1024}
+					id="y2"
+					className="yoke max-w-9/10 max-h-150"
+					alt="Yoked actions."
+				/>
+			</QuatsCycle>
+
+			<MathBlock>
+				{"p = ai + bj + ck"}
+				{"q = \\cos{\\frac{\\theta}{2}} + \\sin{\\frac{\\theta}{2}}\\hat{u}"}
+				{
+					"q^{-1} = \\cos{\\frac{\\theta}{2}} - \\sin{\\frac{\\theta}{2}}\\hat{u}"
+				}
+				{"p' = qpq^{-1}"}
+			</MathBlock>
+		</article>
+	);
 }

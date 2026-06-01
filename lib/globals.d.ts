@@ -30,3 +30,6 @@ type PortfolioAction = {
 //   type: 'tag_hover'
 //   tag: string
 // }
+
+
+declare module "*.css"

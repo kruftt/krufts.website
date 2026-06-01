@@ -1,5 +1,9 @@
-a {
-  color: #0057c8;
+article a {
+  color: oklch(.6 .6 220);
+}
+
+article p > a {
+  color: oklch(.5 .5 214);
 }
 
 p {

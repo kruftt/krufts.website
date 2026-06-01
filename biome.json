@@ -1,0 +1,14 @@
+{
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
+  "linter": {
+    "rules": {
+      "a11y": {
+        "useMediaCaption": "off"
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@ export default function MathInline(
 ) {
   return (
     <MathJax inline={true} dynamic={dynamic} className={className}>
-      { "\\(" + children + "\\)" }
+      { `\\(${children}\\)` }
     </MathJax>
   )
 }
