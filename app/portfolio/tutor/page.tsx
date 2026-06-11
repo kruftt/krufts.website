@@ -17,12 +17,15 @@ export default function TutorArticle() {
 			<ArticleHeader article={data}>Tutoring</ArticleHeader>
 			<div>
 				<p>
-					Over the past few years I've tutored high school and junior college
-					students at various levels of proficiency in Mathematics and Computer
-					Science. This has involved verbal communication and hand-drawn
-					sketches while referencing material in their books and coursework.
-					However, I have occasionally produced my own reference materials
-					outside of these. Included here are a few examples.
+					In the past few years{" "}
+					<b>
+						I've tutored high school and junior college students in Mathematics
+						and Computer Science.
+					</b>{" "}
+					This has involved verbal communication and hand-drawn sketches while
+					referencing material in their books and coursework. However, I have
+					occasionally produced my own reference materials outside of these.
+					Included here are a few examples.
 				</p>
 			</div>
 			<br />

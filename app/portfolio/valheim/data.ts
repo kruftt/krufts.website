@@ -5,6 +5,7 @@ export const data: ArticleData = {
 	path: "valheim",
 	tags: ["games"],
 	links: [
+		["Thunderstore", "https://thunderstore.io/c/valheim/p/kruft/"],
 		[
 			"Resource Cost Scaling",
 			"https://github.com/kruftt/ResourceCostScaling/blob/master/ResourceCostScaling.cs",
@@ -13,6 +14,5 @@ export const data: ArticleData = {
 			"Smooth Armor Scaling",
 			"https://github.com/kruftt/SmoothArmorScaling/blob/master/SmoothArmorScaling.cs",
 		],
-		["Thunderstore", "https://thunderstore.io/c/valheim/p/kruft/"],
 	],
 };

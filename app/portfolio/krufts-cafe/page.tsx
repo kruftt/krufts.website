@@ -7,11 +7,20 @@ export default function KruftsCafeArticle() {
 		<article>
 			<ArticleHeader article={data}>Kruft's Cafe</ArticleHeader>
 			<p>
-				I've recently built a full-stack cooking recipe website designed to make the process of actually using a recipe in the kitchen as seamless as possible, using cutting-edge tools and libraries.
+				<b>
+					I recently designed and built a full-stack cooking recipe website
+				</b>{" "}
+				designed to make the process of actually using a recipe in the kitchen
+				as seamless as possible, using cutting-edge tools and libraries.
 			</p>
 			<div className="my-6">
 				<YoutubeWrapper url="https://youtube.com/embed/76LqlabKbEY?si=ZDGrLnxvTclzXa4V" />
 			</div>
+			<p>
+				I used <b>Figma</b> to create the initial design, and with the support
+				of <b>Claude Code</b> I sketched out a <b>React Router v7</b> project
+				template to begin iterating on.
+			</p>
 			<div className="my-6 flex justify-center">
 				<div>
 					<div className="font-bold mt-10">Features include:</div>

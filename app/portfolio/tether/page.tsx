@@ -28,14 +28,17 @@ export default function TetherArticle() {
 				<SectionTabsContent value="Intro">
 					<section>
 						<p>
-							Circa 2023 I used Godot to begin prototyping an ARPG inspired game
-							entitled <i>Tether's End</i>. In Tether's End, players pilot
-							remote controlled drones across the surface of an abandoned mining
-							planet from the safety of a space station that is tethered to its
-							equator. I implemented some core systemsm, such as the ability to
-							save / load games, fly around, a hex-based resource scanning
-							system, and basic ship statistics. For the planet's surface, I
-							wrote a rudimentary{" "}
+							Circa 2023{" "}
+							<b>
+								I used Godot to begin prototyping an ARPG inspired game entitled{" "}
+								<i>Tether's End</i>
+							</b>
+							. In Tether's End, players pilot remote controlled drones across
+							the surface of an abandoned mining planet from the safety of a
+							space station that is tethered to its equator. I implemented some
+							core systemsm, such as the ability to save / load games, fly
+							around, a hex-based resource scanning system, and basic ship
+							statistics. For the planet's surface, I wrote a rudimentary{" "}
 							<a href="https://ccrma.stanford.edu/~doucette/gaming/code/terrain_generator.gd">
 								terrain generator
 							</a>

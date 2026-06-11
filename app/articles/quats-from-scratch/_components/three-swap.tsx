@@ -51,10 +51,10 @@ export default function ThreeSwapper({ className }: { className?: string }) {
 
 	const manager = useRef(
 		new ObjectiveListManager(
-			{ name: "Isolate the inner cycle - counter-clockwise", indicators: 2 },
-			{ name: "Isolate the inner cycle - clockwise", indicators: 2 },
-			{ name: "Isolate the outer cycle - counter-clockwise", indicators: 2 },
-			{ name: "Isolate the outer cycle - clockwise", indicators: 2 },
+			{ name: "Move the inner element counter-clockwise", indicators: 2 },
+			{ name: "Move the inner element clockwise", indicators: 2 },
+			{ name: "Move the outer element counter-clockwise", indicators: 2 },
+			{ name: "Move the outer element clockwise", indicators: 2 },
 		),
 	);
 	const [objectives, setObjectives] = useState(manager.current.getData());
@@ -105,6 +105,9 @@ export default function ThreeSwapper({ className }: { className?: string }) {
 
 	return (
 		<div className={`select-none ${className}`}>
+			<div className="text-center">
+				Cycle the intended elements while cancelling out the movements of the other.
+			</div>
 			<svg
 				ref={svg}
 				className="rounded-xl m-auto w-full max-w-110 aspect-4/3"

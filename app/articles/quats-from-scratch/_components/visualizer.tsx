@@ -504,7 +504,7 @@ export default function QuaternionVisualizer() {
 	}, []);
 
 	return (
-		<div className="select-none rounded-xl">
+		<div className="select-none rounded-xl bg-[#FFF] text-[#111]">
 			<canvas className="m-auto" ref={canvas}></canvas>
 			<MathBlock>
 				{

@@ -14,23 +14,26 @@ export default function DotsArticle() {
 				<SectionTabsContent value="Particle Demo">
 					<section>
 						<p>
-							In recent explorations of Unity's "Data-Oriented Technology Stack"
+							In recent explorations of{" "}
+							<b>Unity's "Data-Oriented Technology Stack"</b>
 							(DOTS), I implemented a set of modular and performant systems
 							using several core ECS architectural patterns. To test these
-							systems, I built a demo in which the user can push around 10,000
-							animated, colored dots that are otherwise attracted toward the
-							center of the screen.
+							systems, I built a demo in which the user can use the cursor to
+							push 10,000 animated, colored dots which are otherwise attracted
+							toward the center of the screen.
 						</p>
 						<p>
-							In order to achieve this result, I combined Unity's DOTS framework
-							with the Low-Level 2D Physics API (Box2D) to build
-							high-performance animation and physics systems. This included
-							shader-driven animations, prefab instantiation, entity lifecycle
-							management, and Physics API integration. Key systems aggregate
-							forces from multiple sources and batch their application across
-							all bodies in a single API call, with force and transform state
-							synchronized between the Entity and Physics worlds using
-							vectorizable, contiguous memory operations.
+							<b>
+								I combined Unity's DOTS framework with the new Low-Level 2D
+								Physics API
+							</b>{" "}
+							(Box2D) to build high-performance animation and physics systems.
+							This included shader-driven animations, prefab instantiation,
+							entity lifecycle management, and Physics API integration. Key
+							systems aggregate forces from multiple sources and batch their
+							application across all bodies in a single API call, with force and
+							transform state synchronized between the Entity and Physics worlds
+							using vectorizable, contiguous memory operations.
 						</p>
 						<br />
 						<div>
@@ -41,15 +44,17 @@ export default function DotsArticle() {
 				<SectionTabsContent value="Profiler">
 					<section>
 						<p>
-							The performance advantages of the ECS architecture come from
-							caching and parallelization benefits. The idea is to reduce cache
-							misses (by accessing contiguous regions of memory) and to take as
-							much work off the main thread as possible (by leveraging the job
-							system and the Burst compiler). Even in this simple case of
-							controlling 10,000 animations, the nature of the architectural
-							benefits are apparent in the profiler.
+							<b>
+								The performance advantages of the ECS architecture come from the
+								caching and parallelization benefits.
+							</b>{" "}
+							The goal is to reduce cache misses (by accessing contiguous
+							regions of memory) and to take as much work off the main thread as
+							possible (by leveraging the job system and the Burst compiler).
+							Even in this simple case of controlling 10,000 animations, the
+							nature of the architectural benefits are apparent in the profiler:
 						</p>
-						<div>
+						{/* <div>
 							These slides depict a 4-step sequence:
 							<ul className="mt-2 ml-8 list-disc">
 								<li>A naive implementation (1.5ms)</li>
@@ -62,10 +67,10 @@ export default function DotsArticle() {
 									worker threads)
 								</li>
 							</ul>
-						</div>
-						<br />
-							<ArticleCarousel>
-								<CarouselItem>
+						</div> */}
+						{/* <br /> */}
+						<ArticleCarousel>
+							<CarouselItem>
 								<Zoom>
 									<p className="text-center">
 										The unoptimized implementation takes 1.5ms:
@@ -77,20 +82,12 @@ export default function DotsArticle() {
 										src="profile_1.png"
 										alt="Mod Effect Graphs"
 									/>
-									<br />
-									<JsdImage
-										className="m-auto"
-										width={1019}
-										height={290}
-										src="code_1.png"
-										alt="Mod Effect Graphs"
-									/>
 								</Zoom>
-								</CarouselItem>
-								<CarouselItem>
+							</CarouselItem>
+							<CarouselItem>
 								<Zoom>
 									<p className="text-center">
-										Enabling the Burst compiler lowers this to 0.3ms:
+										Burst compiling lowers this to 0.3ms:
 									</p>
 									<JsdImage
 										width={683}
@@ -99,21 +96,13 @@ export default function DotsArticle() {
 										src="profile_2.png"
 										alt="Mod Effect Graphs"
 									/>
-									<br />
-									<JsdImage
-										width={1018}
-										height={325}
-										className="m-auto max-h-200"
-										src="code_2.png"
-										alt="Mod Effect Graphs"
-									/>
 								</Zoom>
-								</CarouselItem>
-								<CarouselItem>
+							</CarouselItem>
+							<CarouselItem>
 								<Zoom>
 									<p className="text-center">
 										Switching to a job leaves only 0.012ms of work on the main
-										thread, and 0.1ms of work is done on worker threads:
+										thread, and does 0.1ms of work on the worker threads:
 									</p>
 									<JsdImage
 										width={626}
@@ -122,21 +111,13 @@ export default function DotsArticle() {
 										src="profile_3.png"
 										alt="Mod Effect Graphs"
 									/>
-									<br />
-									<JsdImage
-										width={824}
-										height={502}
-										className="m-auto max-h-200"
-										src="code_3.png"
-										alt="Mod Effect Graphs"
-									/>
 								</Zoom>
-								</CarouselItem>
-								<CarouselItem>
+							</CarouselItem>
+							<CarouselItem>
 								<Zoom>
 									<p className="text-center">
-										Changing the job to be Burst compiled lowers the worker
-										thread runtime to under 0.02ms:
+										Finally, Burst compiling the job lowers the worker thread
+										runtime to under 0.02ms:
 									</p>
 									<JsdImage
 										width={667}
@@ -145,17 +126,9 @@ export default function DotsArticle() {
 										src="profile_4.png"
 										alt="Mod Effect Graphs"
 									/>
-									<br />
-									<JsdImage
-										width={739}
-										height={431}
-										className="m-auto max-h-200"
-										src="code_4.png"
-										alt="Mod Effect Graphs"
-									/>
 								</Zoom>
-								</CarouselItem>
-							</ArticleCarousel>
+							</CarouselItem>
+						</ArticleCarousel>
 					</section>
 				</SectionTabsContent>
 			</SectionTabs>

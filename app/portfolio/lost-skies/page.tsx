@@ -28,12 +28,14 @@ export default function LostSkiesArticle() {
 				<SectionTabsContent value="Overview">
 					<section>
 						<p>
-							During its Early Access period, I made several mods for a
-							survival-crafting game called{" "}
-							<a href="https://lostskiesgame.com">Lost Skies</a>. I helped
-							initiate the modding community by documenting my code, workflow,
-							and project configuration for others. This included setting up a
-							C# build environment and writing a custom{" "}
+							<b>
+								I helped initiate the modding community for an early-access
+								survival-crafting game called{" "}
+								<a href="https://lostskiesgame.com">Lost Skies</a>.
+							</b>{" "}
+							I wrote and published the initial mods while documenting my code,
+							workflow, and project configuration for others. This included
+							setting up a C# build environment and writing a custom{" "}
 							<a href="https://github.com/kruftt/ThunderstoreAdapter">
 								msbuild task library
 							</a>{" "}
@@ -42,13 +44,14 @@ export default function LostSkiesArticle() {
 						</p>
 						<p>
 							In early development, the game was built on a Mono C# backend, but
-							later switched to an IL2CPP (Internal Language to C++) backend on
-							the Early Access launch in order to enhance security. While this
-							made reverse-engineering and modding significantly more difficult
-							(by preventing decompilation and/or transpilation of the IL
-							assemblies), it gave me an opportunity to learn about the IL2CPP
-							compiler and to explore methods of reverse-engineering native
-							assemblies, such as using tools like Ghidra or IDA pro.
+							later switched to an IL2CPP (Internal Language to C++) backend in
+							order to enhance security. While this made reverse-engineering and
+							modding significantly more difficult (by preventing decompilation
+							and/or transpilation of the IL assemblies),{" "}
+							<b>
+								it gave me an opportunity to learn about the IL2CPP compiler and
+								to explore methods of reverse-engineering native assemblies.
+							</b>
 						</p>
 					</section>
 					<ArticleCarousel>
@@ -103,17 +106,22 @@ export default function LostSkiesArticle() {
 				<SectionTabsContent value="Point to Interact">
 					<section>
 						<p>
-							One such mod,{" "}
-							<a href="https://github.com/kruftt/LostSkiesMods/blob/main/PointToInteract/src/Patch.cs">
-								Point To Interact
-							</a>
-							, focused on user experience and improved 3d object
-							selection/interaction. By default, every frame used a spherical
-							collider to detect interactables around the player. These
-							interactables were then displayed in a scrollable list, navigable
-							with the mousewheel or a controller's d-pad. However, this system
-							felt unintuitive when using a mouse, since pointing at an object
-							didn't guarantee it would be selected.
+							<b>
+								I made a user-experience focused a mod called
+								<a
+									className="mx-1"
+									href="https://github.com/kruftt/LostSkiesMods/blob/main/PointToInteract/src/Patch.cs"
+								>
+									Point To Interact
+								</a>
+								that improved 3d object selection
+							</b>
+							. By default, every frame used a spherical collider to detect
+							interactables around the player. These interactables were then
+							displayed in a scrollable list, navigable with the mousewheel or a
+							controller's d-pad. However, this system felt unintuitive when
+							using a mouse, since pointing at an object didn't guarantee it
+							would be selected.
 						</p>
 						<p>
 							To address this I used a raycast from the camera to the cursor to
@@ -140,15 +148,19 @@ export default function LostSkiesArticle() {
 				<SectionTabsContent value="Infested Bunker">
 					<section>
 						<p>
-							In addition to mods, I also created an "Island" for Lost Skies
-							called <i>Infested Bunker</i>. Lost Skies is set in the remains of
-							a shattered world consisting of floating islands and supports
-							user-made islands via an island authoring tool, similar to level
-							editors from other games. <i>Infested Bunker</i> features a series
-							of simple puzzles that unlock a fortified bunker in the middle of
-							a patchy, spherical land mass. Building it involved the creative
-							use of volumetric terrain generation, a limited set of assets, and
-							game logic scripts.
+							In addition to mods,{" "}
+							<b>
+								I created a level ("Island") for Lost Skies called{" "}
+								<i>Infested Bunker</i>
+							</b>
+							. Lost Skies is set in the remains of a shattered world consisting
+							of floating islands and supports user-made islands via an island
+							authoring tool, similar to level editors from other games.{" "}
+							<i>Infested Bunker</i> features a series of simple puzzles that
+							unlock a fortified bunker in the middle of a patchy, spherical
+							land mass. Building it involved the creative use of volumetric
+							terrain generation, a limited set of assets, and game logic
+							scripts.
 						</p>
 					</section>
 					<div className="text-center mt-4">

@@ -13,46 +13,49 @@ export default function QuatsArticle() {
 	return (
 		<article>
 			<ArticleHeader article={data}>Quaternions from Scratch</ArticleHeader>
-			<SectionTabs tabs={["Overview", "3D Visualizer", "Multiplication"]}>
+			<SectionTabs tabs={["Overview", "Multiplication", "3D Visualizer"]}>
 				<SectionTabsContent value="Overview">
 					<section>
 						<p className="pb-8">
-							Quaternions are an important algebraic structure in domains that
-							involve 3d rotations, such as computer vision, graphics, robotics,
-							physics, and others. I took some time to organize my intuitions
-							around quaternions and write an article that builds them up from
-							"scratch". In addition to clarifying the ideas through writing,
-							I've produced numerous illustrations and interactive components to
-							help give readers a sense of how quaternions <i>feel</i>. To
-							author this article I made use of tools like React, Svg, Threejs,
-							Latex, and Krita.
+							Quaternions are an important algebraic structure in any domain
+							that involves 3d rotations, such as computer vision, graphics,
+							robotics, physics, and others.{" "}
+							<b>
+								I took some time to organize my intuitions around quaternions
+								and write an article that builds them up from "scratch".
+							</b>{" "}
+							In addition to clarifying the ideas through writing, I've produced
+							numerous illustrations and interactive components to help give
+							readers a sense of how the algebra <i>feels</i>. To author this
+							article I made use of tools like React, Svg, Threejs, Latex, and
+							Krita.
 						</p>
-							<QuatsCycle>
-								<JsdImage
-									width={1415}
-									height={661}
-									src="quats/ij_vs_ji.png"
-									id="c1"
-									className="m-auto cycle max-w-7/8 max-h-100 bg-white rounded-xl"
-									alt="ij vs ji."
-								/>
-								<JsdImage
-									width={1415}
-									height={661}
-									src="quats/i_inverse.png"
-									id="c2"
-									className="cycle max-w-7/8 max-h-100 bg-white rounded-xl"
-									alt="i*j vs ji*."
-								/>
-								<JsdImage
-									width={1415}
-									height={661}
-									src="quats/rotation_result.png"
-									id="c3"
-									className="cycle max-w-7/8 max-h-100 bg-white rounded-xl"
-									alt="The rotation result."
-								/>
-							</QuatsCycle>
+						<QuatsCycle>
+							<JsdImage
+								width={1415}
+								height={661}
+								src="quats/ij_vs_ji.png"
+								id="c1"
+								className="m-auto cycle max-w-7/8 max-h-100 bg-white rounded-xl"
+								alt="ij vs ji."
+							/>
+							<JsdImage
+								width={1415}
+								height={661}
+								src="quats/i_inverse.png"
+								id="c2"
+								className="cycle max-w-7/8 max-h-100 bg-white rounded-xl"
+								alt="i*j vs ji*."
+							/>
+							<JsdImage
+								width={1415}
+								height={661}
+								src="quats/rotation_result.png"
+								id="c3"
+								className="cycle max-w-7/8 max-h-100 bg-white rounded-xl"
+								alt="The rotation result."
+							/>
+						</QuatsCycle>
 						<div className="flex justify-center">
 							<p className="max-w-4/5 text-center">
 								Quaternions leverage commutative and anticommutative behaviors
@@ -64,6 +67,15 @@ export default function QuatsArticle() {
 				</SectionTabsContent>
 				<SectionTabsContent value="3D Visualizer">
 					<section className="pt-4 pb-4">
+						<p className="">
+							After building up intuitions for how the components of the
+							two-step rotation process behave,{" "}
+							<b>
+								I present a 3d visualization that demonstrates how the two-step
+								operation captures any given rotation by "twisting" and
+								"untwisting" along the axis of rotation.
+							</b>
+						</p>
 						<QuaternionVisualizer></QuaternionVisualizer>
 						<div className="flex justify-center">
 							<p className="max-w-4/5 text-center">
@@ -75,6 +87,22 @@ export default function QuatsArticle() {
 					</section>
 				</SectionTabsContent>
 				<SectionTabsContent value="Multiplication">
+					<p className="">
+						<b>
+							Quaternion multiplication differs depending on if you multiply on
+							the left vs on the right
+						</b>
+						. This property is called anticommutativity , and it is the key to
+						representing 3d rotations with an algebra. The roots of the word
+						"anticommutative" mean "opposed to changing together", or, in other
+						words, "changing against".{" "}
+						<b>
+							The fact that part of the algebra "changes against" itself
+							depending on if it multiplies from the left vs on the right is
+							what allows us to "do and undo" an action in one area/cycle, while
+							performing a "do and redo" in the other.
+						</b>
+					</p>
 					<section>
 						<ThreeSwapper></ThreeSwapper>
 						<div className="flex justify-center">

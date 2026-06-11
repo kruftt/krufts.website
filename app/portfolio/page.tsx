@@ -1,7 +1,9 @@
 "use client";
 
-import { redirect } from "next/navigation";
+import AboutMePage from './about-me/page';
+// import { redirect } from "next/navigation";
 
 export default function DevPortfolioPage() {
-	redirect("about-me");
+	// redirect("/portfolio/about-me/");
+	return <AboutMePage />
 }

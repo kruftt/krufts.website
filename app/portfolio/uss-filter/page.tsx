@@ -5,26 +5,36 @@ import { data } from "./data";
 
 export default function UssFilterArticle() {
   return (
-    <article>
-      <ArticleHeader article={data}>
-        Unity 6.3 - USS Filters
-      </ArticleHeader>
-      <SectionTabs tabs={['Demo', 'Shader Code']}>
-        <SectionTabsContent value='Demo'>
-          <p>
-            As part of an exploration into Unity 6.3, I implemented a custom USS (Unity Style Sheets) filter. Filters provide a method to do post-processing on UI Toolkit VisualElements, akin to CSS filters for HTML elements. VisualElements are first rendered into a texture and then fed into the filter, which is a shader program. Since Unity's Shader Graph visual language doesn't support filters, I had to write the shaders by hand and do some boilerplate to link them up with a style sheet property.
-          </p>
-          <p>
-            In this small demo, I have three focusable VisualElements that make use of the same custom filter, but using different styling parameters. 
-          </p>
-          <br />
-          <div>
-            <YoutubeWrapper url="https://www.youtube.com/embed/nxeDLqcyLS0?si=aB2fSRuf5Y90reG9" />
-          </div>
-        </SectionTabsContent>
-        <SectionTabsContent value="Shader Code">
-          <pre className="bg-gray-100 text-sm overflow-x-scroll">
-{`
+			<article>
+				<ArticleHeader article={data}>Unity 6.3 - USS Filters</ArticleHeader>
+				<SectionTabs tabs={["Demo", "Shader Code"]}>
+					<SectionTabsContent value="Demo">
+						<p>
+							<b>
+								As part of an exploration into Unity 6.3, I implemented a custom
+								USS (Unity Style Sheets) filter.
+							</b>{" "}
+							Filters provide a method to do post-processing on UI Toolkit
+							VisualElements, akin to CSS filters for HTML elements.
+							VisualElements are first rendered into a texture and then fed into
+							the filter, which is a shader program. Since Unity's Shader Graph
+							visual language doesn't support filters, I wrote the shaders in
+							HLSL and did some boilerplate to link them up with a style sheet
+							property.
+						</p>
+						<p>
+							In this small demo, I have three focusable VisualElements that
+							make use of the same custom filter / shader program using
+							different styling parameters.
+						</p>
+						<br />
+						<div>
+							<YoutubeWrapper url="https://www.youtube.com/embed/nxeDLqcyLS0?si=aB2fSRuf5Y90reG9" />
+						</div>
+					</SectionTabsContent>
+					<SectionTabsContent value="Shader Code">
+						<pre className=" text-sm overflow-x-scroll">
+							{`
   Shader "Custom/SH_Spirit"
   {
     Properties
@@ -173,9 +183,9 @@ export default function UssFilterArticle() {
     }
   }
 `}
-          </pre>
-        </SectionTabsContent>
-      </SectionTabs>
-    </article>
-  )
+						</pre>
+					</SectionTabsContent>
+				</SectionTabs>
+			</article>
+		);
 }

@@ -12,11 +12,11 @@ export default function IntMatMultArticle() {
 		<article>
 			<ArticleHeader article={data} />
 			<div>
-				In order to help students visualize matrix multiplication I implemented
-				an interactive web widget with Vue. Users can drag the vector arrowheads
-				and see the result in real-time. A key feature for demonstration
-				purposes is that making the matrix linearly dependent shows the null
-				space solutions as a red line.
+				In order to help students visualize matrix multiplication{" "}
+				<b>I implemented an interactive web widget with Vue</b>. Users can drag
+				the vector arrowheads and see the result in real-time. A key feature for
+				demonstration purposes is that making the matrix linearly dependent
+				shows the null space solutions as a red line.
 			</div>
 			<ArticleCarousel>
 				<CarouselItem>

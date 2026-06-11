@@ -9,7 +9,7 @@ export default function AboutMe() {
 						className="max-h-100"
 						src="portrait.jpg"
 						width={1300}
-						height={1509}
+						height={1587}
 						alt="A portrait of Marc"
 					/>
 					<div className="max-w-164  lg:max-w-116 lg:text-left">
@@ -25,7 +25,7 @@ export default function AboutMe() {
 							I'm interested in discovering how software can be designed to best support human needs, especially in fields like education and organizational knowledge management.
 						</p>
 						<p>
-							I love playing and working on games and am very interested both in game design and in what game design can teach us about our systems more broadly.
+							I love playing and working on games and am very interested both in game design and in what game design can teach us about our digital systems more broadly.
 						</p>
 						<p>
 							I hope you enjoy looking at some of my projects. Please get in touch!

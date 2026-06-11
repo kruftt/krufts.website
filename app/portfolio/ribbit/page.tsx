@@ -13,15 +13,17 @@ export default function RibbitArticle() {
 			<ArticleHeader article={data}>The Ribbit Hole</ArticleHeader>
 			<div>
 				<p>
-					I created a social, interactive art installation that combined web and
-					mobile technologies. Participants used their phones to control an
-					immersive soundscape and an accompanying visualization. The interface
-					was implemented with SVG and provided low latency, collective control
-					of the sounds and visuals, which were implemented in ChucK and
-					Processing respectively. Set at nighttime around a local lake, users
-					could toggle arpeggiators by tapping the street lamps, or trigger 3D
-					spatialized frog ribbits by clicking locations within the lake. I
-					wrote both the synthesizers and shaders in order to bring the
+					<b>
+						I created a social, interactive art installation that combined web
+						and mobile technologies. Participants used their phones to control
+						an immersive soundscape and an accompanying visualization.
+					</b>{" "}
+					The interface was implemented with SVG and provided low latency,
+					collective control of the sounds and visuals, which were implemented
+					in ChucK and Processing respectively. Set at nighttime around a local
+					lake, users could toggle arpeggiators by tapping the street lamps, or
+					trigger 3D spatialized frog ribbits by clicking locations within the
+					lake. I wrote both the synthesizers and shaders in order to bring the
 					experience to life.
 				</p>
 				<br />
@@ -48,7 +50,14 @@ export default function RibbitArticle() {
 					</Zoom>
 				</CarouselItem>
 				<CarouselItem>
-					<div className="text-center">SVG Interface (inactive)</div>
+					<div className="text-center">
+						SVG Interface (inactive)
+						<p>
+							This interface was hosted on a local webserver which audience
+							members could connect to, in order to control the installation
+							using their phones.
+						</p>
+					</div>
 					<svg display="none" viewBox="0 0 150 100">
 						<title>A simple interface with an arc of circular inputs.</title>
 						<circle
