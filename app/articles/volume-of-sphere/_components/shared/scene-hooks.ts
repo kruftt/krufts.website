@@ -1,7 +1,7 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useCallback, useEffect, useRef } from "react";
 import * as THREE from "three";
-import { FADE_MS } from "./step-sequence";
+import { FADE_MS } from "./constants";
 
 const FADE_S = FADE_MS / 1000;
 const _p = new THREE.Vector3();
@@ -15,13 +15,30 @@ type OrbitLike = {
 
 // Eases a material's opacity toward `goal` at a fixed rate (FADE_S to cross the
 // full 0..1 range). Materials should start at opacity 0 so they fade in on mount.
-export function useFade(ref: { current: THREE.Material | null }, goal: number) {
+//
+// `opaqueWhenDone` is for meshes that are meant to be solid once faded in: a
+// `transparent` material stays in three.js's transparent queue even at full
+// opacity, where it is sorted against the other transparent meshes rather than
+// drawn first. Clearing the flag on arrival puts it back in the opaque pass, so
+// translucent pieces blend over it correctly from every angle.
+export function useFade(
+	ref: { current: THREE.Material | null },
+	goal: number,
+	opaqueWhenDone = false,
+) {
 	useFrame((_, delta) => {
 		const m = ref.current;
 		if (!m) return;
 		const step = delta / FADE_S;
 		const d = goal - m.opacity;
 		m.opacity += Math.abs(d) <= step ? d : Math.sign(d) * step;
+		if (opaqueWhenDone) {
+			const wantTransparent = m.opacity < 1;
+			if (m.transparent !== wantTransparent) {
+				m.transparent = wantTransparent;
+				m.needsUpdate = true;
+			}
+		}
 	});
 }
 

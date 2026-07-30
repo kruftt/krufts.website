@@ -5,7 +5,12 @@ import MathInline from "@/components/general/math-inline";
 // import JsdImage from "@/components/general/jsdelivr-image"
 
 const VolumeOfConeScene = dynamic(
-  () => import("./_components/volume-of-cone-scene"),
+  () => import("./_components/cone/volume-of-cone-scene"),
+  { ssr: false },
+);
+
+const VolumeOfSphereScene = dynamic(
+  () => import("./_components/sphere/volume-of-sphere-scene"),
   { ssr: false },
 );
 
@@ -33,6 +38,16 @@ export default function VolumeOfSphere() {
         </div>
 
         <VolumeOfConeScene className="my-8" />
+
+        <div>
+          <p>
+            Now we can put that to work. Below is another cone, this time only
+            half as tall as the cylinder we're working toward. Watch what happens
+            when we push it out of the way:
+          </p>
+        </div>
+
+        <VolumeOfSphereScene className="my-8" />
 
       </article>
     </>
