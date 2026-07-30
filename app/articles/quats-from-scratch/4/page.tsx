@@ -8,7 +8,7 @@ import QuaternionVisualizer from "../_components/visualizer";
 
 export default function Page4() {
 	return (
-		<div>
+		<article>
 			<QuatsHeader>
 				{"Picture This!"}
 				{"Let's Do The Twist"}
@@ -198,6 +198,6 @@ export default function Page4() {
 			</p>
 
 			<p className="text-center">- Kruft</p>
-		</div>
+		</article>
 	);
 }

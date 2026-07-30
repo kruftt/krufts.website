@@ -1,7 +1,7 @@
 import { MathJaxContext } from "better-react-mathjax";
 import type { Metadata } from "next";
 import EmailLink from "@/components/general/email-link";
-import "./quats.css";
+import "../article.css";
 
 import QuatsNav from "./_components/quats-nav";
 
