@@ -1,5 +1,5 @@
 "use client";
-import "@/app/articles/quats-from-scratch/3/3d.css";
+import "@/app/articles/quats/3/3d.css";
 import JsdImage from "@/components/general/jsdelivr-image";
 import MathBlock from "@/components/general/math-block";
 import MathInline from "@/components/general/math-inline";

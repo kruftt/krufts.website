@@ -9,6 +9,11 @@ import {
 import JsdImage from "@/components/general/jsdelivr-image";
 import Zoom from "@/components/general/zoom";
 import { ArticleHeader } from "../_components/article-header";
+import {
+	VolumeOfConeScene,
+	VolumeOfParaboloidScene,
+	VolumeOfSphereScene,
+} from "./_components/sphere-scenes";
 import { data } from "./data";
 
 export default function TutorArticle() {
@@ -30,16 +35,40 @@ export default function TutorArticle() {
 			</div>
 			<br />
 			<SectionTabs
-				tabs={[
+        tabs={[
+          "Interactive Volumes",
 					"Dot Product",
 					"Exterior Product",
 					"Trig Derivatives",
 					"Matrix Multiplication",
 				]}
 			>
-				<br />
+        <SectionTabsContent value="Interactive Volumes">
+          <ArticleCarousel dragIgnore="canvas">
+            <CarouselItem>
+              <p>
+                Presented here are a series of three visual, interactive proofs that mimic those originally given by Archimedes. First we show that a pyramid occupies 1/3 the volume of its bounding cylinder:
+              </p>
+              <VolumeOfConeScene className="my-8" />
+            </CarouselItem>
+            <CarouselItem>
+              <p>
+                Next, we can use this fact to show that the remaining 2/3rd of the cylinder can be filled in by a hemisphere. The first step of this proof relies on some basic arithmetic that is not shown here to demonstrate that a cone is equivalent in volume to a "carved" hemispherical shell.
+              </p>
+              <VolumeOfSphereScene className="my-8" />
+            </CarouselItem>
+            <CarouselItem>
+              <p>
+                Finally, we present a visualization of the fact that a paraboloid takes up exactly half of its bounding cylinder, which can be seen by showing that a paraboloid can be arranged into a shell that perfectly holds an inverted version of itself.
+     					</p>
+              <VolumeOfParaboloidScene className="my-8" />
+            </CarouselItem>
+          </ArticleCarousel>
+				</SectionTabsContent>
 
-				<SectionTabsContent value="Matrix Multiplication">
+
+
+          <SectionTabsContent value="Matrix Multiplication">
 					<h2 className="text-2xl text-center">Matrix Multiplication</h2>
 					<ArticleCarousel>
 						<CarouselItem>

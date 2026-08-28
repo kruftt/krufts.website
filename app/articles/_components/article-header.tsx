@@ -1,4 +1,4 @@
-export function QuatsHeader({
+export function ArticleHeader({
   children
 }: {
   children: string | [string, string]

@@ -94,7 +94,7 @@ function PortfolioLink({
 		<Link
 			href={href}
 			className={cn(
-				"flex items-center px-1.5 py-1 inset-shadow-gray-200",
+				"flex items-center px-1.5 py-1 inset-shadow-gray-200 select-none",
 				"transition-shadow duration-75 hover:shadow-[inset_-1px_1px_6px_rgba(0,0,0,.12)]",
 				onPage &&
 					"shadow-[inset_-1px_1px_6px_rgba(0,0,0,.12)] bg-primary-foreground",

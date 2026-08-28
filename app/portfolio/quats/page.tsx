@@ -1,6 +1,6 @@
-import { QuatsCycle } from "@/app/articles/quats-from-scratch/_components/quats-cycle";
-import ThreeSwapper from "@/app/articles/quats-from-scratch/_components/three-swap";
-import QuaternionVisualizer from "@/app/articles/quats-from-scratch/_components/visualizer";
+import { QuatsCycle } from "@/app/articles/quats/_components/quats-cycle";
+import ThreeSwapper from "@/app/articles/quats/_components/three-swap";
+import QuaternionVisualizer from "@/app/articles/quats/_components/visualizer";
 import {
 	SectionTabs,
 	SectionTabsContent,

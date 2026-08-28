@@ -1,14 +1,16 @@
 # Volume-of-sphere visualizations
 
-Two interactive three.js / react-three-fiber proofs for the article, each a linear
-sequence of steps the reader drags through. `shared/` holds the pieces both use;
-each scene owns its geometry and captions. `page.tsx` pulls both in with
-`dynamic(..., { ssr: false })`.
+Three interactive three.js / react-three-fiber proofs for the article, each a
+linear sequence of steps the reader drags through. `shared/` holds the pieces they
+have in common; each scene owns its dimensions, profile and captions. `page.tsx`
+pulls all three in with `dynamic(..., { ssr: false })`.
 
 ```
-shared/   constants.ts  scene-hooks.ts  materials.tsx  handles.tsx  proof-scene.tsx
-cone/     geometry.ts   captions.ts     volume-of-cone-scene.tsx
-sphere/   geometry.ts   captions.ts     volume-of-sphere-scene.tsx
+shared/      constants.ts  scene-hooks.ts  materials.tsx
+             handles.tsx   proof-scene.tsx shell.ts
+cone/        geometry.ts   captions.ts     volume-of-cone-scene.tsx
+sphere/      geometry.ts   captions.ts     volume-of-sphere-scene.tsx
+paraboloid/  geometry.ts   captions.ts     volume-of-paraboloid-scene.tsx
 ```
 
 ---
@@ -80,6 +82,10 @@ Polar-angle sampling is not just for the closed form: the cavity meets the base
 plane tangentially, so `ds/dy → ∞` there and uniform height sampling visibly
 facets the flare where the hole opens.
 
+This family is not specific to the sphere, and `shared/shell.ts` carries the
+general version — the paraboloid proof below is the same morph with one line
+changed.
+
 ### What was measured, not assumed
 
 Checked by building the meshes headlessly and measuring them (one-off scripts, not
@@ -98,11 +104,66 @@ kept — they are cheap to recreate):
 - **Assembled**: the two carved pieces come to `0.3330` of the cylinder against an
   exact `⅓`, and the cap seats flush at `y = [1, 2]`.
 
+## The paraboloid proof
+
+A paraboloid is half its bounding cylinder. Two steps, and unlike the sphere it
+does not lean on the cone result at all:
+
+1. **Carve** — an upside-down paraboloid stands in the cylinder, apex at the top.
+   Drag the ring at the apex out to the wall and it opens into the cylinder with a
+   paraboloid bitten out of it.
+2. **Fill it** — the piece that comes down is that bite, and it closes the
+   cylinder.
+
+Same one-parameter family as the sphere's step 1, same polar-angle sampling, with
+only the height of each sample changed:
+
+```
+y     = H sin²φ                      (sphere: R(1 − cos φ))
+inner = t·R·sin φ
+outer = R·√(t² sin²φ + cos²φ)
+```
+
+| | |
+|---|---|
+| `t = 0` | `outer = R cos φ = R√(1 − y/H)` → **the paraboloid** `y = H(1 − r²/R²)` |
+| `t = 1` | `outer ≡ R`, `inner = R√(y/H)` → **cylinder minus the paraboloid**, the other way up |
+| every `t` | slice area `= πR²cos²φ = πR²(1 − y/H)` → volume holds at `½πR²H` |
+| `y = H` | `inner = outer = tR` → pinches to a circle, so the ring handle maps to `t` directly, as in the sphere |
+
+The proof closes on a congruence rather than an arithmetic identity. Swapping `y`
+for `H − y` turns `r = R√(1 − y/H)` into `r = R√(y/H)`, so the solid the reader
+starts with and the cavity they end up with are the same shape reflected. The
+morph says they have equal volume; together they fill the cylinder; so each is
+half. That is also why the dropped piece needs no geometry of its own — it is
+`buildShell` with `mirrored` set and `t` left at 0, whose local origin lands
+exactly on the paraboloid's vertex.
+
+### What was measured
+
+Same headless method as the sphere proof, and the same disclaimer that the scripts
+were not kept:
+
+- **Signed volume** flat across `t` at `3.13596…3.13713` against an exact
+  `π = 3.141593`, i.e. `0.4991…0.4993` of the cylinder against an exact `½`. The
+  `−0.179%` deficit splits into `−0.161%`, exactly the area ratio of a 64-gon
+  inscribed in a circle, and `−0.018%` from the profile chords cutting under the
+  curved outer wall. The sphere's `t = 0` has none of that second part, its
+  profile being straight lines — which is the one number worth not being surprised
+  by when comparing the two.
+- **Equal volumes**: the dropped piece measures `3.135965`, the same to every
+  digit as the shell at `t = 0`. The congruence above, confirmed on the meshes.
+- **Manifold** for both, every edge shared by exactly two triangles with
+  consistent direction.
+- **Clearance**: every vertex of the dropped piece sits at least `1.90e-3` from
+  the cavity's nearest triangle and `2.45e-3` inside the true cavity — the sphere
+  proof's `1.97e-3`, near enough, and by design.
+
 ---
 
 ## Rendering and drag constraints
 
-Six non-obvious things, each of which looks like a bug somewhere else if undone.
+Seven non-obvious things, each of which looks like a bug somewhere else if undone.
 Between them they account for every artifact this pair of scenes has thrown, and
 most took several wrong turns to pin down — the notes on what was *ruled out* are
 as much the point as the fixes. The recurring lesson: an artifact that appears
@@ -160,6 +221,29 @@ so it is worth writing down that the cameras use plain defaults and want nothing
 else. Should something one day genuinely need more depth range, note that raising
 `near` clips the piece staged overhead, which comes within half a unit of the
 camera when zoomed in from above.
+
+**The paraboloid hits the same problem twice as hard, and neither fix is the
+sphere's.** Its dropped piece and its cavity are not merely the same size, they are
+the same mesh: the polar-angle table is symmetric about `π/4`, so mirroring walks
+it backwards and lands on exactly the same profile points. Untreated they coincide
+outright rather than interleaving. The scene's `DROP_SCALE` is therefore a
+*relative* shrink, `scale={[1 − 0.003, 1, 1 − 0.003]}`, where the sphere's was an
+absolute `0.002` off the radius — both the clearance and the sagitta of a 64-gon
+chord scale with the local radius here, so a fixed offset would be lavish at the
+rim and stingy at the vertex, which is the end that matters. Because the sample
+heights coincide too, the shrunk profile is the cavity's scaled radially and
+cannot cross it, so the check is the azimuthal one alone: `0.003` against a chord
+that dips `0.0012` in.
+
+That still does nothing at the vertex, where both surfaces meet the axis at the
+same point — and the piece's surface is *tangent* to the base plane there
+(`y = H r²/R²` is flat at `r = 0`), so it runs nearly coplanar with the shell's
+base disc across a small disc around the bottom pole. That is the same place the
+sphere proof's normals bug showed, and this would read much the same: a speckle
+where the depth test goes either way per pixel. `SEAT_LIFT` seats the piece
+`0.002` high, which separates them everywhere for the price of its rim finishing
+`2e-3` above the cage's top ring — a line that does not write depth and does not
+care.
 
 **Do not let a knife-edge crease share vertices.** `createShell` duplicates the
 rings at the pinch, the base rim and the base centre so each surface carries its
@@ -304,12 +388,60 @@ the tube radius.
 - **`StepState`** — `{ currentStep, committing, onAdvance }`, what a scene needs
   from the step machine.
 - **`ProofScene({ captions, doneCaption, camera, className, children })`** — The
-  shell both scenes share: the `<Canvas>`, the step-dot row, the caption, and the
-  Reset button, plus the step state machine (`currentStep`, `committing`, reset
+  shell all three scenes share: the `<Canvas>`, the step-dot row, the caption, and
+  the Reset button, plus the step state machine (`currentStep`, `committing`, reset
   `nonce`) driving them. `advance` sets `committing` and delays the actual step
   bump by `FADE_MS` so transitions cross-fade. `children` is a render prop taking
   `StepState`, so the scene contents mount inside the canvas. The step count is
   `captions.length`; reaching it means the proof is complete.
+
+## `shared/shell.ts`
+
+Pure geometry — no React. The carved shell that the sphere and paraboloid proofs
+both open out against the cylinder wall, generalized to the point where a proof
+supplies nothing but the height of each profile sample.
+
+Write the cavity's radius at some height as a fraction `cavity` of the cylinder's
+radius `R`, and the starting solid's radius there as a fraction `wall`. Then
+`inner = t·R·cavity` and `outer = R·√(t²cavity² + wall²)`, and the single condition
+
+```
+cavity² + wall² = 1
+```
+
+does both jobs at once: it puts `outer` exactly on the cylinder wall at `t = 1`,
+and it makes every slice's area `π R² wall²`, which does not mention `t`. That is
+the Cavalieri argument, stated once for both proofs.
+
+- **`SEG`** — Ring subdivisions around the axis, with the angular tables the shells
+  and the cages share.
+- **`ShellSample` / `ShellProfile`** — A sample is `{ cavity, wall, y }` under the
+  condition above; a profile is a cylinder radius plus the samples running from the
+  flat base (`cavity = 0`) to the pinch (`cavity = 1`).
+- **`polarSamples(count, heightAt)`** — Samples evenly in polar angle from 0 at the
+  base to `π/2` at the pinch, taking each height from `heightAt(sin, cos)`.
+  `sin² + cos² = 1` satisfies the condition for free, and the clustering is what
+  both proofs want — the cavity meets the base plane tangentially in each, so
+  uniform height sampling facets the flare where the hole opens. Each proof's whole
+  geometric identity is the one callback it passes here.
+- **`buildShell(profile, { mirrored, t })`** — Builds the shell as a single revolved
+  closed profile — base centre → base rim → outer wall → pinch → cavity → back — so
+  one index buffer covers the whole closed surface, base cap included. No special
+  case is needed at the base: `cavity` is 0 at the first sample for every `t`, so
+  the bottom is always the full disc. Three rings are duplicated to keep the creases
+  hard; see the constraints section, since sharing them is a real defect rather than
+  a cosmetic one. `mirrored` flips the shell about its own mid-height for a copy
+  anchored on its pinch rather than its base, and flips the winding with it, since
+  the reflection flips the handedness.
+- **`writeShell(geom, profile, t, mirrored?)`** — Rewrites the vertices in place and
+  recomputes normals. Deliberately does *not* recompute bounds: the shell's extent
+  is identical at every `t` — the base disc already spans the full radius at `t = 0`
+  and the pinch already reaches the full height — so they never go stale.
+- **`createCage(radius, fromY, toY)`** — The cylinder outline as `LineSegments`: a
+  ring at each end plus four verticals, at the same angles the cone proof puts its
+  cube edges. A proof that draws the cylinder in halves calls it once per half; both
+  halves draw the ring on the shared plane, which is invisible as they share a
+  colour.
 
 ---
 
@@ -386,31 +518,21 @@ which in local space is straight down from the apex).
 
 ## `sphere/geometry.ts`
 
-Pure geometry, built around the one-parameter family described above. Dimension
-constants (`RADIUS`, `MID`, `HEIGHT`, `SEG`, `STAGE_HEIGHT`, plus an internal `NY`
-for the profile sampling) live at the top, with the angular and polar-angle tables
-that keep the per-frame work to one `sqrt` per profile ring and no trigonometry at
-all.
+This proof's dimensions (`RADIUS`, `MID`, `HEIGHT`, `STAGE_HEIGHT`, plus an
+internal `NY` for the profile sampling) and its `PROFILE`, which is the whole of
+what makes the shell a hemisphere: `polarSamples(NY, (_sin, cos) => RADIUS * (1 −
+cos))`. Everything below it is `shared/shell.ts` bound to that profile.
 
-- **`createShell(mirrored?)`** — Builds the carved shell as a single revolved
-  closed profile — base centre → base rim → outer wall → pinch → cavity → back —
-  so one index buffer covers the whole closed surface, base cap included. No
-  special case is needed at the base: `inner` is 0 at `φ = 0` for every `t`, so the
-  bottom is always the full disc. Three rings are duplicated to keep the creases
-  hard; see the constraints section, since sharing them is a real defect rather
-  than a cosmetic one. The default starts as the cone (`t = 0`) and is
+- **`createShell(mirrored?)`** — The default starts as the cone (`t = 0`) and is
   the piece the reader morphs; `mirrored` builds the finished cap instead, static
-  at `t = 1`, measuring height downward from its flat base so it is anchored on its
-  pinch ring and a group at the equator carries it to the cylinder's top.
-  Mirroring flips the handedness, so the winding flips with it.
-- **`updateShell(geom, t)`** — Rewrites the morphing shell's vertices in place and
-  recomputes normals. Deliberately does *not* recompute bounds: the shell's extent
-  is identical at every `t` — the base disc already spans the full radius at
-  `t = 0` and the pinch already reaches `y = RADIUS` — so they never go stale.
-- **`createCage(fromY, toY)`** — The cylinder outline as `LineSegments`: a ring at
-  each end plus four verticals, at the same angles the cone proof puts its cube
-  edges. Called twice; both halves draw the ring on the equator, which is
-  invisible as they share a colour.
+  at `t = 1`, anchored on its pinch ring so a group at the equator carries it to
+  the cylinder's top.
+- **`updateShell(geom, t)`** — Rewrites the morphing shell's vertices in place.
+- **`createCage(fromY, toY)`** — The cylinder outline at this proof's radius.
+  Called twice; both halves draw the ring on the equator, which is invisible as
+  they share a colour.
+- **`SEG`** — Re-exported for the scene, whose sphere is built at the same ring
+  count.
 
 ## `sphere/captions.ts`
 
@@ -439,5 +561,51 @@ constraints section.
   Both drops share one seat vector: the sphere lands there on its centre, the cap
   on its pinch ring.
 - **`VolumeOfSphereScene({ className })`** *(default export)* — Renders
+  `ProofScene` with this proof's captions and camera, and `Scene` as its render
+  prop.
+
+---
+
+## `paraboloid/geometry.ts`
+
+Same shape as `sphere/geometry.ts`, and the same length. Dimensions are the cone
+proof's cylinder (`RADIUS = 1`, `HEIGHT = 2`, `MID`), so all three figures read at
+one scale; `STAGE_HEIGHT` is also the staged piece's clearance above the cylinder,
+since it hangs by its vertex. The `PROFILE` is `polarSamples(NY, (sin) => HEIGHT *
+sin * sin)` — one line, and the only thing that makes this a paraboloid rather
+than a hemisphere.
+
+- **`createShell()` / `updateShell(geom, t)` / `createCage(fromY, toY)`** — As in
+  the sphere proof. There is no mirrored shell here, and the cage is drawn whole.
+- **`createParaboloid()`** — The piece the reader drops in: `buildShell` with
+  `mirrored` set and `t` left at 0, which is the congruence in the proof spelled as
+  geometry. Mirroring measures height downward from the flat base, standing the
+  starting dome on its apex, so the piece runs from its vertex at the local origin
+  up to its full-radius rim at `y = HEIGHT` — exactly the cavity the morph leaves
+  behind, which is why its seat is the origin.
+
+## `paraboloid/captions.ts`
+
+`STEP_CAPTIONS` (two of them), `STEP_COUNT`, `DONE_CAPTION`.
+
+## `paraboloid/volume-of-paraboloid-scene.tsx`
+
+`DROP_SCALE` and `SEAT_LIFT` are the two clearances explained in the constraints
+section; both are load-bearing, and the reason neither is the sphere proof's
+constant is the point of that entry.
+
+- **`framingFor(step)`** — Two positions rather than three: close on the cylinder
+  for the morph and again once complete, pulled out with the pivot raised for the
+  drop, which stages a piece reaching `STAGE_HEIGHT + HEIGHT`.
+- **`ParaboloidBody({ geometry })`** — The dropped piece: the one opaque body in
+  the scene, which is what lets the translucent shell blend over it from every
+  angle with no depth sorting to arrange. Carries the radial `DROP_SCALE`.
+- **`Scene(StepState)`** — Lights, `OrbitControls`, the morphing shell and the
+  whole cage — unlike the sphere proof there is never a moment when half the cage
+  bounds nothing, since the dome already spans the full height — then the ring
+  handle and the single `DropSolid`. Owns the live `progress` ref alongside an
+  `applied` ref so an idle frame costs nothing, and pins `t = 1` past the morph for
+  the reason the constraints section gives.
+- **`VolumeOfParaboloidScene({ className })`** *(default export)* — Renders
   `ProofScene` with this proof's captions and camera, and `Scene` as its render
   prop.

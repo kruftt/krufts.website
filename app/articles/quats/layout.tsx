@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: "Quaternions from Scratch",
 		description: "A Journey from P to P'",
-		url: "https://kruft.xyz/articles/quats-from-scratch/",
+		url: "https://kruft.xyz/articles/quats/",
 		images: [
 			{
 				url: "https://cdn.jsdelivr.net/gh/kruftt/krufts.website@images/quats/axis_actions_background.png",

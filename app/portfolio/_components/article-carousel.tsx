@@ -226,7 +226,15 @@ function CarouselNext({
 	);
 }
 
-export function ArticleCarousel({ ...props }: React.ComponentProps<"div">) {
+export function ArticleCarousel({
+	opts,
+	dragIgnore,
+	...props
+}: React.ComponentProps<"div"> & {
+	opts?: CarouselOptions;
+	/** CSS selector. Drags starting inside a match won't scroll the carousel. */
+	dragIgnore?: string;
+}) {
 	const [api, setApi] = React.useState<CarouselApi>();
 	const [current, setCurrent] = React.useState(0);
 	const [count, setCount] = React.useState(0);
@@ -242,11 +250,25 @@ export function ArticleCarousel({ ...props }: React.ComponentProps<"div">) {
 		});
 	}, [api]);
 
+	// Embla moves slides with a CSS transform, which changes where a slide sits on
+	// the page without firing a resize or a scroll. Anything inside that caches the
+	// page position of its own element — an r3f <Canvas> caches its rect and only
+	// refreshes it on those two events — is left holding the position the slide had
+	// when it mounted, off to the side of the viewport. A window resize is what
+	// every such measurer already listens for, so nudge them once the slide lands.
+	React.useEffect(() => {
+		if (!api) return;
+		const remeasure = () => window.dispatchEvent(new Event("resize"));
+		api.on("settle", remeasure);
+		return () => {
+			api.off("settle", remeasure);
+		};
+	}, [api]);
+
 	return (
 		<section className="mx-auto max-w-7/8 py-4">
 			<div className="m-4 flex items-center justify-center gap-2">
-				{new Array(count)
-					.map((_, i) => i)
+				{Array.from({ length: count }, (_, i) => i)
 					.map((i) => (
 						<button
 							key={`${i}`}
@@ -260,7 +282,20 @@ export function ArticleCarousel({ ...props }: React.ComponentProps<"div">) {
 						/>
 					))}
 			</div>
-			<Carousel setApi={setApi} className="w-full" {...props}>
+			<Carousel
+				opts={
+					dragIgnore
+						? {
+								...opts,
+								watchDrag: (_api, event) =>
+									!(event.target as HTMLElement | null)?.closest(dragIgnore),
+							}
+						: opts
+				}
+				setApi={setApi}
+				className="w-full"
+				{...props}
+			>
 				<CarouselContent>{props.children}</CarouselContent>
 				<CarouselPrevious />
 				<CarouselNext />

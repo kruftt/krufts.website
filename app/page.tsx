@@ -13,7 +13,7 @@ export default function Home() {
           </p>
 
           <ul className="mt-8 mb-8 text-sky-700">
-            <li><a href="/articles/quats-from-scratch/">Quaternions From Scratch</a></li>
+            <li><a href="/articles/quats/">Quaternions From Scratch</a></li>
           </ul>
 
           <p>
