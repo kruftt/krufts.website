@@ -33,6 +33,7 @@ import { data as lostSkiesData } from "./lost-skies/data";
 import { data as metaviewData } from "./metaview/data";
 import { data as quatsData } from "./quats/data";
 import { data as ribbitData } from "./ribbit/data";
+import { data as ordiriData } from "./ordiri/data";
 import { data as tetherData } from "./tether/data";
 import { data as tutorData } from "./tutor/data";
 import { data as ussFilterData } from "./uss-filter/data";
@@ -57,19 +58,20 @@ const data = {
 	},
 
 	items: [
+		ordiriData,
 		kruftsCafeData,
 		quatsData,
 		dotsData,
+		lostSkiesData,
+    tutorData,
 		apolloData,
-		ussFilterData,
 		valheimData,
-		tutorData,
-		intmatmultData,
 	],
 	more: [
-		lostSkiesData,
-		tetherData,
+		ussFilterData,
 		metaviewData,
+		intmatmultData,
+		tetherData,
 		iQueueData,
 		aimeData,
 		ribbitData,
