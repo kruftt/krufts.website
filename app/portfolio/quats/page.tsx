@@ -19,16 +19,14 @@ export default function QuatsArticle() {
 						<p className="pb-8">
 							Quaternions are an important algebraic structure in any domain
 							that involves 3d rotations, such as computer vision, graphics,
-							robotics, physics, and others.{" "}
-							<b>
-								I took some time to organize my intuitions around quaternions
-								and write an article that builds them up from "scratch".
-							</b>{" "}
+							robotics, physics, and others.
+							I took some time to organize my intuitions around quaternions
+							and write an article that builds them up from "scratch".
 							In addition to clarifying the ideas through writing, I've produced
 							numerous illustrations and interactive components to help give
 							readers a sense of how the algebra <i>feels</i>. To author this
-							article I made use of tools like React, Svg, Threejs, Latex, and
-							Krita.
+							article I made use of tools like <b>React, Svg, Threejs, Latex, and
+							Krita.</b>
 						</p>
 						<QuatsCycle>
 							<JsdImage

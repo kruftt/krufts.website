@@ -16,10 +16,9 @@ export default function ValheimArticle() {
 		<article>
 			<ArticleHeader article={data}>Valheim</ArticleHeader>
 			<p className="text-center">
-				<b>
-					I wrote several mods for{" "}
-					<a href="https://www.valheimgame.com">Valheim</a>
-				</b>{" "}
+				I wrote several mods for{" "}
+				<a href="https://www.valheimgame.com">Valheim</a>
+				{" "}
 				using BepInEx's out-of-the-box Unity modding utilities.
 			</p>
 			<SectionTabs
@@ -31,17 +30,15 @@ export default function ValheimArticle() {
 			>
 				<SectionTabsContent value="Explosive Bomb">
 					<p>
-						In order to speed up key progression choke points,{" "}
-						<b>
-							I came up with an idea for an
-							<a
-								className="ml-1"
-								href="https://thunderstore.io/c/valheim/p/kruft/Explosive_Bomb/"
-							>
-								Explosive Bomb
-							</a>{" "}
-							modded item that aids in combat and mining.
-						</b>{" "}
+						In order to speed up key progression choke points,
+						I came up with an idea for an
+						<a
+							className="ml-1 font-bold"
+							href="https://thunderstore.io/c/valheim/p/kruft/Explosive_Bomb/"
+						>
+						Explosive Bomb
+						</a>{" "}
+						item that aids in combat and mining.
 						Although quite powerful at the point it becomes available, it
 						requires a rare Surtling Core, which are scarce during early stages
 						of the game. I balanced the item to be great for mining and decent
@@ -51,7 +48,7 @@ export default function ValheimArticle() {
 					<p>
 						<b>I created my own model, materials, and sounds</b>, exporting them
 						as an asset package made to be compatible with Valheim,{" "}
-						<b>and wrote a small amount of code</b> to get it loaded and
+						and wrote code to get it loaded and
 						registered into the game.
 					</p>
 					<br />
@@ -61,13 +58,11 @@ export default function ValheimArticle() {
 				</SectionTabsContent>
 				<SectionTabsContent value="Smooth Armor Scaling">
 					<p>
-						<b>
-							<a href="https://thunderstore.io/c/valheim/p/kruft/SmoothArmorScaling/">
-								Smooth Armor Scaling
-							</a>{" "}
-							addresses inbalanced damage reduction scaling that occurs,
-							especially at higher difficulty levels.
-						</b>{" "}
+						<a className="font-bold" href="https://thunderstore.io/c/valheim/p/kruft/SmoothArmorScaling/">
+							Smooth Armor Scaling
+						</a>{" "}
+						addresses inbalanced damage reduction scaling that occurs,
+						especially at higher difficulty levels.
 						In the vanilla game, "starred" monsters can inflict up to 3x the
 						damage per hit compared to normal monsters! This, in combination
 						with the default piecewise armor damage reduction function, can
@@ -90,12 +85,10 @@ export default function ValheimArticle() {
 				</SectionTabsContent>
 				<SectionTabsContent value="Resource Cost Scaling">
 					<p>
-						<b>
-							<a href="https://thunderstore.io/c/valheim/p/kruft/ResourceCostScaling/">
-								Resource Cost Scaling
-							</a>{" "}
-							helps cut down on the amount of grinding required in the game.
-						</b>{" "}
+						<a className="font-bold" href="https://thunderstore.io/c/valheim/p/kruft/ResourceCostScaling/">
+							Resource Cost Scaling
+						</a>{" "}
+						helps cut down on the amount of grinding required in the game.
 						I felt increased drop amounts put too much extra strain on inventory
 						space and weight, whereas downscaling crafting costs doesn't, and so
 						doesn't disturb the normal game flow.

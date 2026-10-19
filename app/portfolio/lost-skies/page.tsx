@@ -28,17 +28,15 @@ export default function LostSkiesArticle() {
 				<SectionTabsContent value="Overview">
 					<section>
 						<p>
-							<b>
-								I helped initiate the modding community for an early-access
-								survival-crafting game called{" "}
-								<a href="https://lostskiesgame.com">Lost Skies</a>.
-							</b>{" "}
+							I helped initiate the modding community for an early-access
+							survival-crafting game called{" "}
+							<a href="https://lostskiesgame.com">Lost Skies</a>, built with <b>Unity</b>.
 							I wrote and published the initial mods while documenting my code,
 							workflow, and project configuration for others. This included
-							setting up a C# build environment and writing a custom{" "}
-							<a href="https://github.com/kruftt/ThunderstoreAdapter">
+              setting up a <b>C#</b> build environment and writing a custom{" "}
+							<b><a href="https://github.com/kruftt/ThunderstoreAdapter">
 								msbuild task library
-							</a>{" "}
+							</a></b>{" "}
 							for compiling mods and packaging them for distribution on{" "}
 							<a href="https://thunderstore.io">thunderstore.io</a>.
 						</p>
@@ -47,11 +45,9 @@ export default function LostSkiesArticle() {
 							later switched to an IL2CPP (Internal Language to C++) backend in
 							order to enhance security. While this made reverse-engineering and
 							modding significantly more difficult (by preventing decompilation
-							and/or transpilation of the IL assemblies),{" "}
-							<b>
-								it gave me an opportunity to learn about the IL2CPP compiler and
-								to explore methods of reverse-engineering native assemblies.
-							</b>
+							and/or transpilation of the IL assemblies),
+							it gave me an opportunity to learn about the IL2CPP compiler and
+							to explore methods of reverse-engineering native assemblies.
 						</p>
 					</section>
 					<ArticleCarousel>
@@ -106,17 +102,14 @@ export default function LostSkiesArticle() {
 				<SectionTabsContent value="Point to Interact">
 					<section>
 						<p>
-							<b>
-								I made a user-experience focused a mod called
-								<a
-									className="mx-1"
-									href="https://github.com/kruftt/LostSkiesMods/blob/main/PointToInteract/src/Patch.cs"
-								>
-									Point To Interact
-								</a>
-								that improved 3d object selection
-							</b>
-							. By default, every frame used a spherical collider to detect
+							I made a user-experience focused a mod called
+							<a
+								className="mx-1 font-bold"
+								href="https://github.com/kruftt/LostSkiesMods/blob/main/PointToInteract/src/Patch.cs"
+							>
+								Point To Interact
+							</a>
+							that improved 3d object selection. By default, every frame used a spherical collider to detect
 							interactables around the player. These interactables were then
 							displayed in a scrollable list, navigable with the mousewheel or a
 							controller's d-pad. However, this system felt unintuitive when
@@ -148,12 +141,9 @@ export default function LostSkiesArticle() {
 				<SectionTabsContent value="Infested Bunker">
 					<section>
 						<p>
-							In addition to mods,{" "}
-							<b>
-								I created a level ("Island") for Lost Skies called{" "}
-								<i>Infested Bunker</i>
-							</b>
-							. Lost Skies is set in the remains of a shattered world consisting
+							In addition to mods,
+							I created a level ("Island") for Lost Skies called
+              {" "}<i>Infested Bunker</i>. Lost Skies is set in the remains of a shattered world consisting
 							of floating islands and supports user-made islands via an island
 							authoring tool, similar to level editors from other games.{" "}
 							<i>Infested Bunker</i> features a series of simple puzzles that

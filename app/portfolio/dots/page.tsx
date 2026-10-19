@@ -15,19 +15,16 @@ export default function DotsArticle() {
 					<section>
 						<p>
 							In recent explorations of{" "}
-							<b>Unity's "Data-Oriented Technology Stack"</b>
-							(DOTS), I implemented a set of modular and performant systems
+							<b>Unity's "Data-Oriented Technology Stack" (DOTS)</b>
+							, I implemented a set of modular and performant systems
 							using several core ECS architectural patterns. To test these
 							systems, I built a demo in which the user can use the cursor to
 							push 10,000 animated, colored dots which are otherwise attracted
 							toward the center of the screen.
 						</p>
 						<p>
-							<b>
-								I combined Unity's DOTS framework with the new Low-Level 2D
-								Physics API
-							</b>{" "}
-							(Box2D) to build high-performance animation and physics systems.
+							I combined Unity's DOTS framework with the new <b>Low-Level 2D Physics API
+							(Box2D)</b> to build high-performance animation and physics systems.
 							This included shader-driven animations, prefab instantiation,
 							entity lifecycle management, and Physics API integration. Key
 							systems aggregate forces from multiple sources and batch their

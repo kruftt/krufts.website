@@ -9,12 +9,10 @@ export default function LightboxArticle() {
 			<section>
 				<div className="mb-8">
 					<p>
-						While studying visual perception{" "}
-						<b>
-							I created a small webpage using javascript and SVG to help
-							demonstrate how our visual systems take into account lighting
-							information during color perception.
-						</b>
+						While studying visual perception,
+						I created a small webpage using javascript and SVG to help
+						demonstrate how our visual systems take into account lighting
+						information during color perception.
 					</p>
 				</div>
 				<LightBox />

@@ -17,7 +17,7 @@ export default function OrdiriArticle() {
 		<article>
 			<ArticleHeader article={data}>Ordiri</ArticleHeader>
 			<p className="pb-4">
-			  I am working on a tool to author 3D digital memory palaces. The application aims to bring research into memory palaces to a user-friendly product. This prototype was built on Tauri, a lightweight alternative to Electron, using the Babylon.js 3D engine. Users can create and edit 3D worlds in which they can associate items in the world with notes, flashcards, files, links, and more!
+			  I am working on a tool to author 3D digital memory palaces. The application aims to bring research into memory palaces to a user-friendly product. This prototype was built on <b>Tauri</b>, a lightweight alternative to Electron, using the <b>Babylon.js</b> 3D engine. Users can create and edit 3D worlds in which they can associate items in the world with notes, flashcards, files, links, and more!
       </p>
 			<SectionTabs
 				tabs={[

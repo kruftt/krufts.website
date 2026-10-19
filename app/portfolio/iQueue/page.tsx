@@ -9,11 +9,10 @@ export default function IQueueArticle() {
 				<h2>iQueue</h2>
 			</ArticleHeader>
 			<div>
-				As part of a group project focused on UI Design, <b>I used the{" "}
-					<a href="https://expo.dev">Expo framework</a>
-				{" "}
+        As part of a group project focused on UI Design, I used the
+        {" "}<a className="font-bold" href="https://expo.dev">Expo framework</a>{" "}
 				to help implement a mobile app which automated the process of queuing
-				for help during office hours</b>. For our interface we used{" "}
+				for help during office hours. For our interface we used{" "}
 				<b>React Native</b>, <b>Redux</b>, and a{" "}
 				<b>cross-platform component library</b>. This project involved{" "}
 				<b>successive design and prototyping iterations</b> with focus on the

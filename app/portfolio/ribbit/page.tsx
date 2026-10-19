@@ -13,11 +13,9 @@ export default function RibbitArticle() {
 			<ArticleHeader article={data}>The Ribbit Hole</ArticleHeader>
 			<div>
 				<p>
-					<b>
-						I created a social, interactive art installation that combined web
-						and mobile technologies. Participants used their phones to control
-						an immersive soundscape and an accompanying visualization.
-					</b>{" "}
+					I created a social, interactive art installation that combined web
+					and mobile technologies. Participants used their phones to control
+					an immersive soundscape and an accompanying visualization.
 					The interface was implemented with SVG and provided low latency,
 					collective control of the sounds and visuals, which were implemented
 					in ChucK and Processing respectively. Set at nighttime around a local

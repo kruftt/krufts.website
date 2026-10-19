@@ -13,11 +13,9 @@ export default function MetaviewArticle() {
 			<ArticleHeader article={data}>MetaView</ArticleHeader>
 			<section>
 				<p>
-					<b>
-						I am developing a plugin for the markdown-based note-taking app{" "}
-						<a href="https://obsidian.md/">Obsidian</a> using{" "}
-						<a href="https://svelte.dev">Svelte 5</a>
-					</b>
+					I developed a plugin for the markdown-based note-taking app{" "}
+					<a className="font-bold" href="https://obsidian.md/">Obsidian</a> using{" "}
+					<a className="font-bold" href="https://svelte.dev">Svelte 5</a>
 					. Obsidian supports YAML metadata on notes and the Metaview plugin
 					adds the ability to create metadata templates with predefined property
 					names and types which can be added to notes in a composable manner.
